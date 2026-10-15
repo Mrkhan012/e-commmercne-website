@@ -292,7 +292,7 @@ export default function AdminProducts() {
         onClose={() => setIsAddModalOpen(false)}
         title="Create New Atelier Listing"
         description="Introduce a new handcrafted creation to the AFRO & CO. global storefront."
-        size="xl"
+        size="2xl"
       >
         <form onSubmit={handleCreateProduct} className="space-y-6 py-2">
           {/* Row 1: Name and Brand */}

@@ -1,23 +1,38 @@
-import { DollarSign, ShoppingBag, TrendingUp, Users, ArrowRight } from 'lucide-react';
+import { DollarSign, ShoppingBag, TrendingUp, Users, ArrowRight, Package, Truck, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { StatCard } from '@/components/dashboard/StatCard';
 import { DataTable } from '@/components/dashboard/DataTable';
 import { Badge } from '@/components/ui/Badge';
+import { Button } from '@/components/ui/Button';
 import { useUserStore } from '@/store/userStore';
-import { products } from '@/data/products';
+import { useProductStore } from '@/store/productStore';
+import { useToastStore } from '@/store/toastStore';
 import { formatPrice } from '@/utils/format';
+import type { OrderStatus } from '@/types';
 
 export default function AdminDashboard() {
-  const { orders } = useUserStore();
+  const { orders, updateOrderStatus } = useUserStore();
+  const { products } = useProductStore();
+  const toast = useToastStore();
+
+  const handleQuickStatusChange = (orderId: string, newStatus: OrderStatus) => {
+    const tracking =
+      newStatus === 'shipped' ? `AFRO-${Math.floor(100000 + Math.random() * 900000)}-EXP` : undefined;
+    updateOrderStatus(orderId, newStatus, tracking);
+    toast.success('Order Updated', `Order #${orderId} moved to ${newStatus.toUpperCase()}`);
+  };
 
   const orderColumns = [
     {
       key: 'orderNumber',
       header: 'Order Reference',
       render: (row: (typeof orders)[0]) => (
-        <span className="font-mono text-xs font-bold text-[var(--color-noir-gold)]">
+        <Link
+          to="/admin/orders"
+          className="font-mono text-xs font-bold text-[var(--color-noir-gold)] hover:underline"
+        >
           {row.orderNumber}
-        </span>
+        </Link>
       ),
     },
     {
@@ -54,6 +69,51 @@ export default function AdminDashboard() {
         <Badge variant={row.status === 'delivered' ? 'gold' : 'default'}>
           {row.status.toUpperCase()}
         </Badge>
+      ),
+    },
+    {
+      key: 'quickAction',
+      header: 'Approve / Advance',
+      align: 'right' as const,
+      render: (row: (typeof orders)[0]) => (
+        <div className="flex items-center justify-end gap-1.5">
+          {row.status === 'pending' && (
+            <Button
+              size="sm"
+              onClick={() => handleQuickStatusChange(row.id, 'processing')}
+              className="text-[10px] py-1 px-2 uppercase tracking-wider gap-1 bg-[var(--color-noir-gold)] text-black hover:opacity-90"
+            >
+              <Package className="h-3 w-3" />
+              <span>Pack</span>
+            </Button>
+          )}
+          {row.status === 'processing' && (
+            <Button
+              size="sm"
+              onClick={() => handleQuickStatusChange(row.id, 'shipped')}
+              className="text-[10px] py-1 px-2 uppercase tracking-wider gap-1 border border-sky-500/40 bg-sky-500/10 text-sky-400 hover:bg-sky-500/20"
+            >
+              <Truck className="h-3 w-3" />
+              <span>Ship</span>
+            </Button>
+          )}
+          {row.status === 'shipped' && (
+            <Button
+              size="sm"
+              onClick={() => handleQuickStatusChange(row.id, 'delivered')}
+              className="text-[10px] py-1 px-2 uppercase tracking-wider gap-1 border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20"
+            >
+              <CheckCircle2 className="h-3 w-3" />
+              <span>Deliver</span>
+            </Button>
+          )}
+          {row.status === 'delivered' && (
+            <span className="font-mono text-[10px] text-emerald-400">Complete</span>
+          )}
+          {row.status === 'cancelled' && (
+            <span className="font-mono text-[10px] text-red-400">Cancelled</span>
+          )}
+        </div>
       ),
     },
   ];

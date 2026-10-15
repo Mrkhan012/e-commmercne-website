@@ -12,7 +12,7 @@ export interface DialogProps {
   description?: string;
   children?: ReactNode;
   footer?: ReactNode;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   className?: string;
 }
 
@@ -21,6 +21,7 @@ const sizeStyles = {
   md: 'max-w-md',
   lg: 'max-w-lg',
   xl: 'max-w-2xl',
+  '2xl': 'max-w-4xl',
 };
 
 export function Dialog({
@@ -58,14 +59,14 @@ export function Dialog({
   return createPortal(
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 overflow-hidden">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70 backdrop-blur-md"
             aria-hidden="true"
           />
           <motion.div
@@ -78,34 +79,34 @@ export function Dialog({
             exit={{ opacity: 0, scale: 0.96, y: 12 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className={cn(
-              'relative z-10 w-full border border-[var(--border-color)] bg-[var(--bg-primary)] shadow-2xl',
+              'relative z-10 w-full max-h-[92vh] flex flex-col border border-[var(--border-color)] bg-[var(--bg-card)] shadow-2xl overflow-hidden',
               sizeStyles[size],
               className
             )}
           >
             {title && (
-              <div className="flex items-start justify-between gap-4 border-b border-[var(--border-color)] px-6 py-5">
+              <div className="flex shrink-0 items-start justify-between gap-4 border-b border-[var(--border-color)] px-6 py-5 bg-[var(--bg-card)]">
                 <div>
                   <h2 id={titleId} className="font-heading text-lg font-bold text-[var(--text-primary)]">
                     {title}
                   </h2>
                   {description && (
-                    <p className="mt-1 text-sm text-[var(--text-muted)]">{description}</p>
+                    <p className="mt-1 text-xs text-[var(--text-muted)]">{description}</p>
                   )}
                 </div>
                 <button
                   type="button"
                   onClick={onClose}
                   aria-label="Close dialog"
-                  className="shrink-0 rounded-none p-1 text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
+                  className="shrink-0 p-1.5 text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
                 >
                   <X className="h-5 w-5" />
                 </button>
               </div>
             )}
-            {children && <div className="px-6 py-5">{children}</div>}
+            {children && <div className="px-6 py-5 overflow-y-auto flex-1">{children}</div>}
             {footer && (
-              <div className="flex items-center justify-end gap-3 border-t border-[var(--border-color)] px-6 py-4">
+              <div className="flex shrink-0 items-center justify-end gap-3 border-t border-[var(--border-color)] px-6 py-4 bg-[var(--bg-card)]">
                 {footer}
               </div>
             )}

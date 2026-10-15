@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Address, Order, User, UserPreferences } from '@/types';
+import type { Address, Order, OrderStatus, OrderTimelineEvent, User, UserPreferences } from '@/types';
 
 interface UserState {
   user: User | null;
@@ -23,6 +23,12 @@ interface UserState {
   removeAddress: (id: string) => void;
   setDefaultAddress: (id: string) => void;
   addOrder: (order: Order) => void;
+  updateOrderStatus: (
+    orderId: string,
+    status: OrderStatus,
+    trackingNumber?: string,
+    note?: string
+  ) => void;
   getOrder: (orderId: string) => Order | undefined;
   setAuthModalOpen: (open: boolean) => void;
   setAuthModalView: (view: 'signin' | 'signup') => void;
@@ -326,6 +332,56 @@ export const useUserStore = create<UserState>()(
 
       addOrder: (order) =>
         set((state) => ({ orders: [order, ...state.orders] })),
+
+      updateOrderStatus: (orderId, status, trackingNumber, note) =>
+        set((state) => {
+          const now = new Date().toISOString();
+          const statusLabels: Record<OrderStatus, string> = {
+            pending: 'Order Placed',
+            processing: 'Atelier Processing & Packed',
+            shipped: 'Dispatched & In Transit',
+            delivered: 'Delivered',
+            cancelled: 'Cancelled',
+            refunded: 'Refunded',
+          };
+          const statusDescriptions: Record<OrderStatus, string> = {
+            pending: 'Order confirmed and awaiting atelier review',
+            processing: 'Approved by Atelier & Packed in protective luxury packaging',
+            shipped: 'Handed over to priority white-glove courier',
+            delivered: 'Courier successfully delivered package with signature on file',
+            cancelled: 'Order was cancelled by atelier operations',
+            refunded: 'Order payment was refunded to client',
+          };
+
+          const newOrders = state.orders.map((order) => {
+            if (order.id !== orderId) return order;
+
+            const existingTimeline = order.timeline || [];
+            const newTimelineEvent: OrderTimelineEvent = {
+              status,
+              label: statusLabels[status] || status,
+              timestamp: now,
+              description: note || statusDescriptions[status] || `Status updated to ${status}`,
+            };
+
+            const assignedTracking =
+              trackingNumber ||
+              order.trackingNumber ||
+              (status === 'shipped' || status === 'delivered'
+                ? `AFRO-EXP-${Date.now().toString().slice(-6)}`
+                : undefined);
+
+            return {
+              ...order,
+              status,
+              updatedAt: now,
+              trackingNumber: assignedTracking,
+              timeline: [...existingTimeline, newTimelineEvent],
+            };
+          });
+
+          return { orders: newOrders };
+        }),
 
       getOrder: (orderId) => get().orders.find((o) => o.id === orderId),
 
