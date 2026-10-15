@@ -124,6 +124,31 @@ export default function SignUpPage() {
           )}
         </AnimatePresence>
 
+        {/* B2B Dealer Partnership Callout */}
+        <div className="mt-6 rounded border border-[var(--color-noir-gold)]/40 bg-[var(--color-noir-gold)]/10 p-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span className="font-heading text-[10px] font-bold uppercase tracking-widest text-[var(--color-noir-gold)]">
+                B2B Wholesale Portal
+              </span>
+              <p className="text-xs font-bold text-[var(--text-primary)] mt-0.5">
+                Applying as a Retail Boutique or Distributor?
+              </p>
+              <p className="text-[11px] text-[var(--text-muted)]">
+                Request a verified dealer account with tiered wholesale margins (up to 40% OFF) and Net-30 credit terms.
+              </p>
+            </div>
+            <Button
+              asChild
+              size="sm"
+              variant="outline"
+              className="shrink-0 text-[10px] uppercase tracking-wider border-[var(--color-noir-gold)] text-[var(--color-noir-gold)] hover:bg-[var(--color-noir-gold)] hover:text-black"
+            >
+              <Link to="/dealer/register">Apply as Dealer</Link>
+            </Button>
+          </div>
+        </div>
+
         <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-5">
           <div className="grid grid-cols-2 gap-4">
             <div>

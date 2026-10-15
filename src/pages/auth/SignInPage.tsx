@@ -223,24 +223,40 @@ export default function SignInPage() {
 
         <AuthDemoNote className="mt-8" />
 
-        <div className="mt-6 border-t border-[var(--border-color)] pt-6 space-y-3">
-          <p className="text-xs text-[var(--text-muted)]">
-            Demo credentials:{' '}
-            <span className="text-[var(--text-secondary)]">{DEMO_EMAIL}</span> (Customer) or{' '}
-            <span className="text-[var(--color-noir-gold)]">admin@afro.co</span> (Administrator).
-          </p>
-          <div className="flex flex-col sm:flex-row gap-2 pt-1">
+        <div className="mt-6 border-t border-[var(--border-color)] pt-6 space-y-4">
+          <div>
+            <p className="font-heading text-[10px] font-bold uppercase tracking-wider text-[var(--color-noir-gold)]">
+              Instant Demo Access by Role
+            </p>
+            <p className="text-xs text-[var(--text-muted)] mt-0.5">
+              Select any role to test the platform immediately without entering passwords:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
             <Button
               type="button"
               variant="outline"
               size="sm"
               onClick={() => {
-                signInToStore(DEMO_EMAIL, 'Demo', 'Customer', 'customer');
+                signInToStore(DEMO_EMAIL, 'Elena', 'Vance', 'customer');
                 navigate('/account');
               }}
-              className="text-[10px] uppercase tracking-wider flex-1"
+              className="text-[10px] uppercase tracking-wider py-2"
             >
-              Sign In as Customer
+              Customer
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                useUserStore.getState().signInAsDealer();
+                navigate('/dealer');
+              }}
+              className="text-[10px] uppercase tracking-wider border-amber-500/60 text-amber-500 hover:bg-amber-500/10 py-2"
+            >
+              Dealer (B2B)
             </Button>
             <Button
               type="button"
@@ -250,9 +266,29 @@ export default function SignInPage() {
                 useUserStore.getState().signInAsAdmin();
                 navigate('/admin');
               }}
-              className="text-[10px] uppercase tracking-wider border-[var(--color-noir-gold)]/60 text-[var(--color-noir-gold)] flex-1"
+              className="text-[10px] uppercase tracking-wider border-[var(--color-noir-gold)]/60 text-[var(--color-noir-gold)] hover:bg-[var(--color-noir-gold)]/10 py-2"
             >
-              Sign In as Admin
+              Admin Director
+            </Button>
+          </div>
+
+          {/* Dealer Partnership Application Prompt */}
+          <div className="rounded border border-[var(--border-color)] bg-[var(--bg-secondary)] p-3.5 flex items-center justify-between gap-3">
+            <div>
+              <p className="font-heading text-xs font-bold text-[var(--text-primary)]">
+                Wholesale Retailer or Distributor?
+              </p>
+              <p className="text-[11px] text-[var(--text-muted)]">
+                Submit your business credentials to request wholesale dealer pricing.
+              </p>
+            </div>
+            <Button
+              asChild
+              size="sm"
+              variant="outline"
+              className="shrink-0 text-[10px] uppercase tracking-wider"
+            >
+              <Link to="/dealer/register">Apply Now</Link>
             </Button>
           </div>
         </div>
