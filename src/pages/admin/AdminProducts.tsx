@@ -1,7 +1,17 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import { Plus, Search, Trash2, ExternalLink, Sparkles } from 'lucide-react';
+import {
+  Plus,
+  Search,
+  Trash2,
+  ExternalLink,
+  Sparkles,
+  Tag,
+  Percent,
+  RotateCcw,
+  Flame,
+} from 'lucide-react';
 import { DataTable } from '@/components/dashboard/DataTable';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
@@ -36,13 +46,31 @@ const PRESET_IMAGES = [
 
 export default function AdminProducts() {
   const queryClient = useQueryClient();
-  const { products, addProduct, deleteProduct } = useProductStore();
+  const {
+    products,
+    addProduct,
+    deleteProduct,
+    applyDiscount,
+    removeDiscount,
+    applyBulkDiscount,
+    restoreBulkPrices,
+  } = useProductStore();
   const currentCurrency = useCurrencyStore((s) => s.currentCurrency);
   const toast = useToastStore();
 
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isSalesModalOpen, setIsSalesModalOpen] = useState(false);
+
+  // Single Product Quick Offer state
+  const [selectedOfferProduct, setSelectedOfferProduct] = useState<Product | null>(null);
+  const [singleDiscountPercent, setSingleDiscountPercent] = useState('20');
+
+  // Bulk Sales Campaign state
+  const [campaignScope, setCampaignScope] = useState('all');
+  const [campaignDiscount, setCampaignDiscount] = useState('20');
+  const [campaignTag, setCampaignTag] = useState('Seasonal Atelier Offer');
 
   // Form state for new product listing
   const [name, setName] = useState('');
@@ -66,6 +94,15 @@ export default function AdminProducts() {
     const matchesCategory = selectedCategory === 'all' || p.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+
+  // Calculate active sales stats
+  const onSaleProducts = products.filter((p) => (p.discount && p.discount > 0) || p.status === 'sale');
+  const averageDiscount =
+    onSaleProducts.length > 0
+      ? Math.round(
+          onSaleProducts.reduce((sum, p) => sum + (p.discount || 0), 0) / onSaleProducts.length
+        )
+      : 0;
 
   const handleCreateProduct = (e: React.FormEvent) => {
     e.preventDefault();
@@ -100,7 +137,7 @@ export default function AdminProducts() {
       images: [
         {
           id: `img-${Date.now()}`,
-          url: imageUrl.trim() || PRESET_IMAGES[0].url,
+          url: imageUrl,
           alt: name.trim(),
           width: 800,
           height: 800,
@@ -108,9 +145,7 @@ export default function AdminProducts() {
       ],
     });
 
-    // Invalidate React Query cache so all frontend queries update
     queryClient.invalidateQueries();
-
     toast.success('Listing Published', `${created.name} is now active on the storefront.`);
     setIsAddModalOpen(false);
 
@@ -130,13 +165,84 @@ export default function AdminProducts() {
     }
   };
 
+  // Launch Bulk Sale Campaign
+  const handleLaunchCampaign = (e: React.FormEvent) => {
+    e.preventDefault();
+    const percent = parseFloat(campaignDiscount);
+    if (isNaN(percent) || percent <= 0 || percent >= 100) {
+      toast.error('Invalid Discount', 'Please specify a discount between 1% and 99%.');
+      return;
+    }
+
+    const count = applyBulkDiscount({
+      category: campaignScope === 'all' ? undefined : campaignScope,
+      percentage: percent,
+      tag: campaignTag.trim() || undefined,
+    });
+
+    queryClient.invalidateQueries();
+    toast.success(
+      'Sale Campaign Active',
+      `Applied ${percent}% discount offer across ${count} products (${campaignScope === 'all' ? 'Storewide' : campaignScope}).`
+    );
+    setIsSalesModalOpen(false);
+  };
+
+  // End Bulk Sale & Restore
+  const handleRestorePrices = () => {
+    const count = restoreBulkPrices(campaignScope === 'all' ? undefined : campaignScope);
+    queryClient.invalidateQueries();
+    toast.info(
+      'Sale Concluded',
+      `Restored regular catalog prices for ${count} products.`
+    );
+    setIsSalesModalOpen(false);
+  };
+
+  // Single Product Quick Offer Handlers
+  const handleOpenQuickOffer = (p: Product) => {
+    setSelectedOfferProduct(p);
+    setSingleDiscountPercent(String(p.discount || 20));
+  };
+
+  const handleApplySingleOffer = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedOfferProduct) return;
+
+    const percent = parseFloat(singleDiscountPercent);
+    if (isNaN(percent) || percent <= 0 || percent >= 100) {
+      toast.error('Invalid Discount', 'Please specify a discount between 1% and 99%.');
+      return;
+    }
+
+    applyDiscount(selectedOfferProduct.id, percent);
+    queryClient.invalidateQueries();
+    toast.success(
+      'Offer Applied',
+      `Applied ${percent}% discount to "${selectedOfferProduct.name}". Reflecting on storefront and /sale!`
+    );
+    setSelectedOfferProduct(null);
+  };
+
+  const handleRemoveSingleOffer = () => {
+    if (!selectedOfferProduct) return;
+    removeDiscount(selectedOfferProduct.id);
+    queryClient.invalidateQueries();
+    toast.info('Offer Removed', `Restored "${selectedOfferProduct.name}" to standard regular price.`);
+    setSelectedOfferProduct(null);
+  };
+
   const columns = [
     {
       key: 'image',
       header: 'Piece',
       width: '60px',
       render: (p: Product) => (
-        <img src={p.images[0]?.url} alt={p.name} className="h-11 w-10 object-cover rounded-none border border-[var(--border-color)]" />
+        <img
+          src={p.images[0]?.url}
+          alt={p.name}
+          className="h-11 w-10 object-cover rounded-none border border-[var(--border-color)]"
+        />
       ),
     },
     {
@@ -146,13 +252,20 @@ export default function AdminProducts() {
         <div>
           <div className="flex items-center gap-2">
             <p className="font-heading text-xs font-bold text-[var(--text-primary)]">{p.name}</p>
-            {p.createdAt && Date.now() - new Date(p.createdAt).getTime() < 86400000 && (
+            {p.discount && p.discount > 0 && (
+              <span className="bg-red-500/20 text-red-500 font-mono text-[9px] font-bold px-1.5 py-0.5">
+                -{p.discount}% OFF
+              </span>
+            )}
+            {p.createdAt && Date.now() - new Date(p.createdAt).getTime() < 86400000 && !p.discount && (
               <span className="bg-[var(--color-noir-gold)]/20 text-[var(--color-noir-gold)] font-mono text-[9px] font-bold px-1.5 py-0.2">
                 NEW
               </span>
             )}
           </div>
-          <p className="text-[11px] text-[var(--text-muted)] font-mono">{p.brand} &bull; SKU: {p.id.slice(-6).toUpperCase()}</p>
+          <p className="text-[11px] text-[var(--text-muted)] font-mono">
+            {p.brand} &bull; SKU: {p.id.slice(-6).toUpperCase()}
+          </p>
         </div>
       ),
     },
@@ -167,13 +280,17 @@ export default function AdminProducts() {
     },
     {
       key: 'price',
-      header: 'Price',
+      header: 'Price / Sale Offer',
       align: 'right' as const,
       render: (p: Product) => (
         <div className="text-right">
-          <p className="font-heading text-xs font-bold text-[var(--text-primary)]">{formatPrice(p.price)}</p>
-          {p.originalPrice && (
-            <p className="text-[10px] text-[var(--text-muted)] line-through">{formatPrice(p.originalPrice)}</p>
+          <p className="font-heading text-xs font-bold text-[var(--text-primary)]">
+            {formatPrice(p.price)}
+          </p>
+          {p.originalPrice && p.originalPrice > p.price && (
+            <p className="text-[10px] text-[var(--text-muted)] line-through">
+              {formatPrice(p.originalPrice)}
+            </p>
           )}
         </div>
       ),
@@ -197,8 +314,20 @@ export default function AdminProducts() {
       header: 'Status',
       align: 'center' as const,
       render: (p: Product) => (
-        <Badge variant={p.status === 'new' ? 'gold' : p.status === 'best-seller' ? 'best' : 'default'}>
-          {p.status.toUpperCase()}
+        <Badge
+          variant={
+            p.status === 'sale' || (p.discount && p.discount > 0)
+              ? 'sale'
+              : p.status === 'new'
+              ? 'gold'
+              : p.status === 'best-seller'
+              ? 'best'
+              : 'default'
+          }
+        >
+          {p.status === 'sale' || (p.discount && p.discount > 0)
+            ? `SALE (-${p.discount || 20}%)`
+            : p.status.toUpperCase()}
         </Badge>
       ),
     },
@@ -207,16 +336,31 @@ export default function AdminProducts() {
       header: 'Actions',
       align: 'right' as const,
       render: (p: Product) => (
-        <div className="flex items-center justify-end gap-2">
+        <div className="flex items-center justify-end gap-1.5">
+          {/* Quick Sale Offer Trigger */}
+          <button
+            type="button"
+            onClick={() => handleOpenQuickOffer(p)}
+            title={p.discount ? `Manage Offer (-${p.discount}%)` : 'Set Sales Discount Offer'}
+            className={`p-1.5 transition-colors rounded ${
+              p.discount
+                ? 'text-red-500 hover:bg-red-500/10'
+                : 'text-[var(--text-muted)] hover:text-[var(--color-noir-gold)]'
+            }`}
+          >
+            <Percent className="h-4 w-4" />
+          </button>
+
           <Link
             to={`/product/${p.slug}`}
             target="_blank"
             rel="noopener noreferrer"
-            title="View Live Listing"
+            title="View Live Listing on Storefront"
             className="p-1.5 text-[var(--text-muted)] hover:text-[var(--color-noir-gold)] transition-colors"
           >
             <ExternalLink className="h-4 w-4" />
           </Link>
+
           <button
             type="button"
             onClick={() => handleDelete(p.id, p.name)}
@@ -232,25 +376,87 @@ export default function AdminProducts() {
 
   return (
     <div className="space-y-8">
-      {/* Header with Title and Add Product Action */}
+      {/* Header with Title and Actions */}
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border-color)] pb-6">
         <div>
           <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-noir-gold)]">
-            Atelier Merchandising
+            Atelier Merchandising &amp; Sales Pricing
           </p>
           <h1 className="mt-1 font-heading text-3xl font-extrabold text-[var(--text-primary)]">
-            Product Catalog ({products.length})
+            Product Catalog &amp; Offers ({products.length})
           </h1>
+          <p className="mt-1 text-xs text-[var(--text-muted)]">
+            Manage pieces, launch storewide or category sales offers, and set product discounts.
+          </p>
         </div>
 
-        <Button
-          onClick={() => setIsAddModalOpen(true)}
-          className="gap-2 uppercase tracking-[0.16em] text-xs py-3 px-5"
-        >
-          <Plus className="h-4 w-4" />
-          Add New Product
-        </Button>
+        <div className="flex flex-wrap gap-2">
+          {/* Manage Sales Offers Campaign Button */}
+          <Button
+            variant="outline"
+            onClick={() => setIsSalesModalOpen(true)}
+            className="gap-2 uppercase tracking-[0.16em] text-xs py-3 px-4 border-[var(--color-noir-gold)] text-[var(--color-noir-gold)] hover:bg-[var(--color-noir-gold)]/10"
+          >
+            <Tag className="h-4 w-4" />
+            <span>Manage Sales &amp; Offers</span>
+            {onSaleProducts.length > 0 && (
+              <span className="ml-1 rounded-full bg-[var(--color-noir-gold)] px-1.5 py-0.2 font-mono text-[9px] font-bold text-black">
+                {onSaleProducts.length}
+              </span>
+            )}
+          </Button>
+
+          <Button
+            onClick={() => setIsAddModalOpen(true)}
+            className="gap-2 uppercase tracking-[0.16em] text-xs py-3 px-5"
+          >
+            <Plus className="h-4 w-4" />
+            Add New Product
+          </Button>
+        </div>
       </div>
+
+      {/* Active Sales Banner Indicator if products are on sale */}
+      {onSaleProducts.length > 0 && (
+        <div className="border border-[var(--color-noir-gold)]/40 bg-[var(--color-noir-gold)]/10 p-4 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-noir-gold)] text-black shrink-0">
+              <Flame className="h-4 w-4" />
+            </div>
+            <div>
+              <p className="font-heading text-xs font-bold uppercase tracking-wider text-[var(--text-primary)]">
+                Active Promotional Sales Event ({onSaleProducts.length} Products on Sale)
+              </p>
+              <p className="text-xs text-[var(--text-secondary)]">
+                Average discount: <strong className="text-[var(--color-noir-gold)]">-{averageDiscount}% OFF</strong> &bull; Discounted items automatically display on the customer{' '}
+                <Link to="/sale" target="_blank" className="underline font-bold text-[var(--color-noir-gold)]">
+                  /sale page
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setIsSalesModalOpen(true)}
+              className="text-[10px] uppercase tracking-wider"
+            >
+              Adjust Campaign
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleRestorePrices}
+              className="text-[10px] uppercase tracking-wider text-red-500 hover:text-red-400"
+            >
+              End All Sales
+            </Button>
+          </div>
+        </div>
+      )}
 
       {/* Search & Filter Bar */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -264,8 +470,9 @@ export default function AdminProducts() {
           />
         </div>
 
-        <div className="flex items-center gap-2 overflow-x-auto [scrollbar-width:none]">
-          <span className="font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)] whitespace-nowrap">
+        {/* Category Dropdown */}
+        <div className="flex items-center gap-2">
+          <span className="font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
             Category:
           </span>
           <select
@@ -288,7 +495,238 @@ export default function AdminProducts() {
         <DataTable columns={columns} data={filteredProducts} />
       </div>
 
-      {/* Add Product Modal Dialog */}
+      {/* ─── SALES & OFFERS CAMPAIGN MODAL ─── */}
+      <Dialog
+        open={isSalesModalOpen}
+        onClose={() => setIsSalesModalOpen(false)}
+        title="Manage Sales, Offers &amp; Discounts"
+        description="Launch promotional sale offers across an entire category or storewide with automatic price reduction and badges."
+        size="lg"
+      >
+        <div className="space-y-6 py-2">
+          {/* Active Sales Status Card */}
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4 text-center">
+            <div>
+              <span className="block font-heading text-[10px] uppercase text-[var(--text-muted)]">Items on Sale</span>
+              <span className="font-heading text-lg font-bold text-[var(--color-noir-gold)]">
+                {onSaleProducts.length} of {products.length}
+              </span>
+            </div>
+            <div>
+              <span className="block font-heading text-[10px] uppercase text-[var(--text-muted)]">Average Cut</span>
+              <span className="font-heading text-lg font-bold text-red-500">
+                {averageDiscount > 0 ? `-${averageDiscount}%` : 'None'}
+              </span>
+            </div>
+            <div className="col-span-2 sm:col-span-1">
+              <span className="block font-heading text-[10px] uppercase text-[var(--text-muted)]">Live Visibility</span>
+              <Link to="/sale" target="_blank" className="font-heading text-xs font-semibold text-[var(--color-noir-gold)] hover:underline flex items-center justify-center gap-1 mt-1">
+                <span>View /sale page</span>
+                <ExternalLink className="h-3 w-3" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Launch Sale Form */}
+          <form onSubmit={handleLaunchCampaign} className="space-y-4 border border-[var(--border-color)] bg-[var(--bg-card)] p-5">
+            <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-[var(--text-primary)] flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-[var(--color-noir-gold)]" />
+              Launch Bulk Discount Campaign
+            </h3>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="mb-1 block font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                  Target Products / Scope *
+                </label>
+                <select
+                  value={campaignScope}
+                  onChange={(e) => setCampaignScope(e.target.value)}
+                  className="w-full border border-[var(--border-color)] bg-[var(--bg-primary)] px-3 py-2 text-xs text-[var(--text-primary)] font-heading"
+                >
+                  <option value="all">Entire Store Catalog (Storewide)</option>
+                  {CATEGORIES.map((cat) => (
+                    <option key={cat} value={cat}>
+                      Only in: {cat}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="mb-1 block font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                  Discount Offer Percentage (%) *
+                </label>
+                <div className="flex gap-2">
+                  <Input
+                    type="number"
+                    min="1"
+                    max="90"
+                    required
+                    value={campaignDiscount}
+                    onChange={(e) => setCampaignDiscount(e.target.value)}
+                    placeholder="20"
+                    className="font-mono text-xs"
+                  />
+                  <div className="flex gap-1">
+                    {[15, 20, 25, 30, 50].map((preset) => (
+                      <button
+                        key={preset}
+                        type="button"
+                        onClick={() => setCampaignDiscount(String(preset))}
+                        className={`border px-2 text-[10px] font-mono transition-colors ${
+                          campaignDiscount === String(preset)
+                            ? 'border-[var(--color-noir-gold)] bg-[var(--color-noir-gold)]/10 text-[var(--color-noir-gold)] font-bold'
+                            : 'border-[var(--border-color)] text-[var(--text-muted)] hover:border-[var(--text-primary)]'
+                        }`}
+                      >
+                        {preset}%
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label className="mb-1 block font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                Promotional Offer Tag (Displays as badge on products)
+              </label>
+              <Input
+                value={campaignTag}
+                onChange={(e) => setCampaignTag(e.target.value)}
+                placeholder="e.g. Seasonal Atelier Sale, Flash Offer, VIP Privilege"
+                className="text-xs"
+              />
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[var(--border-color)]">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleRestorePrices}
+                className="text-xs uppercase tracking-wider gap-1.5 text-red-500 border-red-500/30 hover:bg-red-500/10"
+              >
+                <RotateCcw className="h-3.5 w-3.5" />
+                <span>Revert Scope to Regular Price</span>
+              </Button>
+
+              <Button type="submit" className="uppercase tracking-wider text-xs gap-1.5">
+                <Percent className="h-3.5 w-3.5" />
+                <span>Apply {campaignDiscount}% Discount to Products</span>
+              </Button>
+            </div>
+          </form>
+        </div>
+      </Dialog>
+
+      {/* ─── SINGLE PRODUCT QUICK OFFER DIALOG ─── */}
+      <Dialog
+        open={!!selectedOfferProduct}
+        onClose={() => setSelectedOfferProduct(null)}
+        title={`Set Sale Offer: ${selectedOfferProduct?.name}`}
+        description="Apply an individual promotional discount offer or restore regular price."
+        size="md"
+      >
+        {selectedOfferProduct && (
+          <form onSubmit={handleApplySingleOffer} className="space-y-5 py-2">
+            <div className="flex items-center gap-3 border border-[var(--border-color)] bg-[var(--bg-secondary)] p-3">
+              <img
+                src={selectedOfferProduct.images[0]?.url}
+                alt={selectedOfferProduct.name}
+                className="h-12 w-10 object-cover border border-[var(--border-color)]"
+              />
+              <div className="flex-1">
+                <p className="font-heading text-xs font-bold text-[var(--text-primary)]">
+                  {selectedOfferProduct.name}
+                </p>
+                <p className="text-[11px] text-[var(--text-muted)]">
+                  Base Price: {formatPrice(selectedOfferProduct.originalPrice || selectedOfferProduct.price)} &bull; {selectedOfferProduct.category}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <label className="mb-1 block font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                Discount Percentage (%)
+              </label>
+              <div className="flex gap-2">
+                <Input
+                  type="number"
+                  min="1"
+                  max="90"
+                  required
+                  value={singleDiscountPercent}
+                  onChange={(e) => setSingleDiscountPercent(e.target.value)}
+                  placeholder="20"
+                  className="font-mono text-sm"
+                />
+                <div className="flex gap-1">
+                  {[10, 15, 20, 25, 30, 40, 50].map((preset) => (
+                    <button
+                      key={preset}
+                      type="button"
+                      onClick={() => setSingleDiscountPercent(String(preset))}
+                      className={`border px-2.5 text-[10px] font-mono transition-colors ${
+                        singleDiscountPercent === String(preset)
+                          ? 'border-[var(--color-noir-gold)] bg-[var(--color-noir-gold)]/10 text-[var(--color-noir-gold)] font-bold'
+                          : 'border-[var(--border-color)] text-[var(--text-muted)] hover:border-[var(--text-primary)]'
+                      }`}
+                    >
+                      {preset}%
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Live Calculation Preview */}
+            <div className="border border-[var(--border-color)] bg-[var(--bg-card)] p-3">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-[var(--text-muted)]">Original Price:</span>
+                <span className="line-through font-mono">
+                  {formatPrice(selectedOfferProduct.originalPrice || selectedOfferProduct.price)}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-xs mt-1">
+                <span className="font-semibold text-red-500">
+                  New Discounted Price (-{singleDiscountPercent}%):
+                </span>
+                <span className="font-heading text-base font-bold text-[var(--color-noir-gold)]">
+                  {formatPrice(
+                    Math.round(
+                      ((selectedOfferProduct.originalPrice || selectedOfferProduct.price) *
+                        (100 - (parseFloat(singleDiscountPercent) || 0))) /
+                        100
+                    )
+                  )}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between gap-3 border-t border-[var(--border-color)] pt-4">
+              {selectedOfferProduct.discount ? (
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={handleRemoveSingleOffer}
+                  className="text-xs uppercase tracking-wider text-red-500 border-red-500/30 hover:bg-red-500/10"
+                >
+                  Remove Sale (Restore Full Price)
+                </Button>
+              ) : (
+                <div />
+              )}
+
+              <Button type="submit" className="uppercase tracking-wider text-xs">
+                Apply Offer
+              </Button>
+            </div>
+          </form>
+        )}
+      </Dialog>
+
+      {/* ─── ADD PRODUCT MODAL DIALOG ─── */}
       <Dialog
         open={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
@@ -360,9 +798,9 @@ export default function AdminProducts() {
                 className="w-full border border-[var(--border-color)] bg-[var(--bg-primary)] px-3 py-2 text-xs text-[var(--text-primary)]"
               >
                 <option value="new">New Arrival</option>
+                <option value="sale">Special Sale Offer</option>
                 <option value="best-seller">Best Seller</option>
                 <option value="trending">Trending Now</option>
-                <option value="sale">Special Sale</option>
                 <option value="default">Standard Catalog</option>
               </select>
             </div>
@@ -457,28 +895,28 @@ export default function AdminProducts() {
             )}
           </div>
 
-          {/* Row 5: Descriptions */}
+          {/* Row 5: Short description & Full narrative */}
           <div>
             <label className="mb-1 block font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
-              One-Sentence Synopsis
+              Short Summary Description
             </label>
             <Input
               value={shortDescription}
               onChange={(e) => setShortDescription(e.target.value)}
-              placeholder="e.g. Crafted in Como silk with hand-stitched peak lapels."
+              placeholder="One line editorial summary for product cards"
             />
           </div>
 
           <div>
             <label className="mb-1 block font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
-              Editorial Product Description
+              Atelier Narrative / Full Description
             </label>
             <textarea
               rows={3}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Detailed craftsmanship notes, materials composition, silhouette..."
-              className="w-full border border-[var(--border-color)] bg-[var(--bg-primary)] p-3 text-xs text-[var(--text-primary)] outline-none focus:border-[var(--color-noir-gold)]"
+              className="w-full border border-[var(--border-color)] bg-[var(--bg-primary)] p-3 text-xs text-[var(--text-primary)] font-body"
+              placeholder="Detailed description of craftsmanship, fabrics, tailoring notes..."
             />
           </div>
 
@@ -491,9 +929,8 @@ export default function AdminProducts() {
             >
               Cancel
             </Button>
-            <Button type="submit" className="gap-2 uppercase tracking-wider">
-              <Sparkles className="h-4 w-4" />
-              Publish Listing
+            <Button type="submit" className="uppercase tracking-wider">
+              Publish Creation
             </Button>
           </div>
         </form>

@@ -1,4 +1,4 @@
-import { DollarSign, ShoppingBag, TrendingUp, Users, ArrowRight, Package, Truck, CheckCircle2 } from 'lucide-react';
+import { DollarSign, ShoppingBag, TrendingUp, Users, ArrowRight, Package, Truck, CheckCircle2, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { StatCard } from '@/components/dashboard/StatCard';
 import { DataTable } from '@/components/dashboard/DataTable';
@@ -173,6 +173,56 @@ export default function AdminDashboard() {
         </div>
         <div className="mt-4">
           <DataTable columns={orderColumns} data={orders} />
+        </div>
+      </div>
+
+      {/* Active Sales & Offers Widget */}
+      <div className="border border-[var(--border-color)] bg-[var(--bg-card)] p-6">
+        <div className="flex items-center justify-between border-b border-[var(--border-color)] pb-4">
+          <div className="flex items-center gap-2">
+            <Tag className="h-4 w-4 text-[var(--color-noir-gold)]" />
+            <h2 className="font-heading text-sm font-bold uppercase tracking-wider text-[var(--text-primary)]">
+              Active Store Sales &amp; Promotional Offers ({products.filter((p) => p.discount && p.discount > 0).length} on Sale)
+            </h2>
+          </div>
+          <Link
+            to="/admin/products"
+            className="flex items-center gap-1 font-heading text-xs font-semibold uppercase tracking-wider text-[var(--color-noir-gold)] hover:underline"
+          >
+            <span>Manage Product Offers</span>
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+
+        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {products
+            .filter((p) => p.discount && p.discount > 0)
+            .slice(0, 4)
+            .map((p) => (
+              <div key={p.id} className="border border-[var(--border-color)] bg-[var(--bg-secondary)] p-3">
+                <div className="flex items-center gap-3">
+                  <img src={p.images[0]?.url} alt={p.name} className="h-12 w-10 object-cover" />
+                  <div className="flex-1 min-w-0">
+                    <p className="font-heading text-xs font-bold text-[var(--text-primary)] truncate">
+                      {p.name}
+                    </p>
+                    <div className="flex items-center gap-1.5 mt-0.5">
+                      <span className="font-heading text-xs font-bold text-[var(--color-noir-gold)]">
+                        {formatPrice(p.price)}
+                      </span>
+                      {p.originalPrice && (
+                        <span className="text-[10px] text-[var(--text-muted)] line-through">
+                          {formatPrice(p.originalPrice)}
+                        </span>
+                      )}
+                    </div>
+                    <span className="inline-block mt-1 font-mono text-[9px] font-bold text-red-500 bg-red-500/10 px-1.5 py-0.2">
+                      -{p.discount}% OFF
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
 

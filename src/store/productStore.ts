@@ -9,6 +9,10 @@ interface ProductState {
   updateProduct: (id: string, updates: Partial<Product>) => void;
   deleteProduct: (id: string) => void;
   resetProducts: () => void;
+  applyDiscount: (id: string, percentage: number) => void;
+  removeDiscount: (id: string) => void;
+  applyBulkDiscount: (options: { category?: string; percentage: number; tag?: string }) => number;
+  restoreBulkPrices: (category?: string) => number;
 }
 
 const generateSlug = (name: string): string =>
@@ -102,6 +106,88 @@ export const useProductStore = create<ProductState>()(
 
       resetProducts: () => {
         set({ products: initialProducts });
+      },
+
+      applyDiscount: (id, percentage) => {
+        set((state) => ({
+          products: state.products.map((p) => {
+            if (p.id !== id) return p;
+            const basePrice = p.originalPrice || p.price;
+            const discountedPrice = Math.round((basePrice * (100 - percentage)) / 100);
+            return {
+              ...p,
+              originalPrice: basePrice,
+              price: discountedPrice,
+              discount: percentage,
+              status: 'sale' as const,
+              updatedAt: new Date().toISOString(),
+            };
+          }),
+        }));
+      },
+
+      removeDiscount: (id) => {
+        set((state) => ({
+          products: state.products.map((p) => {
+            if (p.id !== id) return p;
+            const regularPrice = p.originalPrice || p.price;
+            return {
+              ...p,
+              price: regularPrice,
+              originalPrice: undefined,
+              discount: undefined,
+              status: 'default' as const,
+              updatedAt: new Date().toISOString(),
+            };
+          }),
+        }));
+      },
+
+      applyBulkDiscount: ({ category, percentage, tag }) => {
+        let count = 0;
+        set((state) => ({
+          products: state.products.map((p) => {
+            if (category && category !== 'all' && p.category !== category) return p;
+            count++;
+            const basePrice = p.originalPrice || p.price;
+            const discountedPrice = Math.round((basePrice * (100 - percentage)) / 100);
+            const updatedTags = tag && !p.tags.includes(tag) ? [...p.tags, tag] : p.tags;
+
+            return {
+              ...p,
+              originalPrice: basePrice,
+              price: discountedPrice,
+              discount: percentage,
+              status: 'sale' as const,
+              tags: updatedTags.includes('sale') ? updatedTags : [...updatedTags, 'sale'],
+              updatedAt: new Date().toISOString(),
+            };
+          }),
+        }));
+        return count;
+      },
+
+      restoreBulkPrices: (category) => {
+        let count = 0;
+        set((state) => ({
+          products: state.products.map((p) => {
+            if (category && category !== 'all' && p.category !== category) return p;
+            if (!p.discount && !p.originalPrice) return p;
+            count++;
+            const regularPrice = p.originalPrice || p.price;
+
+            return {
+              ...p,
+              price: regularPrice,
+              originalPrice: undefined,
+              discount: undefined,
+              status: 'default' as const,
+              tags: p.tags.filter((t) => t !== 'sale' && t !== 'promotional-offer'),
+              updatedAt: new Date().toISOString(),
+            };
+          }),
+        }));
+        return count;
       },
     }),
     {

@@ -25,6 +25,7 @@ import { useCartStore } from '@/store/cartStore';
 import { useWishlistStore } from '@/store/wishlistStore';
 import { useUserStore } from '@/store/userStore';
 import { useCurrencyStore, SUPPORTED_CURRENCIES } from '@/store/currencyStore';
+import { useCouponStore } from '@/store/couponStore';
 import { useScrollLock, useEscapeKey } from '@/hooks/useUi';
 import { Button } from '@/components/ui/Button';
 import { SearchOverlay } from '@/components/navigation/SearchOverlay';
@@ -40,6 +41,7 @@ export function Header() {
   const wishlistCount = useWishlistStore((state) => state.items.length);
   const { isAuthenticated, user, signOut, toggleRole, signInAsAdmin } = useUserStore();
   const { currentCurrency, setCurrency } = useCurrencyStore();
+  const { bannerPromoText, bannerActive } = useCouponStore();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
@@ -69,35 +71,35 @@ export function Header() {
   return (
     <>
       {/* ─── Announcement Bar ─── */}
-      <div className="announcement-bar relative overflow-hidden">
-        <div className="mx-auto flex h-10 max-w-[1600px] items-center justify-between px-4 text-[11px] font-medium uppercase tracking-[0.16em]">
-          <div className="hidden sm:flex items-center gap-2">
-            <Sparkles className="h-3.5 w-3.5 text-[var(--color-noir-gold)]" aria-hidden="true" />
-            <span>Complimentary worldwide shipping on orders over $200</span>
-            <span className="text-[var(--border-color)]">·</span>
-            <span>Use code WELCOME15 for 15% off</span>
-          </div>
+      {bannerActive && (
+        <div className="announcement-bar relative overflow-hidden">
+          <div className="mx-auto flex h-10 max-w-[1600px] items-center justify-between px-4 text-[11px] font-medium uppercase tracking-[0.16em]">
+            <div className="hidden sm:flex items-center gap-2">
+              <Sparkles className="h-3.5 w-3.5 text-[var(--color-noir-gold)]" aria-hidden="true" />
+              <span>{bannerPromoText}</span>
+            </div>
 
-          <div className="flex items-center gap-2 mx-auto sm:mx-0">
-            {/* Quick Currency Selector */}
-            <div className="flex items-center gap-1.5 rounded px-2 py-0.5 transition-colors hover:bg-[var(--bg-secondary)]">
-              <Globe className="h-3 w-3 text-[var(--color-noir-gold)]" />
-              <select
-                value={currentCurrency}
-                onChange={(e) => setCurrency(e.target.value as Currency)}
-                aria-label="Select storefront currency"
-                className="bg-transparent font-heading text-[10px] font-bold uppercase tracking-wider text-[var(--text-primary)] cursor-pointer focus:outline-none"
-              >
-                {SUPPORTED_CURRENCIES.map((c) => (
-                  <option key={c.code} value={c.code} className="bg-[var(--bg-card)] text-[var(--text-primary)]">
-                    {c.flag} {c.code} ({c.symbol})
-                  </option>
-                ))}
-              </select>
+            <div className="flex items-center gap-2 mx-auto sm:ml-auto sm:mx-0">
+              {/* Quick Currency Selector */}
+              <div className="flex items-center gap-1.5 rounded px-2 py-0.5 transition-colors hover:bg-[var(--bg-secondary)]">
+                <Globe className="h-3 w-3 text-[var(--color-noir-gold)]" />
+                <select
+                  value={currentCurrency}
+                  onChange={(e) => setCurrency(e.target.value as Currency)}
+                  aria-label="Select storefront currency"
+                  className="bg-transparent font-heading text-[10px] font-bold uppercase tracking-wider text-[var(--text-primary)] cursor-pointer focus:outline-none"
+                >
+                  {SUPPORTED_CURRENCIES.map((c) => (
+                    <option key={c.code} value={c.code} className="bg-[var(--bg-card)] text-[var(--text-primary)]">
+                      {c.flag} {c.code} ({c.symbol})
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* ─── Main Header ─── */}
       <header className="sticky top-0 z-50 border-b border-[var(--border-color)] header-blur">

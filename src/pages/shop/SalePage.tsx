@@ -11,7 +11,7 @@ import {
   Tag,
 } from 'lucide-react';
 import type { Product } from '@/types';
-import { products as catalog } from '@/data/products';
+import { useProductStore } from '@/store/productStore';
 import { useSaleProducts } from '@/hooks/useQueries';
 import { useSeo } from '@/hooks/useSeo';
 import { useReducedMotion } from '@/hooks/useUi';
@@ -240,14 +240,16 @@ export default function SalePage() {
     return () => window.clearInterval(id);
   }, [deadline]);
 
+  const products = useProductStore((s) => s.products);
+
   const onSale = useMemo(
     () =>
-      catalog
+      products
         .filter((product): product is Product & { discount: number } =>
           typeof product.discount === 'number' && product.discount > 0
         )
         .sort((a, b) => b.discount - a.discount || a.price - b.price),
-    []
+    [products]
   );
 
   const maxDiscount = onSale.reduce((max, product) => Math.max(max, product.discount), 0);
