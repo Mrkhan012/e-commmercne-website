@@ -1,5 +1,6 @@
 import { cn } from '@/utils/cn';
 import { formatPrice } from '@/utils/format';
+import { useCurrencyStore } from '@/store/currencyStore';
 
 export interface PriceDisplayProps {
   price: number;
@@ -21,9 +22,11 @@ export function PriceDisplay({
   originalPrice,
   discount,
   size = 'md',
-  currency = 'USD',
+  currency,
   className,
 }: PriceDisplayProps) {
+  const currentCurrency = useCurrencyStore((s) => s.currentCurrency);
+  const activeCurrency = currency || currentCurrency;
   const hasDiscount = originalPrice !== undefined && originalPrice > price;
 
   return (
@@ -34,12 +37,12 @@ export function PriceDisplay({
           sizeStyles[size]
         )}
       >
-        {formatPrice(price, currency)}
+        {formatPrice(price, activeCurrency)}
       </span>
       {hasDiscount && (
         <>
           <span className="text-xs text-[var(--text-muted)] line-through">
-            {formatPrice(originalPrice, currency)}
+            {formatPrice(originalPrice, activeCurrency)}
           </span>
           {discount !== undefined && discount > 0 && (
             <span className="font-heading text-[11px] font-bold uppercase tracking-wider text-red-500">

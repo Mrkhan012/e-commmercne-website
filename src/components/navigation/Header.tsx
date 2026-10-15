@@ -16,6 +16,7 @@ import {
   LayoutDashboard,
   Shield,
   UserCheck,
+  Globe,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { categories } from '@/data/categories';
@@ -23,11 +24,13 @@ import { useThemeStore } from '@/store/themeStore';
 import { useCartStore } from '@/store/cartStore';
 import { useWishlistStore } from '@/store/wishlistStore';
 import { useUserStore } from '@/store/userStore';
+import { useCurrencyStore, SUPPORTED_CURRENCIES } from '@/store/currencyStore';
 import { useScrollLock, useEscapeKey } from '@/hooks/useUi';
 import { Button } from '@/components/ui/Button';
 import { SearchOverlay } from '@/components/navigation/SearchOverlay';
 import { Dropdown, DropdownItem, DropdownDivider } from '@/components/ui/Dropdown';
 import { cn } from '@/utils/cn';
+import type { Currency } from '@/types';
 
 export function Header() {
   const location = useLocation();
@@ -36,6 +39,7 @@ export function Header() {
   const openCart = useCartStore((state) => state.openCart);
   const wishlistCount = useWishlistStore((state) => state.items.length);
   const { isAuthenticated, user, signOut, toggleRole, signInAsAdmin } = useUserStore();
+  const { currentCurrency, setCurrency } = useCurrencyStore();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
@@ -66,11 +70,32 @@ export function Header() {
     <>
       {/* ─── Announcement Bar ─── */}
       <div className="announcement-bar relative overflow-hidden">
-        <div className="mx-auto flex h-10 max-w-[1600px] items-center justify-center gap-2 px-4 text-[11px] font-medium uppercase tracking-[0.16em]">
-          <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-          <span>Complimentary shipping on orders over $200</span>
-          <span className="hidden sm:inline">·</span>
-          <span className="hidden sm:inline">Use code WELCOME15 for 15% off</span>
+        <div className="mx-auto flex h-10 max-w-[1600px] items-center justify-between px-4 text-[11px] font-medium uppercase tracking-[0.16em]">
+          <div className="hidden sm:flex items-center gap-2">
+            <Sparkles className="h-3.5 w-3.5 text-[var(--color-noir-gold)]" aria-hidden="true" />
+            <span>Complimentary worldwide shipping on orders over $200</span>
+            <span className="text-[var(--border-color)]">·</span>
+            <span>Use code WELCOME15 for 15% off</span>
+          </div>
+
+          <div className="flex items-center gap-2 mx-auto sm:mx-0">
+            {/* Quick Currency Selector */}
+            <div className="flex items-center gap-1.5 rounded px-2 py-0.5 transition-colors hover:bg-[var(--bg-secondary)]">
+              <Globe className="h-3 w-3 text-[var(--color-noir-gold)]" />
+              <select
+                value={currentCurrency}
+                onChange={(e) => setCurrency(e.target.value as Currency)}
+                aria-label="Select storefront currency"
+                className="bg-transparent font-heading text-[10px] font-bold uppercase tracking-wider text-[var(--text-primary)] cursor-pointer focus:outline-none"
+              >
+                {SUPPORTED_CURRENCIES.map((c) => (
+                  <option key={c.code} value={c.code} className="bg-[var(--bg-card)] text-[var(--text-primary)]">
+                    {c.flag} {c.code} ({c.symbol})
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -552,7 +577,26 @@ export function Header() {
                 </nav>
               </div>
 
-              <div className="border-t border-[var(--border-color)] p-5">
+              <div className="border-t border-[var(--border-color)] p-5 space-y-3">
+                <div className="flex items-center justify-between border border-[var(--border-color)] bg-[var(--bg-secondary)] px-3 py-2">
+                  <span className="flex items-center gap-2 font-heading text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+                    <Globe className="h-3.5 w-3.5 text-[var(--color-noir-gold)]" />
+                    <span>Currency</span>
+                  </span>
+                  <select
+                    value={currentCurrency}
+                    onChange={(e) => setCurrency(e.target.value as Currency)}
+                    aria-label="Mobile currency selector"
+                    className="bg-transparent font-heading text-xs font-bold uppercase tracking-wider text-[var(--text-primary)] cursor-pointer focus:outline-none"
+                  >
+                    {SUPPORTED_CURRENCIES.map((c) => (
+                      <option key={c.code} value={c.code} className="bg-[var(--bg-card)] text-[var(--text-primary)]">
+                        {c.flag} {c.code} ({c.symbol})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
                 <Button
                   fullWidth
                   size="lg"

@@ -3,7 +3,7 @@
 // ─── Enums ────────────────────────────────────────────────────────────────────
 
 export type Theme = 'light' | 'dark';
-export type Currency = 'USD' | 'EUR' | 'GBP';
+export type Currency = 'USD' | 'INR' | 'AED' | 'EUR' | 'GBP' | 'SAR' | 'CAD' | 'AUD' | 'JPY';
 export type ProductStatus = 'new' | 'best-seller' | 'trending' | 'sale' | 'default';
 export type OrderStatus = 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | 'refunded';
 export type PaymentMethod = 'card' | 'paypal' | 'apple-pay' | 'google-pay' | 'cod';

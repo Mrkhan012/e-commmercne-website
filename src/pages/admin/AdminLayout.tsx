@@ -16,12 +16,15 @@ import {
   Lock,
   Shield,
   UserCheck,
+  Globe,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useUserStore } from '@/store/userStore';
+import { useCurrencyStore, SUPPORTED_CURRENCIES } from '@/store/currencyStore';
 import { useToastStore } from '@/store/toastStore';
 import { cn } from '@/utils/cn';
 import { useSeo } from '@/hooks/useSeo';
+import type { Currency } from '@/types';
 
 const adminNav = [
   { to: '/admin', label: 'Overview', icon: LayoutDashboard, end: true },
@@ -45,6 +48,7 @@ export default function AdminLayout() {
   });
 
   const { user, isAuthenticated, setRole, signInAsAdmin } = useUserStore();
+  const { currentCurrency, setCurrency, getCurrencyInfo } = useCurrencyStore();
   const toast = useToastStore();
 
   // Role Gate: Only users with 'admin' role can view the dashboard
@@ -125,6 +129,35 @@ export default function AdminLayout() {
         </div>
 
         <div className="flex items-center gap-3">
+          {/* Quick Currency Selector */}
+          <div className="flex items-center gap-1.5 border border-[var(--border-color)] bg-[var(--bg-secondary)] px-2 py-1">
+            <Globe className="h-3.5 w-3.5 text-[var(--color-noir-gold)]" />
+            <select
+              value={currentCurrency}
+              onChange={(e) => {
+                const newCode = e.target.value as Currency;
+                setCurrency(newCode);
+                const info = getCurrencyInfo(newCode);
+                toast.success(
+                  'Pricing Switched',
+                  `Store currency active: ${info.flag} ${info.name} (${info.code})`
+                );
+              }}
+              aria-label="Admin currency selector"
+              className="bg-transparent font-heading text-[10px] font-bold uppercase tracking-wider text-[var(--text-primary)] cursor-pointer focus:outline-none"
+            >
+              {SUPPORTED_CURRENCIES.map((curr) => (
+                <option
+                  key={curr.code}
+                  value={curr.code}
+                  className="bg-[var(--bg-card)] text-[var(--text-primary)]"
+                >
+                  {curr.flag} {curr.code} ({curr.symbol})
+                </option>
+              ))}
+            </select>
+          </div>
+
           <button
             type="button"
             onClick={() => {

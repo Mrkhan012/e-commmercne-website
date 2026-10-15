@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Dialog } from '@/components/ui/Dialog';
 import { useProductStore } from '@/store/productStore';
+import { useCurrencyStore } from '@/store/currencyStore';
 import { useToastStore } from '@/store/toastStore';
 import { formatPrice } from '@/utils/format';
 import type { Product, ProductStatus } from '@/types';
@@ -36,6 +37,7 @@ const PRESET_IMAGES = [
 export default function AdminProducts() {
   const queryClient = useQueryClient();
   const { products, addProduct, deleteProduct } = useProductStore();
+  const currentCurrency = useCurrencyStore((s) => s.currentCurrency);
   const toast = useToastStore();
 
   const [search, setSearch] = useState('');
@@ -369,9 +371,16 @@ export default function AdminProducts() {
           {/* Row 3: Price, Compare Price, Stock */}
           <div className="grid gap-4 sm:grid-cols-3">
             <div>
-              <label className="mb-1 block font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
-                Price (USD $) *
-              </label>
+              <div className="flex items-center justify-between mb-1">
+                <label className="font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                  Base Price (USD $) *
+                </label>
+                {currentCurrency !== 'USD' && (
+                  <span className="font-mono text-[9px] text-[var(--color-noir-gold)] font-bold">
+                    ≈ {formatPrice(parseFloat(price) || 0)}
+                  </span>
+                )}
+              </div>
               <Input
                 type="number"
                 step="0.01"

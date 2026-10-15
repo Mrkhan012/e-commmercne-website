@@ -1,19 +1,61 @@
-export const formatPrice = (price: number, currency = 'USD'): string => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency,
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(price);
+import { useCurrencyStore } from '@/store/currencyStore';
+import type { Currency } from '@/types';
+
+export const formatPrice = (
+  price: number,
+  currency?: string,
+  autoConvert: boolean = true
+): string => {
+  const store = useCurrencyStore.getState();
+  const current = store.currentCurrency || 'USD';
+  const targetCode = (currency && currency !== 'USD' ? currency : current) as Currency;
+  const info = store.getCurrencyInfo(targetCode);
+
+  let finalAmount = price;
+  // If price is base USD and target currency is different, auto-convert
+  if (autoConvert && (!currency || currency === 'USD') && current !== 'USD') {
+    const rate = store.rates[current] ?? 1.0;
+    finalAmount = price * rate;
+  }
+
+  try {
+    return new Intl.NumberFormat(info.locale, {
+      style: 'currency',
+      currency: info.code,
+      minimumFractionDigits: info.code === 'JPY' ? 0 : 2,
+      maximumFractionDigits: info.code === 'JPY' ? 0 : 2,
+    }).format(finalAmount);
+  } catch {
+    return `${info.symbol}${finalAmount.toFixed(2)}`;
+  }
 };
 
-export const formatPriceCompact = (price: number, currency = 'USD'): string => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency,
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(price);
+export const formatPriceCompact = (
+  price: number,
+  currency?: string,
+  autoConvert: boolean = true
+): string => {
+  const store = useCurrencyStore.getState();
+  const current = store.currentCurrency || 'USD';
+  const targetCode = (currency && currency !== 'USD' ? currency : current) as Currency;
+  const info = store.getCurrencyInfo(targetCode);
+
+  let finalAmount = price;
+  if (autoConvert && (!currency || currency === 'USD') && current !== 'USD') {
+    const rate = store.rates[current] ?? 1.0;
+    finalAmount = price * rate;
+  }
+
+  try {
+    return new Intl.NumberFormat(info.locale, {
+      style: 'currency',
+      currency: info.code,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(finalAmount);
+  } catch {
+    return `${info.symbol}${Math.round(finalAmount)}`;
+  }
 };
 
 export const formatDate = (date: string | Date, format: 'short' | 'long' = 'short'): string => {
