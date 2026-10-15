@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { useToastStore } from '@/store/toastStore';
+import { useBrandStore } from '@/store/brandStore';
 
 const shopLinks = [
   { label: 'New Arrivals', href: '/new-arrivals' },
@@ -39,13 +40,15 @@ const socialLinks = [
 
 export function Footer() {
   const categories = useCategoryStore((s) => s.categories);
+  const siteName = useBrandStore((s) => s.siteName);
+  const siteSubtitle = useBrandStore((s) => s.siteSubtitle);
   const [email, setEmail] = useState('');
   const toast = useToastStore((state) => state.success);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
-    toast('Subscribed', 'Welcome to the AFRO & CO. list (demo).');
+    toast('Subscribed', `Welcome to the ${siteName} list (demo).`);
     setEmail('');
   };
 
@@ -92,12 +95,11 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block">
               <span className="font-heading text-xl font-extrabold tracking-[-0.02em] text-[var(--text-primary)]">
-                AFRO<span className="text-[var(--color-noir-gold)]">&amp;</span>CO.
+                {siteName}
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[var(--text-muted)]">
-              A premium editorial e-commerce experience. Curated fashion, accessories, and
-              lifestyle goods for the modern collector.
+              {siteSubtitle || 'A premium editorial e-commerce experience. Curated fashion, accessories, and lifestyle goods for the modern collector.'}
             </p>
             <div className="mt-6 flex items-center gap-3">
               {socialLinks.map((social) => (
@@ -207,7 +209,7 @@ export function Footer() {
       <div className="border-t border-[var(--border-color)]">
         <div className="mx-auto flex max-w-[1600px] flex-col items-center justify-between gap-3 px-4 py-6 sm:flex-row sm:px-6 lg:px-10">
           <p className="text-xs text-[var(--text-muted)]">
-            © {new Date().getFullYear()} AFRO &amp; CO. (Afro.co). All rights reserved. Demo storefront.
+            © {new Date().getFullYear()} {siteName}. All rights reserved. Demo storefront.
           </p>
           <p className="text-xs text-[var(--text-muted)]">
             Visa · Mastercard · Amex · PayPal · Apple Pay · Google Pay

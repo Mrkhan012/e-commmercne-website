@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Globe,
   Coins,
@@ -8,11 +8,15 @@ import {
   Mail,
   Percent,
   Truck,
+  Palette,
+  Sparkles,
+  RotateCcw,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { useToastStore } from '@/store/toastStore';
 import { useCurrencyStore, SUPPORTED_CURRENCIES } from '@/store/currencyStore';
+import { useBrandStore, BRAND_COLOR_PRESETS } from '@/store/brandStore';
 import { formatPrice } from '@/utils/format';
 import type { Currency } from '@/types';
 
@@ -21,13 +25,74 @@ export default function AdminSettings() {
   const { currentCurrency, rates, setCurrency, updateRate, resetRates, getCurrencyInfo } =
     useCurrencyStore();
 
-  const [storeName, setStoreName] = useState('AFRO & CO. Haute Atelier');
+  // Dynamic Brand & Color Theme Store
+  const {
+    siteName,
+    siteSubtitle,
+    primaryColor,
+    activePresetId,
+    setSiteName,
+    setSiteSubtitle,
+    setPrimaryColor,
+    resetBrandSettings,
+  } = useBrandStore();
+
+  const [tempSiteName, setTempSiteName] = useState(siteName);
+  const [tempSiteSubtitle, setTempSiteSubtitle] = useState(siteSubtitle);
+  const [customHex, setCustomHex] = useState(primaryColor);
+
+  useEffect(() => {
+    setTempSiteName(siteName);
+    setTempSiteSubtitle(siteSubtitle);
+    setCustomHex(primaryColor);
+  }, [siteName, siteSubtitle, primaryColor]);
+
+  const [storeName, setStoreName] = useState(siteName);
   const [supportEmail, setSupportEmail] = useState('concierge@afro.co');
   const [taxRate, setTaxRate] = useState('8.0');
   const [freeShippingThreshold, setFreeShippingThreshold] = useState('200');
 
   // Simulation test amount in USD
   const [simAmountUSD, setSimAmountUSD] = useState(100);
+
+  const handleApplyBrandIdentity = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!tempSiteName.trim()) {
+      toast.error('Validation Error', 'Storefront name cannot be empty.');
+      return;
+    }
+    setSiteName(tempSiteName.trim());
+    setSiteSubtitle(tempSiteSubtitle.trim());
+    setStoreName(tempSiteName.trim());
+    toast.success(
+      'Brand Identity Saved',
+      `Storefront title updated to "${tempSiteName.trim()}". Changes are live across all pages.`
+    );
+  };
+
+  const handleSelectPreset = (preset: (typeof BRAND_COLOR_PRESETS)[0]) => {
+    setPrimaryColor(preset.hex, preset.id);
+    setCustomHex(preset.hex);
+    toast.success(
+      'Theme Palette Activated',
+      `${preset.name} (${preset.hex}) applied to buttons, accents, borders, and gradients.`
+    );
+  };
+
+  const handleCustomColorChange = (hex: string) => {
+    setCustomHex(hex);
+    if (/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+      setPrimaryColor(hex, 'custom');
+    }
+  };
+
+  const handleResetBrand = () => {
+    resetBrandSettings();
+    setTempSiteName('AFRO & CO.');
+    setTempSiteSubtitle('Haute Atelier & Luxury Goods');
+    setCustomHex('#C8A97E');
+    toast.info('Default Brand Restored', 'Restored Imperial Gold and AFRO & CO. identity.');
+  };
 
   const handleCurrencySelect = (code: Currency) => {
     setCurrency(code);
@@ -47,6 +112,10 @@ export default function AdminSettings() {
 
   const handleSaveGeneral = (e: React.FormEvent) => {
     e.preventDefault();
+    if (storeName !== siteName) {
+      setSiteName(storeName);
+      setTempSiteName(storeName);
+    }
     toast.success('Configuration Saved', 'Atelier operational parameters updated successfully.');
   };
 
@@ -65,6 +134,201 @@ export default function AdminSettings() {
         <p className="mt-1 text-xs text-[var(--text-muted)]">
           Configure regional currencies (India INR ₹, UAE AED, US Dollar $, Euro €, etc.), live exchange rates, and store parameters.
         </p>
+      </div>
+
+      {/* ─── BRAND IDENTITY & THEME COLOR STUDIO ─── */}
+      <div className="border border-[var(--border-color)] bg-[var(--bg-card)] p-6 sm:p-8 space-y-6">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border-color)] pb-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--bg-secondary)] text-[var(--color-noir-gold)]">
+              <Palette className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="font-heading text-sm font-bold uppercase tracking-wider text-[var(--text-primary)]">
+                  Brand Identity &amp; Theme Color Studio
+                </h2>
+                <span className="flex items-center gap-1 rounded bg-[var(--color-noir-gold)]/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-[var(--color-noir-gold)]">
+                  <Sparkles className="h-2.5 w-2.5" /> Live Reflection
+                </span>
+              </div>
+              <p className="text-xs text-[var(--text-muted)]">
+                Personalize your storefront name and select your bespoke color palette. Instantly reflects across navigation, buttons, badges, and headers.
+              </p>
+            </div>
+          </div>
+
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={handleResetBrand}
+            className="text-[10px] uppercase tracking-wider gap-1.5"
+          >
+            <RotateCcw className="h-3 w-3" />
+            Reset Theme
+          </Button>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-12">
+          {/* Brand Name & Palette Selector */}
+          <div className="space-y-6 lg:col-span-7">
+            <form onSubmit={handleApplyBrandIdentity} className="space-y-4">
+              <div>
+                <label className="mb-1 block font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                  Storefront Name (Header, Footer, Tab Titles &amp; SEO)
+                </label>
+                <div className="flex gap-2">
+                  <Input
+                    value={tempSiteName}
+                    onChange={(e) => setTempSiteName(e.target.value)}
+                    placeholder="e.g. NOIR & CO., AURA ATELIER, LUXE STUDIO"
+                    className="flex-1 font-heading font-semibold"
+                  />
+                  <Button type="submit" size="sm" className="shrink-0 uppercase tracking-wider text-[11px]">
+                    Apply Name
+                  </Button>
+                </div>
+              </div>
+
+              <div>
+                <label className="mb-1 block font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                  Brand Tagline / Atelier Subtitle
+                </label>
+                <Input
+                  value={tempSiteSubtitle}
+                  onChange={(e) => setTempSiteSubtitle(e.target.value)}
+                  placeholder="e.g. Haute Atelier & Luxury Goods"
+                  className="text-xs"
+                />
+              </div>
+            </form>
+
+            {/* Curated Color Presets */}
+            <div>
+              <div className="mb-3 flex items-center justify-between">
+                <label className="font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                  Curated Luxury Color Palettes
+                </label>
+                <span className="text-[10px] text-[var(--text-muted)]">
+                  Active: <strong className="text-[var(--color-noir-gold)]">{primaryColor.toUpperCase()}</strong>
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                {BRAND_COLOR_PRESETS.map((preset) => {
+                  const isActive = activePresetId === preset.id || primaryColor.toLowerCase() === preset.hex.toLowerCase();
+                  return (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      onClick={() => handleSelectPreset(preset)}
+                      className={`flex items-center gap-3 border p-3 text-left transition-all ${
+                        isActive
+                          ? 'border-[var(--color-noir-gold)] bg-[var(--color-noir-gold)]/10 shadow-sm'
+                          : 'border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-[var(--text-secondary)]'
+                      }`}
+                    >
+                      <div
+                        className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full shadow"
+                        style={{ backgroundColor: preset.hex }}
+                      >
+                        {isActive && <Check className="h-4 w-4 text-white drop-shadow" />}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between">
+                          <span className="font-heading text-xs font-bold text-[var(--text-primary)]">
+                            {preset.name}
+                          </span>
+                          <span className="font-mono text-[10px] text-[var(--text-muted)]">{preset.hex}</span>
+                        </div>
+                        <p className="truncate text-[10px] text-[var(--text-muted)]">{preset.description}</p>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Custom Hex Color Picker */}
+            <div className="border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
+              <label className="mb-2 block font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                Custom Bespoke Hex Color
+              </label>
+              <div className="flex items-center gap-3">
+                <input
+                  type="color"
+                  value={/^#[0-9A-Fa-f]{6}$/.test(customHex) ? customHex : primaryColor}
+                  onChange={(e) => handleCustomColorChange(e.target.value)}
+                  className="h-10 w-12 cursor-pointer border border-[var(--border-color)] bg-transparent p-1"
+                  aria-label="Color Picker"
+                />
+                <Input
+                  value={customHex}
+                  onChange={(e) => handleCustomColorChange(e.target.value)}
+                  placeholder="#C8A97E"
+                  maxLength={7}
+                  className="w-36 font-mono text-sm uppercase"
+                />
+                <span className="text-xs text-[var(--text-muted)]">
+                  Pick any custom brand color or enter your company's hex code.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Live Real-Time Store Preview Card */}
+          <div className="lg:col-span-5">
+            <label className="mb-2 block font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+              Live Theme Preview (Real-Time)
+            </label>
+            <div className="overflow-hidden border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 shadow-lg space-y-4">
+              {/* Mock Header */}
+              <div className="flex items-center justify-between border-b border-[var(--border-color)] pb-3">
+                <span className="font-heading text-lg font-black tracking-[-0.02em] text-[var(--text-primary)]">
+                  {tempSiteName || 'STORE NAME'}
+                </span>
+                <span className="rounded border border-[var(--color-noir-gold)]/40 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-widest text-[var(--color-noir-gold)]">
+                  Atelier
+                </span>
+              </div>
+
+              {/* Sample Product Card */}
+              <div className="border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                    Limited Edition
+                  </span>
+                  <span className="font-mono text-xs font-bold text-[var(--color-noir-gold)]">
+                    {formatPrice(480, currentCurrency)}
+                  </span>
+                </div>
+                <h4 className="font-heading text-sm font-bold text-[var(--text-primary)]">
+                  Monogram Heritage Chronograph
+                </h4>
+                <p className="text-[11px] text-[var(--text-muted)]">
+                  {tempSiteSubtitle || 'Exquisite artisanal craftsmanship.'}
+                </p>
+
+                {/* Primary Action Button */}
+                <Button
+                  type="button"
+                  className="w-full uppercase tracking-wider text-[10px] py-2"
+                >
+                  Add To Luxury Bag
+                </Button>
+              </div>
+
+              {/* Live Info Banner */}
+              <div className="rounded bg-[var(--bg-secondary)] p-3 text-center">
+                <p className="text-[11px] text-[var(--text-muted)]">
+                  Color variable <code className="font-mono text-[var(--color-noir-gold)]">--color-noir-gold</code> is bound to{' '}
+                  <strong className="text-[var(--text-primary)] font-mono">{primaryColor}</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* ─── CURRENCY & REGIONAL MARKET CONFIGURATION ─── */}

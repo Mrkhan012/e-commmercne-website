@@ -150,3 +150,48 @@ For testing and demonstration, you can switch between all three roles instantly 
    - **Customer View** &rarr; Tests retail customer browsing, cart, and standard checkout.
    - **Dealer (B2B) View** &rarr; Opens `/dealer` with 35% Gold Wholesale discount, bulk matrix order, and Net-30 PO checkout.
    - **Platform Admin View** &rarr; Opens `/admin` with full order management, product catalog editing, and dealer approval controls.
+
+---
+
+## 🎨 Part 6: Customizing Website Name & Choosing Theme Colors
+
+You can fully customize your website's **Store Name** and **Color Palette** in two ways:
+
+### Method A: Live in Admin Dashboard (Zero Code, Real-Time Reflection)
+1. Go to **Admin Dashboard &rarr; Store Settings** (`/admin/settings`).
+2. At the top, open the **Brand Identity & Theme Color Studio**:
+   - **Storefront Name**: Type your desired brand name (e.g. `AURUM & CO.`, `NOIR LUXE`, `MY STORE`) and click **Apply Name**. It instantly updates the header logo, footer, page titles, and browser tabs.
+   - **Brand Tagline**: Customize your atelier subtitle or boutique tagline.
+   - **Curated Color Palettes**: Click any luxury preset swatch:
+     - 🟡 **Imperial Gold** (`#C8A97E`) - Heritage luxury & warm atelier aesthetic
+     - 🟢 **Emerald Royale** (`#10B981`) - Fine jewellery & prestigious heritage
+     - 🔵 **Sapphire Noir** (`#2563EB`) - Executive precision & cobalt elegance
+     - 🔴 **Crimson Velvet** (`#E11D48`) - Haute couture passion & bold statement
+     - 🟣 **Imperial Violet** (`#8B5CF6`) - Sovereign elegance & distinction
+     - 🟠 **Cognac Amber** (`#D97706`) - Artisanal leathercraft & warm golden glow
+     - ⚪ **Monochrome Slate** (`#71717A`) - Minimalist architectural quiet luxury
+   - **Custom Hex Color Picker**: Click the color picker box or enter any 6-digit hex code (e.g. `#FF4500`, `#00C49F`) to match your exact corporate branding.
+   - **Live Preview**: See a live interactive preview card update in real-time before your eyes.
+   - Settings are automatically saved to `localStorage` and persist across page refreshes.
+
+### Method B: In Source Code (Permanent Default)
+- **Change Default Brand Name & Palette**:
+  - Edit [src/store/brandStore.ts](file:///Users/afro/noir-co/src/store/brandStore.ts#L37-L44):
+    ```ts
+    const DEFAULT_BRAND = {
+      siteName: 'YOUR BRAND NAME',
+      siteSubtitle: 'Your Store Tagline',
+      primaryColor: '#C8A97E',
+      activePresetId: 'gold',
+      supportEmail: 'contact@yourdomain.com',
+      supportPhone: '+1 (800) 555-0199',
+    };
+    ```
+- **Change Default CSS Variable**:
+  - Edit [src/index.css](file:///Users/afro/noir-co/src/index.css):
+    ```css
+    :root {
+      --color-noir-gold: #C8A97E; /* Your primary accent color */
+    }
+    ```
+

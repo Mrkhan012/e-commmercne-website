@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useBrandStore } from '@/store/brandStore';
 
 /**
  * Sets document metadata (title, description, Open Graph, canonical) per route.
@@ -12,8 +13,9 @@ export const useSeo = (options: {
   url?: string;
   type?: string;
 }): void => {
+  const siteName = useBrandStore((s) => s.siteName) || 'AFRO & CO.';
+
   useEffect(() => {
-    const siteName = 'AFRO & CO.';
     const fullTitle = options.title.includes(siteName)
       ? options.title
       : `${options.title} | ${siteName}`;

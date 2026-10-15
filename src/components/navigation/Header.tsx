@@ -27,6 +27,7 @@ import { useWishlistStore } from '@/store/wishlistStore';
 import { useUserStore } from '@/store/userStore';
 import { useCurrencyStore, SUPPORTED_CURRENCIES } from '@/store/currencyStore';
 import { useCouponStore } from '@/store/couponStore';
+import { useBrandStore } from '@/store/brandStore';
 import { useScrollLock, useEscapeKey } from '@/hooks/useUi';
 import { Button } from '@/components/ui/Button';
 import { SearchOverlay } from '@/components/navigation/SearchOverlay';
@@ -44,6 +45,7 @@ export function Header() {
   const { isAuthenticated, user, signOut, setRole, signInAsAdmin, signInAsDealer } = useUserStore();
   const { currentCurrency, setCurrency } = useCurrencyStore();
   const { bannerPromoText, bannerActive } = useCouponStore();
+  const siteName = useBrandStore((s) => s.siteName);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
@@ -125,10 +127,10 @@ export function Header() {
             <Menu className="h-5 w-5" />
           </button>
 
-          {/* Logo */}
-          <Link to="/" className="shrink-0" aria-label="AFRO & CO. home">
+          {/* Dynamic Logo */}
+          <Link to="/" className="shrink-0" aria-label={`${siteName} home`}>
             <span className="font-heading text-lg font-extrabold tracking-[-0.02em] text-[var(--text-primary)] lg:text-xl">
-              AFRO<span className="text-[var(--color-noir-gold)]">&amp;</span>CO.
+              {siteName}
             </span>
           </Link>
 
@@ -561,7 +563,7 @@ export function Header() {
             >
               <div className="flex items-center justify-between border-b border-[var(--border-color)] px-5 py-4">
                 <span className="font-heading text-base font-extrabold text-[var(--text-primary)]">
-                  AFRO<span className="text-[var(--color-noir-gold)]">&amp;</span>CO.
+                  {siteName}
                 </span>
                 <button
                   type="button"
