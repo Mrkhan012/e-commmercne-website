@@ -252,7 +252,7 @@ const faqItems: FaqItem[] = [
       <p>
         Yes. Klarn and Afterpay split eligible orders into four interest-free payments, the first
         taken at checkout. Choose either option at the payment step to see your schedule. Instalment
-        agreements sit with the provider, not with us, and do not affect your NOIR & CO. return
+        agreements sit with the provider, not with us, and do not affect your AFRO & CO. return
         rights.
       </p>
     ),

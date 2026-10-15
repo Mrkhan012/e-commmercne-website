@@ -123,7 +123,7 @@ export default function ProductPage() {
 
   useSeo({
     title: product ? `${product.name} — ${product.brand}` : 'Product Details',
-    description: product?.shortDescription ?? product?.description ?? 'Discover luxury essentials at NOIR & CO.',
+    description: product?.shortDescription ?? product?.description ?? 'Discover luxury essentials at AFRO & CO.',
   });
 
   if (isLoading) {

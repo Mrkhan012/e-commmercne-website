@@ -63,7 +63,7 @@ export default function CategoryPage() {
 
   useSeo({
     title: resolved ? title : 'Category Not Found',
-    description: resolved?.category.description ?? 'Browse this collection at NOIR & CO.',
+    description: resolved?.category.description ?? 'Browse this collection at AFRO & CO.',
   });
 
   const query = useMemo(

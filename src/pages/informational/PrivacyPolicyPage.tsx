@@ -226,7 +226,7 @@ const sections: Section[] = [
           ))}
         </ul>
         <p className="mt-5">
-          If NOIR &amp; CO. were ever acquired or merged, your data would transfer to the new owner
+          If AFRO &amp; CO. were ever acquired or merged, your data would transfer to the new owner
           under this same policy, and you would be notified before it took effect.
         </p>
       </>
@@ -461,7 +461,7 @@ const sections: Section[] = [
               Postal
             </dt>
             <dd className="mt-1 text-sm text-[var(--text-secondary)]">
-              Data Protection Officer, NOIR &amp; CO., 118 Greene Street, Floor 4, New York, NY 10012,
+              Data Protection Officer, AFRO &amp; CO., 118 Greene Street, Floor 4, New York, NY 10012,
               United States
             </dd>
           </div>
@@ -470,7 +470,7 @@ const sections: Section[] = [
               EU representative
             </dt>
             <dd className="mt-1 text-sm text-[var(--text-secondary)]">
-              NOIR &amp; CO. Europe S.r.l., Via della Spiga 21, 20121 Milano MI, Italy
+              AFRO &amp; CO. Europe S.r.l., Via della Spiga 21, 20121 Milano MI, Italy
             </dd>
           </div>
         </dl>
@@ -491,7 +491,7 @@ export default function PrivacyPolicyPage() {
   useSeo({
     title: 'Privacy Policy',
     description:
-      'How NOIR & CO. collects, uses, shares and protects your personal information — including your rights of access, erasure and portability, and how long we keep data.',
+      'How AFRO & CO. collects, uses, shares and protects your personal information — including your rights of access, erasure and portability, and how long we keep data.',
   });
 
   const reduceMotion = useReducedMotion();

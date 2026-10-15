@@ -49,7 +49,7 @@ export default function SignUpPage() {
 
   useSeo({
     title: 'Create an Account',
-    description: 'Join NOIR & CO. for exclusive collections, tailored styling advice, and private salon viewings.',
+    description: 'Join AFRO & CO. for exclusive collections, tailored styling advice, and private salon viewings.',
   });
 
   const onSubmit = async (data: SignUpFormData) => {
@@ -68,7 +68,7 @@ export default function SignUpPage() {
         lastName: data.lastName,
         email: data.email,
       });
-      toastSuccess('Welcome to NOIR & CO.', 'Your member account has been registered.');
+      toastSuccess('Welcome to AFRO & CO.', 'Your member account has been registered.');
       navigate('/account');
       return;
     }
@@ -87,7 +87,7 @@ export default function SignUpPage() {
   return (
     <AuthLayout
       image={SIGN_UP_IMAGE}
-      headline="Enter the inner sanctum of NOIR & CO."
+      headline="Enter the inner sanctum of AFRO & CO."
       subline="Curated luxury, bespoke styling invitations, and permanent access to your private bag."
     >
       <motion.div {...enter}>
@@ -200,7 +200,7 @@ export default function SignUpPage() {
               onChange={(e) => setValue('acceptTerms', e.target.checked as true)}
               label={
                 <span className="text-xs text-[var(--text-secondary)]">
-                  I agree to NOIR &amp; CO.'s{' '}
+                  I agree to AFRO &amp; CO.'s{' '}
                   <Link to="/terms" className="underline hover:text-[var(--text-primary)]">
                     Terms
                   </Link>{' '}

@@ -17,7 +17,7 @@ import type { Product } from '@/types';
 export default function WishlistPage() {
   useSeo({
     title: 'Wishlist',
-    description: 'The pieces you have saved for later at NOIR & CO.',
+    description: 'The pieces you have saved for later at AFRO & CO.',
   });
 
   const items = useWishlistStore((state) => state.items);

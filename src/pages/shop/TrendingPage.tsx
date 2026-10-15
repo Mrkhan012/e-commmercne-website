@@ -154,7 +154,7 @@ export default function TrendingPage() {
   useSeo({
     title: 'Trending Now',
     description:
-      'What is moving this week at NOIR & CO. — cashmere, tailored wool, and the accessories everyone is wearing right now.',
+      'What is moving this week at AFRO & CO. — cashmere, tailored wool, and the accessories everyone is wearing right now.',
   });
 
   const [sort, setSort] = useState<SortKey>('featured');

@@ -33,7 +33,7 @@ export default function ShopPage() {
   useSeo({
     title: 'Shop All Products',
     description:
-      'Browse the complete NOIR & CO. catalogue — clothing, footwear, accessories, watches, homeware, beauty, and electronics.',
+      'Browse the complete AFRO & CO. catalogue — clothing, footwear, accessories, watches, homeware, beauty, and electronics.',
   });
 
   const [searchParams, setSearchParams] = useSearchParams();

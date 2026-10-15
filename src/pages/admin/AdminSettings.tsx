@@ -5,8 +5,8 @@ import { useToastStore } from '@/store/toastStore';
 
 export default function AdminSettings() {
   const toast = useToastStore();
-  const [storeName, setStoreName] = useState('NOIR & CO. Haute Atelier');
-  const [supportEmail, setSupportEmail] = useState('concierge@noir-co.com');
+  const [storeName, setStoreName] = useState('AFRO & CO. Haute Atelier');
+  const [supportEmail, setSupportEmail] = useState('concierge@afro.co');
   const [currency, setCurrency] = useState('USD');
   const [taxRate, setTaxRate] = useState('8.0');
   const [freeShippingThreshold, setFreeShippingThreshold] = useState('200');

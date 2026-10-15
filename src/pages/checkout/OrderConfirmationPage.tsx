@@ -17,7 +17,7 @@ export default function OrderConfirmationPage() {
 
   useSeo({
     title: order ? `Order Confirmed: ${order.orderNumber}` : 'Order Confirmed',
-    description: 'Thank you for your order with NOIR & CO.',
+    description: 'Thank you for your order with AFRO & CO.',
   });
 
   if (!order) {

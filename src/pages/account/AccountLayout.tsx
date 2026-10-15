@@ -70,7 +70,7 @@ export default function AccountLayout() {
   useSeo({
     title: 'My Account',
     description:
-      'Manage your NOIR & CO. orders, delivery addresses, wishlist, reviews and account preferences in one place.',
+      'Manage your AFRO & CO. orders, delivery addresses, wishlist, reviews and account preferences in one place.',
   });
 
   const { user, isAuthenticated, signOut } = useUserStore();
@@ -78,13 +78,13 @@ export default function AccountLayout() {
   const toastInfo = useToastStore((state) => state.info);
   const reducedMotion = useReducedMotion();
 
-  const initials = user
+    const initials = user
     ? `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`.toUpperCase()
-    : 'NC';
+    : 'AC';
 
   const handleSignOut = () => {
     signOut();
-    toastInfo('Signed out', 'You have been signed out of your NOIR & CO. account.');
+    toastInfo('Signed out', 'You have been signed out of your AFRO & CO. account.');
     navigate('/');
   };
 
@@ -103,7 +103,7 @@ export default function AccountLayout() {
             My Account
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--text-secondary)]">
-            Orders, addresses, wishlist and preferences — everything for your NOIR &amp; CO.
+            Orders, addresses, wishlist and preferences — everything for your AFRO &amp; CO.
             account, gathered in one quiet place.
           </p>
         </motion.header>

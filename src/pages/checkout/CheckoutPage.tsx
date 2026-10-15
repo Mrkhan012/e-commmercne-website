@@ -26,7 +26,7 @@ import type { Address, PaymentMethod, DeliverySpeed } from '@/types';
 export default function CheckoutPage() {
   useSeo({
     title: 'Checkout',
-    description: 'Complete your NOIR & CO. purchase with secure delivery and discreet luxury packaging.',
+    description: 'Complete your AFRO & CO. purchase with secure delivery and discreet luxury packaging.',
   });
 
   const navigate = useNavigate();

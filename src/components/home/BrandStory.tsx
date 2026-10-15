@@ -67,7 +67,7 @@ export function BrandStory() {
               {...reveal(0.25)}
               className="mt-7 text-base leading-relaxed text-[var(--text-secondary)]"
             >
-              NOIR &amp; CO. began in 2019 in a small Brooklyn studio with a frustration shared by
+              AFRO &amp; CO. began in 2019 in a small Brooklyn studio with a frustration shared by
               everyone on the founding team: the things worth owning were either inaccessible or
               endlessly overpriced, and the things that were easy to buy rarely lasted.
             </motion.p>

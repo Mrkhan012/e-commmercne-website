@@ -34,7 +34,7 @@ const DEMO_USER_REVIEWS = [
 export default function ReviewsPage() {
   useSeo({
     title: 'My Reviews',
-    description: 'Past evaluations and verified feedback on your NOIR & CO. acquisitions.',
+    description: 'Past evaluations and verified feedback on your AFRO & CO. acquisitions.',
   });
 
   const reduceMotion = useReducedMotion();

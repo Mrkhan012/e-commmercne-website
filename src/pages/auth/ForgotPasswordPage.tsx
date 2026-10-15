@@ -30,7 +30,7 @@ export default function ForgotPasswordPage() {
 
   useSeo({
     title: 'Reset Password',
-    description: 'Recover access to your NOIR & CO. client profile.',
+    description: 'Recover access to your AFRO & CO. client profile.',
   });
 
   const onSubmit = async (data: ForgotPasswordFormData) => {

@@ -102,7 +102,7 @@ export default function ShippingPolicyPage() {
   useSeo({
     title: 'Shipping & Delivery',
     description:
-      'Shipping rates and delivery windows for Standard, Express and Overnight service, processing times, international shipping, and how to track your NOIR & CO. order.',
+      'Shipping rates and delivery windows for Standard, Express and Overnight service, processing times, international shipping, and how to track your AFRO & CO. order.',
   });
 
   return (

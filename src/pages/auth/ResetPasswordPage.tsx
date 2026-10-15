@@ -34,7 +34,7 @@ export default function ResetPasswordPage() {
 
   useSeo({
     title: 'Choose New Password',
-    description: 'Update your security credentials for NOIR & CO.',
+    description: 'Update your security credentials for AFRO & CO.',
   });
 
   const onSubmit = async (data: ResetPasswordFormData) => {

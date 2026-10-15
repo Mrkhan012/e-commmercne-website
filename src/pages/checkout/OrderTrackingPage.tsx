@@ -23,7 +23,7 @@ const TIMELINE_STEPS = [
 export default function OrderTrackingPage() {
   useSeo({
     title: 'Track Your Order',
-    description: 'Follow the progress of your NOIR & CO. shipment from atelier to your doorstep in real time.',
+    description: 'Follow the progress of your AFRO & CO. shipment from atelier to your doorstep in real time.',
   });
 
   const [searchParams] = useSearchParams();

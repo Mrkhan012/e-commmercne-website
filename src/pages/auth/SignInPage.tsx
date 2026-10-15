@@ -18,7 +18,7 @@ import { useReducedMotion } from '@/hooks/useUi';
 
 const SIGN_IN_IMAGE = 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&q=80';
 
-const DEMO_EMAIL = 'demo@noir-co.com';
+const DEMO_EMAIL = 'demo@afro.co';
 
 export default function SignInPage() {
   const reduceMotion = useReducedMotion();
@@ -42,7 +42,7 @@ export default function SignInPage() {
   useSeo({
     title: 'Sign In',
     description:
-      'Sign in to your NOIR & CO. account to track orders, manage addresses, and access your saved pieces.',
+      'Sign in to your AFRO & CO. account to track orders, manage addresses, and access your saved pieces.',
   });
 
   const onSubmit = async (data: SignInFormData) => {
@@ -85,7 +85,7 @@ export default function SignInPage() {
   return (
     <AuthLayout
       image={SIGN_IN_IMAGE}
-      headline="Welcome back to the house of NOIR & CO."
+      headline="Welcome back to the house of AFRO & CO."
       subline="Your orders, saved pieces, and private appointments — exactly where you left them."
     >
       <motion.div {...enter}>
@@ -97,7 +97,7 @@ export default function SignInPage() {
             Sign in
           </h1>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">
-            New to NOIR &amp; CO.?{' '}
+            New to AFRO &amp; CO.?{' '}
             <Link
               to="/signup"
               className="font-medium text-[var(--text-primary)] underline decoration-[var(--color-noir-gold)] decoration-2 underline-offset-4 transition-opacity hover:opacity-70"

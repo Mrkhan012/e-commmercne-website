@@ -180,7 +180,7 @@ export default function BestSellersPage() {
   useSeo({
     title: 'Best Sellers',
     description:
-      'The pieces our customers keep coming back for — the best sellers at NOIR & CO., ranked by what is actually selling right now.',
+      'The pieces our customers keep coming back for — the best sellers at AFRO & CO., ranked by what is actually selling right now.',
   });
 
   const [sort, setSort] = useState<SortKey>('featured');

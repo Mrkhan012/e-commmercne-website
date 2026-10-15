@@ -19,14 +19,14 @@ export function InstagramGallery() {
           <div>
             <p className="flex items-center gap-2 font-heading text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--text-muted)]">
               <InstagramIcon className="h-3.5 w-3.5" />
-              @noirandco
+              @afro.co
             </p>
             <h2 className="mt-3 text-[clamp(2rem,5vw,3.5rem)] font-heading font-extrabold leading-[1] tracking-[-0.03em] text-[var(--text-primary)]">
               As worn by you
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-[var(--text-muted)]">
-            Tag <span className="text-[var(--text-primary)]">#NOIRANDCO</span> for a chance to be
+            Tag <span className="text-[var(--text-primary)]">#AFROCO</span> for a chance to be
             featured. We share our favourites every Friday.
           </p>
         </div>

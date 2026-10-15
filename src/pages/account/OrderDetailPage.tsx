@@ -64,7 +64,7 @@ export default function OrderDetailPage() {
   useSeo({
     title: 'Order Details',
     description:
-      'Full details for a single NOIR & CO. order: delivery tracking, items, payment method and totals.',
+      'Full details for a single AFRO & CO. order: delivery tracking, items, payment method and totals.',
   });
 
   const orders = useUserStore((state) => state.orders);

@@ -34,8 +34,8 @@ const adminNav = [
 
 export default function AdminLayout() {
   useSeo({
-    title: 'Admin Console | NOIR & CO.',
-    description: 'Executive management portal for NOIR & CO. operations, inventory, and orders.',
+    title: 'Admin Console | AFRO & CO.',
+    description: 'Executive management portal for AFRO & CO. operations, inventory, and orders.',
   });
 
   return (
@@ -52,7 +52,7 @@ export default function AdminLayout() {
           </Link>
           <span className="text-[var(--border-color)]">|</span>
           <span className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-noir-gold)]">
-            NOIR &amp; CO. Atelier Operations
+            AFRO &amp; CO. Atelier Operations
           </span>
         </div>
 

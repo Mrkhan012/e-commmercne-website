@@ -152,7 +152,7 @@ export default function NewArrivalsPage() {
   useSeo({
     title: 'New Arrivals',
     description:
-      'Shop the newest arrivals at NOIR & CO. — freshly landed outerwear, silk, knitwear, and leather goods from the houses we love.',
+      'Shop the newest arrivals at AFRO & CO. — freshly landed outerwear, silk, knitwear, and leather goods from the houses we love.',
   });
 
   const [sort, setSort] = useState<SortKey>('featured');

@@ -218,7 +218,7 @@ export default function SalePage() {
   useSeo({
     title: 'Sale',
     description:
-      'The NOIR & CO. sale — up to 25% off outerwear, tailoring, leather goods, and accessories. Limited stock, no restocks at sale prices.',
+      'The AFRO & CO. sale — up to 25% off outerwear, tailoring, leather goods, and accessories. Limited stock, no restocks at sale prices.',
   });
 
   const [sort, setSort] = useState<SortKey>('featured');

@@ -56,7 +56,7 @@ export default function OrdersPage() {
   useSeo({
     title: 'Order History',
     description:
-      'Every NOIR & CO. order you have placed, with status, contents and totals in one searchable list.',
+      'Every AFRO & CO. order you have placed, with status, contents and totals in one searchable list.',
   });
 
   const orders = useUserStore((state) => state.orders);
@@ -121,7 +121,7 @@ export default function OrdersPage() {
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--text-secondary)]">
           {orders.length === 0
             ? 'Every order you place appears here with its contents, totals and delivery progress.'
-            : `${pluralize(orders.length, 'order')} placed with NOIR & CO. — open any order for full tracking, receipts and returns.`}
+            : `${pluralize(orders.length, 'order')} placed with AFRO & CO. — open any order for full tracking, receipts and returns.`}
         </p>
       </motion.header>
 

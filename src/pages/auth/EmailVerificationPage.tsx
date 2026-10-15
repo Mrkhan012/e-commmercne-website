@@ -20,7 +20,7 @@ export default function EmailVerificationPage() {
 
   useSeo({
     title: 'Verify Your Email',
-    description: 'Confirm your registered email address with NOIR & CO.',
+    description: 'Confirm your registered email address with AFRO & CO.',
   });
 
   const handleVerifyNow = async () => {
@@ -87,7 +87,7 @@ export default function EmailVerificationPage() {
                 <Mail className="h-5 w-5" />
               </div>
               <div className="text-xs">
-                <p className="font-semibold text-[var(--text-primary)]">demo@noir-co.com</p>
+                <p className="font-semibold text-[var(--text-primary)]">demo@afro.co</p>
                 <p className="text-[var(--text-muted)]">Check your spam folder if not received</p>
               </div>
             </div>

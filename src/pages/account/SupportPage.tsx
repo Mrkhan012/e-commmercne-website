@@ -10,7 +10,7 @@ import { useReducedMotion } from '@/hooks/useUi';
 export default function SupportPage() {
   useSeo({
     title: 'Client Concierge & Support',
-    description: 'Direct communication with NOIR & CO. styling advisors and private client services.',
+    description: 'Direct communication with AFRO & CO. styling advisors and private client services.',
   });
 
   const reduceMotion = useReducedMotion();
@@ -66,7 +66,7 @@ export default function SupportPage() {
           </h3>
           <p className="mt-1 text-xs text-[var(--text-muted)]">Written response &amp; sizing</p>
           <p className="mt-3 font-heading text-sm font-bold text-[var(--text-primary)]">
-            concierge@noir-co.com
+            concierge@afro.co
           </p>
           <p className="mt-1 text-[11px] text-[var(--text-muted)]">Guaranteed response &lt; 4 hrs</p>
         </div>

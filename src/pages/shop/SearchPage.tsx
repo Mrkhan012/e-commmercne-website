@@ -41,7 +41,7 @@ export default function SearchPage() {
 
   useSeo({
     title: query ? `Search: ${query}` : 'Search',
-    description: `Search results for ${query || 'the NOIR & CO. catalogue'}.`,
+    description: `Search results for ${query || 'the AFRO & CO. catalogue'}.`,
   });
 
   // Keep the input and URL in sync when navigation changes the query.

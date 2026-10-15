@@ -60,7 +60,7 @@ const values = [
   {
     icon: Ruler,
     title: 'Made to last',
-    body: 'Double-stitched seams, reinforced stress points, hardware rated for a decade of daily use. Our atelier repairs any NOIR & CO. piece at cost for as long as you own it.',
+    body: 'Double-stitched seams, reinforced stress points, hardware rated for a decade of daily use. Our atelier repairs any AFRO & CO. piece at cost for as long as you own it.',
   },
   {
     icon: Leaf,
@@ -186,7 +186,7 @@ export default function AboutPage() {
   useSeo({
     title: 'About',
     description:
-      'NOIR & CO. was founded in 2019 on a simple premise: cut it well, make it last, and tell the truth about where it was made. Two collections a year, named suppliers, repairs for life.',
+      'AFRO & CO. was founded in 2019 on a simple premise: cut it well, make it last, and tell the truth about where it was made. Two collections a year, named suppliers, repairs for life.',
   });
 
   return (
@@ -209,7 +209,7 @@ export default function AboutPage() {
                 </span>
               </h1>
               <p className="mt-6 max-w-2xl text-sm leading-relaxed text-[var(--text-secondary)] sm:text-base">
-                NOIR &amp; CO. is a small house with a narrow brief: fewer, better things, made by
+                AFRO &amp; CO. is a small house with a narrow brief: fewer, better things, made by
                 people we know, in places we name, sold without theatre. Seven years, four studios
                 and two collections a year.
               </p>
@@ -283,7 +283,7 @@ export default function AboutPage() {
               <Reveal>
                 <div className="space-y-6 text-base leading-[1.75] text-[var(--text-secondary)]">
                   <p>
-                    NOIR &amp; CO. began in 2019 in a fourth-floor room above a frame shop on Greene
+                    AFRO &amp; CO. began in 2019 in a fourth-floor room above a frame shop on Greene
                     Street. Amara was a pattern cutter who had spent a decade watching good design
                     get quietly engineered out of collections to hit a price point. Julien was an
                     industrial designer who believed most products were designed for the showroom

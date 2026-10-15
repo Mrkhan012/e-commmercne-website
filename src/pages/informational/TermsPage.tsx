@@ -163,7 +163,7 @@ const termSections: TermSection[] = [
     body: (
       <p>
         All content on this site — text, photographs, illustrations, logos, product designs,
-        software and the arrangement of the site itself — belongs to NOIR &amp; CO. or its licensors
+        software and the arrangement of the site itself — belongs to AFRO &amp; CO. or its licensors
         and is protected by copyright and trademark law. You may view and print pages for personal,
         non-commercial use only. You may not reproduce, republish, sell or exploit any part of the
         site without our written permission.
@@ -234,7 +234,7 @@ const termSections: TermSection[] = [
     icon: ShieldAlert,
     body: (
       <p>
-        You agree to indemnify and hold NOIR &amp; CO., its directors, employees and partners
+        You agree to indemnify and hold AFRO &amp; CO., its directors, employees and partners
         harmless from any claim, loss or expense — including reasonable legal fees — arising from
         your breach of these terms, your misuse of the site, or your infringement of another
         person's rights.

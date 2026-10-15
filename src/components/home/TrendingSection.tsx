@@ -15,7 +15,7 @@ export function TrendingSection() {
     .sort((a, b) => b.reviewCount * b.rating - a.reviewCount * a.rating)
     .slice(0, 4);
 
-  useSeo({ title: 'NOIR & CO.' });
+  useSeo({ title: 'AFRO & CO.' });
 
   if (trending.length === 0) return null;
 

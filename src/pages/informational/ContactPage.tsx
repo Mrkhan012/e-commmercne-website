@@ -94,7 +94,7 @@ export default function ContactPage() {
   useSeo({
     title: 'Contact',
     description:
-      'Reach NOIR & CO. client care by email, phone or post. Messages are answered within one business day by a real person in our New York studio.',
+      'Reach AFRO & CO. client care by email, phone or post. Messages are answered within one business day by a real person in our New York studio.',
   });
 
   const reduceMotion = useReducedMotion();

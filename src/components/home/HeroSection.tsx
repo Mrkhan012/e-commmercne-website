@@ -14,7 +14,7 @@ export function HeroSection() {
   const reduceMotion = useReducedMotion();
 
   useSeo({
-    title: 'NOIR & CO. — Premium Editorial E-Commerce',
+    title: 'AFRO & CO. (Afro.co) — Premium Editorial E-Commerce',
     description:
       'Curated fashion, accessories, and lifestyle goods for the modern collector. Complimentary shipping on orders over $200.',
   });

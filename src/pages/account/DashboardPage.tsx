@@ -53,7 +53,7 @@ export default function DashboardPage() {
   useSeo({
     title: 'Dashboard',
     description:
-      'Your NOIR & CO. account dashboard: recent orders, saved pieces, loyalty points and quick actions.',
+      'Your AFRO & CO. account dashboard: recent orders, saved pieces, loyalty points and quick actions.',
   });
 
   const reducedMotion = useReducedMotion();
@@ -108,7 +108,7 @@ export default function DashboardPage() {
           Good morning, {firstName}
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--text-secondary)]">
-          Here is where your NOIR &amp; CO. account stands today. Pick up an order, revisit a
+          Here is where your AFRO &amp; CO. account stands today. Pick up an order, revisit a
           piece you were considering, or adjust how we stay in touch.
         </p>
       </motion.header>

@@ -18,7 +18,7 @@ export default function ComparePage() {
 
   useSeo({
     title: 'Compare Pieces',
-    description: 'Compare materials, tailoring, and specifications across your selected NOIR & CO. pieces.',
+    description: 'Compare materials, tailoring, and specifications across your selected AFRO & CO. pieces.',
   });
 
   const handleAddToCart = (product: any) => {
