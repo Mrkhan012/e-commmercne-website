@@ -33,10 +33,9 @@ const DEFAULT_FILTERS: ProductFilters = {
  * Resolves a `:categorySlug` route param to either a top-level category or one of
  * its subcategories, so both /shop/clothing and /shop/tops-shirts work.
  */
-const resolveCategory = (slug: string | undefined) => {
+const resolveCategory = (slug: string | undefined, allCategories = useCategoryStore.getState().categories) => {
   if (!slug) return null;
 
-  const allCategories = useCategoryStore.getState().categories;
   const topLevel = allCategories.find((c) => c.slug.toLowerCase() === slug.toLowerCase());
   if (topLevel) return { kind: 'category' as const, category: topLevel, subcategory: undefined };
 
@@ -51,7 +50,8 @@ const resolveCategory = (slug: string | undefined) => {
 /** Category and subcategory listing with faceted filtering and sorting. */
 export default function CategoryPage() {
   const { categorySlug } = useParams<{ categorySlug: string }>();
-  const resolved = useMemo(() => resolveCategory(categorySlug), [categorySlug]);
+  const categories = useCategoryStore((s) => s.categories);
+  const resolved = useMemo(() => resolveCategory(categorySlug, categories), [categorySlug, categories]);
 
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [filtersOpen, setFiltersOpen] = useState(false);
