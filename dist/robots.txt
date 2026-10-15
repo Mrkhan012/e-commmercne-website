@@ -1,0 +1,33 @@
+# ==============================================================================
+# AFRO & CO. (Afro.co) — Robots.txt for Google & Major Search Engines
+# ==============================================================================
+
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /order-confirmation/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /order-confirmation/
+
+User-agent: *
+Allow: /
+Allow: /shop
+Allow: /product/
+Allow: /dealer/register
+Allow: /new-arrivals
+Allow: /best-sellers
+Allow: /sale
+Disallow: /admin/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /order-confirmation/
+
+# Sitemap location for Googlebot discovery
+Sitemap: https://afro.co/sitemap.xml

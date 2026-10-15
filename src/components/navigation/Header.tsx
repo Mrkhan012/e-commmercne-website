@@ -15,7 +15,6 @@ import {
   LogOut,
   LayoutDashboard,
   Shield,
-  UserCheck,
   Globe,
   Building2,
   Briefcase,
@@ -42,7 +41,7 @@ export function Header() {
   const itemCount = useCartStore((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
   const openCart = useCartStore((state) => state.openCart);
   const wishlistCount = useWishlistStore((state) => state.items.length);
-  const { isAuthenticated, user, signOut, toggleRole, setRole, signInAsAdmin, signInAsDealer } = useUserStore();
+  const { isAuthenticated, user, signOut, setRole, signInAsAdmin, signInAsDealer } = useUserStore();
   const { currentCurrency, setCurrency } = useCurrencyStore();
   const { bannerPromoText, bannerActive } = useCouponStore();
 

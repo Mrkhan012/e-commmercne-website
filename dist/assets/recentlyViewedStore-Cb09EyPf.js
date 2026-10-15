@@ -1,1 +1,0 @@
-import{t as e}from"./react-Y7hJJGW0.js";import{t}from"./middleware-ZXcm-2wU.js";var n=10,r=e()(t(e=>({items:[],addItem:t=>e(e=>({items:[t,...e.items.filter(e=>e.id!==t.id)].slice(0,n)})),clearAll:()=>e({items:[]})}),{name:`noir-recently-viewed`}));export{r as t};
