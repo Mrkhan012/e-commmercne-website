@@ -9,6 +9,7 @@ import {
   ShoppingBag,
   Truck,
   Building,
+  FileText,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
@@ -45,10 +46,12 @@ export default function CheckoutPage() {
     clearCart,
   } = useCartStore();
 
-  const [email, setEmail] = useState(user?.email || 'customer@example.com');
-  const [phone, setPhone] = useState('+1 (555) 234-5678');
+  const isDealer = user?.role === 'dealer' || items.some((i) => i.isWholesale);
+  const [email, setEmail] = useState(user?.email || (isDealer ? 'dealer@apexluxury.com' : 'customer@example.com'));
+  const [phone, setPhone] = useState(user?.phone || '+1 (555) 234-5678');
   const [deliverySpeed, setDeliverySpeed] = useState<DeliverySpeed>('standard');
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('card');
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(isDealer ? 'purchase-order' : 'card');
+  const [poNumber, setPoNumber] = useState(isDealer ? `PO-${Math.floor(100000 + Math.random() * 900000)}` : '');
   const [couponInput, setCouponInput] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -125,6 +128,9 @@ export default function CheckoutPage() {
         billingAddress: address,
         paymentMethod,
         couponCode: couponCode || undefined,
+        isWholesale: isDealer,
+        poNumber: poNumber.trim() || undefined,
+        dealerId: user?.dealerProfile?.id,
       });
 
       addOrder(newOrder);
@@ -392,6 +398,12 @@ export default function CheckoutPage() {
               <div className="mt-6 space-y-4">
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                   {[
+                    ...(isDealer
+                      ? [
+                          { id: 'purchase-order' as PaymentMethod, label: 'Purchase Order (Net-30)', icon: FileText },
+                          { id: 'wire' as PaymentMethod, label: 'Direct Wire', icon: Building },
+                        ]
+                      : []),
                     { id: 'card' as PaymentMethod, label: 'Credit Card', icon: CreditCard },
                     { id: 'apple-pay' as PaymentMethod, label: 'Apple Pay', icon: ShieldCheck },
                     { id: 'paypal' as PaymentMethod, label: 'PayPal', icon: Building },
@@ -410,13 +422,50 @@ export default function CheckoutPage() {
                         }`}
                       >
                         <Icon className="h-5 w-5" />
-                        <span className="font-heading text-[10px] font-bold uppercase tracking-wider">
+                        <span className="font-heading text-[10px] font-bold uppercase tracking-wider text-center">
                           {pm.label}
                         </span>
                       </button>
                     );
                   })}
                 </div>
+
+                {paymentMethod === 'purchase-order' && (
+                  <div className="mt-4 border border-[var(--color-noir-gold)]/50 bg-[var(--color-noir-gold)]/5 p-4 rounded-lg space-y-3">
+                    <div className="flex items-center gap-2 text-xs font-bold text-[var(--color-noir-gold)] uppercase tracking-wider">
+                      <FileText className="h-4 w-4" />
+                      <span>Commercial Purchase Order (Net-30 Terms)</span>
+                    </div>
+                    <div>
+                      <label className="mb-1 block font-heading text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                        Your Corporate PO Number
+                      </label>
+                      <Input
+                        required
+                        value={poNumber}
+                        onChange={(e) => setPoNumber(e.target.value)}
+                        placeholder="e.g. PO-2026-9481"
+                      />
+                    </div>
+                    <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed">
+                      Official commercial B2B Tax Invoice will be issued to{' '}
+                      <strong>{user?.dealerProfile?.companyName || 'your corporate account'}</strong> with Net-30 remittance terms.
+                    </p>
+                  </div>
+                )}
+
+                {paymentMethod === 'wire' && (
+                  <div className="mt-4 border border-[var(--border-color)] bg-[var(--bg-secondary)]/50 p-4 rounded-lg space-y-2 text-xs text-[var(--text-secondary)]">
+                    <p className="font-bold text-[var(--text-primary)] uppercase tracking-wider text-[10px]">
+                      Bank Wire Remittance Instructions
+                    </p>
+                    <p>Beneficiary: AFRO &amp; CO. ATELIER INC. &bull; Bank: JPMorgan Chase Bank N.A.</p>
+                    <p className="font-mono text-[11px]">SWIFT: CHASUS33 &bull; IBAN: US82CHAS0210000892019842</p>
+                    <p className="text-[10px] text-[var(--text-muted)]">
+                      Order will dispatch immediately upon wire clearance or pro-forma confirmation.
+                    </p>
+                  </div>
+                )}
 
                 {paymentMethod === 'card' && (
                   <div className="mt-4 border border-[var(--border-color)] bg-[var(--bg-secondary)]/50 p-4">

@@ -6,7 +6,7 @@ export type Theme = 'light' | 'dark';
 export type Currency = 'USD' | 'INR' | 'AED' | 'EUR' | 'GBP' | 'SAR' | 'CAD' | 'AUD' | 'JPY';
 export type ProductStatus = 'new' | 'best-seller' | 'trending' | 'sale' | 'default';
 export type OrderStatus = 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | 'refunded';
-export type PaymentMethod = 'card' | 'paypal' | 'apple-pay' | 'google-pay' | 'cod';
+export type PaymentMethod = 'card' | 'paypal' | 'apple-pay' | 'google-pay' | 'cod' | 'purchase-order' | 'wire';
 export type DeliverySpeed = 'standard' | 'express' | 'overnight';
 
 // ─── Core Entities ─────────────────────────────────────────────────────────────
@@ -88,6 +88,8 @@ export interface CartItem {
   selectedColor?: ProductColor;
   selectedSize?: ProductSize;
   price: number; // locked price at time of add
+  customPrice?: number;
+  isWholesale?: boolean;
 }
 
 export interface Cart {
@@ -110,6 +112,55 @@ export interface WishlistItem {
 
 // ─── User / Auth ──────────────────────────────────────────────────────────────
 
+export type UserRole = 'customer' | 'admin' | 'dealer';
+
+export type DealerTier = 'bronze' | 'silver' | 'gold';
+export type DealerStatus = 'pending' | 'approved' | 'rejected';
+export type PaymentTerms = 'prepaid' | 'net30' | 'net60';
+
+export interface DealerProfile {
+  id: string;
+  companyName: string;
+  businessType: 'retailer' | 'boutique' | 'distributor' | 'corporate';
+  taxId: string; // GSTIN / VAT / EIN
+  website?: string;
+  contactPerson: string;
+  phone: string;
+  email: string;
+  address: string;
+  city: string;
+  state: string;
+  country: string;
+  tier: DealerTier; // bronze (15%), silver (25%), gold (35%)
+  discountRate: number; // e.g. 0.25
+  creditLimit: number; // in USD
+  creditUsed: number;
+  paymentTerms: PaymentTerms;
+  status: DealerStatus;
+  expectedMonthlyVolume?: string;
+  minOrderQuantity: number;
+  notes?: string;
+  appliedAt: string;
+  approvedAt?: string;
+}
+
+export interface RFQRequest {
+  id: string;
+  dealerId?: string;
+  companyName: string;
+  contactName: string;
+  email: string;
+  phone: string;
+  productId: string;
+  productName: string;
+  requestedQuantity: number;
+  targetPrice?: number;
+  notes?: string;
+  status: 'pending' | 'quoted' | 'accepted' | 'declined';
+  createdAt: string;
+  quoteAmount?: number;
+}
+
 export interface User {
   id: string;
   firstName: string;
@@ -117,10 +168,11 @@ export interface User {
   email: string;
   phone?: string;
   avatar?: string;
-  role: 'customer' | 'admin';
+  role: UserRole;
   createdAt: string;
   addresses: Address[];
   preferences: UserPreferences;
+  dealerProfile?: DealerProfile;
 }
 
 export interface Address {
@@ -184,6 +236,9 @@ export interface Order {
   timeline: OrderTimelineEvent[];
   couponCode?: string;
   notes?: string;
+  isWholesale?: boolean;
+  poNumber?: string;
+  dealerId?: string;
   createdAt: string;
   updatedAt: string;
   estimatedDelivery?: string;

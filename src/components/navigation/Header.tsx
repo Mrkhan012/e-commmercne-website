@@ -17,6 +17,8 @@ import {
   Shield,
   UserCheck,
   Globe,
+  Building2,
+  Briefcase,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useCategoryStore } from '@/store/categoryStore';
@@ -40,7 +42,7 @@ export function Header() {
   const itemCount = useCartStore((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
   const openCart = useCartStore((state) => state.openCart);
   const wishlistCount = useWishlistStore((state) => state.items.length);
-  const { isAuthenticated, user, signOut, toggleRole, signInAsAdmin } = useUserStore();
+  const { isAuthenticated, user, signOut, toggleRole, setRole, signInAsAdmin, signInAsDealer } = useUserStore();
   const { currentCurrency, setCurrency } = useCurrencyStore();
   const { bannerPromoText, bannerActive } = useCouponStore();
 
@@ -80,7 +82,15 @@ export function Header() {
               <span>{bannerPromoText}</span>
             </div>
 
-            <div className="flex items-center gap-2 mx-auto sm:ml-auto sm:mx-0">
+            <div className="flex items-center gap-3 mx-auto sm:ml-auto sm:mx-0">
+              <Link
+                to="/dealer/register"
+                className="hidden md:inline-flex items-center gap-1 text-[10px] text-[var(--color-noir-gold)] hover:underline font-semibold"
+              >
+                <Briefcase className="h-3 w-3" />
+                <span>Wholesale &bull; Dealer Apply</span>
+              </Link>
+              <span className="hidden md:inline text-[var(--border-color)]">|</span>
               {/* Quick Currency Selector */}
               <div className="flex items-center gap-1.5 rounded px-2 py-0.5 transition-colors hover:bg-[var(--bg-secondary)]">
                 <Globe className="h-3 w-3 text-[var(--color-noir-gold)]" />
@@ -214,6 +224,17 @@ export function Header() {
               </Link>
             )}
 
+            {/* Dealer Portal Pill (Visible only when user role is dealer) */}
+            {user?.role === 'dealer' && (
+              <Link
+                to="/dealer"
+                className="hidden items-center gap-1.5 border border-amber-500/60 bg-amber-500/10 px-2.5 py-1 font-heading text-[10px] font-bold uppercase tracking-[0.16em] text-amber-500 transition-colors hover:bg-amber-500/25 sm:inline-flex"
+              >
+                <Building2 className="h-3 w-3" />
+                <span>Dealer Portal</span>
+              </Link>
+            )}
+
             {/* Account */}
             <Dropdown
               align="right"
@@ -226,7 +247,7 @@ export function Header() {
                   <UserIcon className="h-[18px] w-[18px]" />
                 </button>
               }
-              panelClassName="w-56"
+              panelClassName="w-60"
             >
               {(close) =>
                 isAuthenticated && user ? (
@@ -240,6 +261,8 @@ export function Header() {
                           className={`px-1.5 py-0.5 font-mono text-[9px] font-bold uppercase ${
                             user.role === 'admin'
                               ? 'border border-[var(--color-noir-gold)]/40 bg-[var(--color-noir-gold)]/20 text-[var(--color-noir-gold)]'
+                              : user.role === 'dealer'
+                              ? 'border border-amber-500/40 bg-amber-500/20 text-amber-500'
                               : 'bg-[var(--bg-secondary)] text-[var(--text-muted)]'
                           }`}
                         >
@@ -256,8 +279,23 @@ export function Header() {
                         window.location.assign('/account');
                       }}
                     >
-                      My Account
+                      Customer Account
                     </DropdownItem>
+
+                    {/* Dealer Portal Link */}
+                    {user.role === 'dealer' && (
+                      <DropdownItem
+                        icon={<Building2 className="h-4 w-4 text-amber-500" />}
+                        onClick={() => {
+                          close();
+                          window.location.assign('/dealer');
+                        }}
+                      >
+                        <span className="font-semibold text-amber-500">
+                          Dealer B2B Portal
+                        </span>
+                      </DropdownItem>
+                    )}
 
                     {/* Admin Dashboard: shown only if user role is admin */}
                     {user.role === 'admin' && (
@@ -274,15 +312,42 @@ export function Header() {
                       </DropdownItem>
                     )}
 
-                    {/* Switch role toggle */}
+                    {/* Quick 3-way role switcher */}
+                    <DropdownDivider />
+                    <div className="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                      Switch Role View
+                    </div>
+
                     <DropdownItem
-                      icon={<UserCheck className="h-4 w-4" />}
+                      icon={<UserIcon className="h-3.5 w-3.5" />}
                       onClick={() => {
-                        toggleRole();
+                        setRole('customer');
                         close();
                       }}
                     >
-                      Switch to {user.role === 'admin' ? 'Customer' : 'Admin'} View
+                      Customer View {user.role === 'customer' && '✓'}
+                    </DropdownItem>
+
+                    <DropdownItem
+                      icon={<Building2 className="h-3.5 w-3.5 text-amber-500" />}
+                      onClick={() => {
+                        setRole('dealer');
+                        close();
+                        window.location.assign('/dealer');
+                      }}
+                    >
+                      Dealer (B2B) View {user.role === 'dealer' && '✓'}
+                    </DropdownItem>
+
+                    <DropdownItem
+                      icon={<Shield className="h-3.5 w-3.5 text-[var(--color-noir-gold)]" />}
+                      onClick={() => {
+                        setRole('admin');
+                        close();
+                        window.location.assign('/admin');
+                      }}
+                    >
+                      Platform Admin View {user.role === 'admin' && '✓'}
                     </DropdownItem>
 
                     <DropdownDivider />
@@ -317,6 +382,16 @@ export function Header() {
                     </DropdownItem>
                     <DropdownDivider />
                     <DropdownItem
+                      icon={<Building2 className="h-4 w-4 text-amber-500" />}
+                      onClick={() => {
+                        signInAsDealer();
+                        close();
+                        window.location.assign('/dealer');
+                      }}
+                    >
+                      Sign in as Demo Dealer
+                    </DropdownItem>
+                    <DropdownItem
                       icon={<Shield className="h-4 w-4 text-[var(--color-noir-gold)]" />}
                       onClick={() => {
                         signInAsAdmin();
@@ -325,6 +400,15 @@ export function Header() {
                       }}
                     >
                       Sign in as Admin
+                    </DropdownItem>
+                    <DropdownDivider />
+                    <DropdownItem
+                      onClick={() => {
+                        close();
+                        window.location.assign('/dealer/register');
+                      }}
+                    >
+                      Apply for Dealer Account
                     </DropdownItem>
                   </>
                 )
@@ -562,6 +646,26 @@ export function Header() {
                           className="block py-2.5 text-sm text-[var(--text-secondary)]"
                         >
                           Track Order
+                        </Link>
+                      </li>
+                      {user?.role === 'dealer' && (
+                        <li>
+                          <Link
+                            to="/dealer"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block py-2.5 font-heading text-xs font-bold uppercase tracking-wider text-amber-500"
+                          >
+                            Dealer B2B Portal &rarr;
+                          </Link>
+                        </li>
+                      )}
+                      <li>
+                        <Link
+                          to="/dealer/register"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-2.5 text-xs text-[var(--color-noir-gold)] font-semibold"
+                        >
+                          Apply for Dealer Partnership &rarr;
                         </Link>
                       </li>
                       {user?.role === 'admin' && (

@@ -45,7 +45,16 @@ const AdminCoupons = lazy(() => import('@/pages/admin/AdminCoupons'));
 const AdminReviews = lazy(() => import('@/pages/admin/AdminReviews'));
 const AdminReturns = lazy(() => import('@/pages/admin/AdminReturns'));
 const AdminSubscribers = lazy(() => import('@/pages/admin/AdminSubscribers'));
+const AdminDealers = lazy(() => import('@/pages/admin/AdminDealers'));
 const AdminSettings = lazy(() => import('@/pages/admin/AdminSettings'));
+const DealerLayout = lazy(() => import('@/pages/dealer/DealerLayout'));
+const DealerDashboard = lazy(() => import('@/pages/dealer/DealerDashboard'));
+const DealerCatalog = lazy(() => import('@/pages/dealer/DealerCatalog'));
+const DealerQuickOrder = lazy(() => import('@/pages/dealer/DealerQuickOrder'));
+const DealerOrders = lazy(() => import('@/pages/dealer/DealerOrders'));
+const DealerRfq = lazy(() => import('@/pages/dealer/DealerRfq'));
+const DealerProfilePage = lazy(() => import('@/pages/dealer/DealerProfilePage'));
+const DealerRegister = lazy(() => import('@/pages/dealer/DealerRegister'));
 const FaqPage = lazy(() => import('@/pages/informational/FaqPage'));
 const ContactPage = lazy(() => import('@/pages/informational/ContactPage'));
 const AboutPage = lazy(() => import('@/pages/informational/AboutPage'));
@@ -104,6 +113,7 @@ export const router = createBrowserRouter([
           { path: 'products', element: <AdminProducts /> },
           { path: 'categories', element: <AdminCategories /> },
           { path: 'inventory', element: <AdminInventory /> },
+          { path: 'dealers', element: <AdminDealers /> },
           { path: 'customers', element: <AdminCustomers /> },
           { path: 'coupons', element: <AdminCoupons /> },
           { path: 'reviews', element: <AdminReviews /> },
@@ -112,6 +122,20 @@ export const router = createBrowserRouter([
           { path: 'settings', element: <AdminSettings /> },
         ],
       },
+      {
+        path: 'dealer',
+        element: <DealerLayout />,
+        children: [
+          { index: true, element: <DealerDashboard /> },
+          { path: 'catalog', element: <DealerCatalog /> },
+          { path: 'quick-order', element: <DealerQuickOrder /> },
+          { path: 'orders', element: <DealerOrders /> },
+          { path: 'rfq', element: <DealerRfq /> },
+          { path: 'profile', element: <DealerProfilePage /> },
+        ],
+      },
+      { path: 'dealer/register', element: <DealerRegister /> },
+      { path: 'dealer/apply', element: <DealerRegister /> },
       { path: 'faq', element: <FaqPage /> },
       { path: 'contact', element: <ContactPage /> },
       { path: 'about', element: <AboutPage /> },

@@ -1,0 +1,2493 @@
+[
+  {
+    "id": "prod-001",
+    "name": "Structured Wool Blend Overcoat",
+    "slug": "structured-wool-blend-overcoat",
+    "brand": "AFRO & CO.",
+    "category": "Clothing",
+    "subcategory": "Jackets & Coats",
+    "price": 695,
+    "originalPrice": 895,
+    "discount": 22,
+    "currency": "USD",
+    "description": "An impeccably tailored overcoat crafted from premium Italian wool blend fabric. Features a structured silhouette with peaked lapels, double-breasted closure, and horn buttons. Fully lined with a refined viscose blend for comfortable all-day wear. A wardrobe investment that transcends seasons.",
+    "shortDescription": "Italian wool blend overcoat with peaked lapels and horn buttons.",
+    "images": [
+      {
+        "id": "img-001-1",
+        "url": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80",
+        "alt": "Structured Wool Overcoat - Front",
+        "width": 800,
+        "height": 1000
+      },
+      {
+        "id": "img-001-2",
+        "url": "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=80",
+        "alt": "Structured Wool Overcoat - Back",
+        "width": 800,
+        "height": 1000
+      },
+      {
+        "id": "img-001-3",
+        "url": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&q=80",
+        "alt": "Structured Wool Overcoat - Detail",
+        "width": 800,
+        "height": 1000
+      }
+    ],
+    "colors": [
+      {
+        "name": "Midnight Black",
+        "hex": "#0A0A0A",
+        "slug": "midnight-black"
+      },
+      {
+        "name": "Camel",
+        "hex": "#C8A97E",
+        "slug": "camel"
+      },
+      {
+        "name": "Charcoal",
+        "hex": "#3D3D3D",
+        "slug": "charcoal"
+      }
+    ],
+    "sizes": [
+      {
+        "label": "XS",
+        "slug": "xs",
+        "available": true
+      },
+      {
+        "label": "S",
+        "slug": "s",
+        "available": true
+      },
+      {
+        "label": "M",
+        "slug": "m",
+        "available": true
+      },
+      {
+        "label": "L",
+        "slug": "l",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "slug": "xl",
+        "available": false
+      }
+    ],
+    "stock": 18,
+    "rating": 4.9,
+    "reviewCount": 124,
+    "specifications": {
+      "Material": "70% Wool, 20% Polyester, 10% Cashmere",
+      "Lining": "100% Viscose",
+      "Closure": "Double-breasted with horn buttons",
+      "Care": "Dry clean only",
+      "Origin": "Made in Italy"
+    },
+    "features": [
+      "Peak lapels with stitching detail",
+      "Fully lined with interior pocket",
+      "Side pockets with flap closure",
+      "Back vent for ease of movement",
+      "Premium horn buttons"
+    ],
+    "tags": [
+      "outerwear",
+      "winter",
+      "premium",
+      "tailored",
+      "sale"
+    ],
+    "status": "best-seller",
+    "shippingInfo": "Free standard shipping on orders over $200. Express delivery available.",
+    "returnPolicy": "30-day hassle-free returns with prepaid label.",
+    "createdAt": "2024-09-01T00:00:00Z",
+    "updatedAt": "2024-11-15T00:00:00Z"
+  },
+  {
+    "id": "prod-002",
+    "name": "Silk-Blend Draped Blouse",
+    "slug": "silk-blend-draped-blouse",
+    "brand": "MAISON ÉLÉGANCE",
+    "category": "Clothing",
+    "subcategory": "Tops & Shirts",
+    "price": 285,
+    "currency": "USD",
+    "description": "A luxurious draped blouse in a sumptuous silk-charmeuse blend. Features an asymmetric hemline and delicate draped collar that falls gracefully. The fluid fabric skims the body with an effortless elegance suitable for both day and evening occasions.",
+    "shortDescription": "Silk-charmeuse draped blouse with asymmetric hemline.",
+    "images": [
+      {
+        "id": "img-002-1",
+        "url": "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=800&q=80",
+        "alt": "Silk Draped Blouse - Front",
+        "width": 800,
+        "height": 1000
+      },
+      {
+        "id": "img-002-2",
+        "url": "https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?w=800&q=80",
+        "alt": "Silk Draped Blouse - Side",
+        "width": 800,
+        "height": 1000
+      }
+    ],
+    "colors": [
+      {
+        "name": "Ivory",
+        "hex": "#F7F5F0",
+        "slug": "ivory"
+      },
+      {
+        "name": "Blush",
+        "hex": "#E8C4B8",
+        "slug": "blush"
+      },
+      {
+        "name": "Noir",
+        "hex": "#1A1A1A",
+        "slug": "noir"
+      }
+    ],
+    "sizes": [
+      {
+        "label": "XS",
+        "slug": "xs",
+        "available": true
+      },
+      {
+        "label": "S",
+        "slug": "s",
+        "available": true
+      },
+      {
+        "label": "M",
+        "slug": "m",
+        "available": true
+      },
+      {
+        "label": "L",
+        "slug": "l",
+        "available": false
+      }
+    ],
+    "stock": 24,
+    "rating": 4.7,
+    "reviewCount": 89,
+    "specifications": {
+      "Material": "92% Silk, 8% Elastane",
+      "Care": "Dry clean recommended",
+      "Fit": "Relaxed, draping fit",
+      "Origin": "Made in France"
+    },
+    "features": [
+      "Asymmetric draped hemline",
+      "Delicate cowl collar",
+      "Hidden side zip",
+      "French seams throughout"
+    ],
+    "tags": [
+      "silk",
+      "blouse",
+      "evening",
+      "luxury",
+      "draped"
+    ],
+    "status": "new",
+    "createdAt": "2024-10-15T00:00:00Z",
+    "updatedAt": "2024-11-20T00:00:00Z"
+  },
+  {
+    "id": "prod-003",
+    "name": "Wide-Leg Tailored Trousers",
+    "slug": "wide-leg-tailored-trousers",
+    "brand": "ATELIER NOIR",
+    "category": "Clothing",
+    "subcategory": "Trousers & Jeans",
+    "price": 345,
+    "currency": "USD",
+    "description": "Impeccably tailored wide-leg trousers in a fluid gabardine fabric. Features a high-rise waist with pleated front, wide-leg silhouette, and pressed creases. The structured drape creates a powerful, elongating silhouette that commands attention.",
+    "shortDescription": "High-rise wide-leg trousers in fluid gabardine with pressed creases.",
+    "images": [
+      {
+        "id": "img-003-1",
+        "url": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&q=80",
+        "alt": "Wide-Leg Trousers - Front",
+        "width": 800,
+        "height": 1000
+      },
+      {
+        "id": "img-003-2",
+        "url": "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80",
+        "alt": "Wide-Leg Trousers - Side",
+        "width": 800,
+        "height": 1000
+      }
+    ],
+    "colors": [
+      {
+        "name": "Ivory",
+        "hex": "#F7F5F0",
+        "slug": "ivory"
+      },
+      {
+        "name": "Noir",
+        "hex": "#0A0A0A",
+        "slug": "noir"
+      },
+      {
+        "name": "Stone",
+        "hex": "#B5A999",
+        "slug": "stone"
+      }
+    ],
+    "sizes": [
+      {
+        "label": "34",
+        "slug": "34",
+        "available": true
+      },
+      {
+        "label": "36",
+        "slug": "36",
+        "available": true
+      },
+      {
+        "label": "38",
+        "slug": "38",
+        "available": true
+      },
+      {
+        "label": "40",
+        "slug": "40",
+        "available": true
+      },
+      {
+        "label": "42",
+        "slug": "42",
+        "available": false
+      }
+    ],
+    "stock": 31,
+    "rating": 4.8,
+    "reviewCount": 67,
+    "specifications": {
+      "Material": "68% Polyester, 28% Viscose, 4% Elastane",
+      "Care": "Machine wash cold, hang to dry",
+      "Rise": "High-rise",
+      "Origin": "Made in Portugal"
+    },
+    "features": [
+      "Pleated front",
+      "Pressed front creases",
+      "Side zip with hook closure",
+      "Belt loops",
+      "Deep pockets"
+    ],
+    "tags": [
+      "trousers",
+      "tailored",
+      "wide-leg",
+      "office",
+      "formal"
+    ],
+    "status": "best-seller",
+    "createdAt": "2024-08-20T00:00:00Z",
+    "updatedAt": "2024-11-10T00:00:00Z"
+  },
+  {
+    "id": "prod-004",
+    "name": "Cashmere Crewneck Sweater",
+    "slug": "cashmere-crewneck-sweater",
+    "brand": "AFRO & CO.",
+    "category": "Clothing",
+    "subcategory": "Tops & Shirts",
+    "price": 420,
+    "originalPrice": 560,
+    "discount": 25,
+    "currency": "USD",
+    "description": "A timeless crewneck sweater knitted from Grade-A Mongolian cashmere. Exceptionally soft with a refined weight that layers beautifully. Features subtle ribbing at the collar, cuffs, and hem. The understated design ensures this piece becomes a lasting wardrobe anchor.",
+    "shortDescription": "Grade-A Mongolian cashmere crewneck with refined ribbed details.",
+    "images": [
+      {
+        "id": "img-004-1",
+        "url": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80",
+        "alt": "Cashmere Crewneck - Front",
+        "width": 800,
+        "height": 1000
+      },
+      {
+        "id": "img-004-2",
+        "url": "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=800&q=80",
+        "alt": "Cashmere Crewneck - Texture",
+        "width": 800,
+        "height": 1000
+      }
+    ],
+    "colors": [
+      {
+        "name": "Oatmeal",
+        "hex": "#D4C5B0",
+        "slug": "oatmeal"
+      },
+      {
+        "name": "Charcoal",
+        "hex": "#3D3D3D",
+        "slug": "charcoal"
+      },
+      {
+        "name": "Burgundy",
+        "hex": "#722F37",
+        "slug": "burgundy"
+      },
+      {
+        "name": "Navy",
+        "hex": "#1B2A4A",
+        "slug": "navy"
+      }
+    ],
+    "sizes": [
+      {
+        "label": "XS",
+        "slug": "xs",
+        "available": true
+      },
+      {
+        "label": "S",
+        "slug": "s",
+        "available": true
+      },
+      {
+        "label": "M",
+        "slug": "m",
+        "available": true
+      },
+      {
+        "label": "L",
+        "slug": "l",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "slug": "xl",
+        "available": true
+      }
+    ],
+    "stock": 45,
+    "rating": 4.9,
+    "reviewCount": 203,
+    "specifications": {
+      "Material": "100% Grade-A Mongolian Cashmere",
+      "Gauge": "12-gauge",
+      "Care": "Hand wash or dry clean",
+      "Origin": "Made in Scotland"
+    },
+    "features": [
+      "12-gauge knit",
+      "Ribbed collar, cuffs, and hem",
+      "Relaxed fit",
+      "Reinforced shoulder seams"
+    ],
+    "tags": [
+      "cashmere",
+      "sweater",
+      "luxury",
+      "sale",
+      "essentials"
+    ],
+    "status": "trending",
+    "createdAt": "2024-09-10T00:00:00Z",
+    "updatedAt": "2024-11-18T00:00:00Z"
+  },
+  {
+    "id": "prod-005",
+    "name": "Asymmetric Leather Jacket",
+    "slug": "asymmetric-leather-jacket",
+    "brand": "REBEL NOIR",
+    "category": "Clothing",
+    "subcategory": "Jackets & Coats",
+    "price": 890,
+    "currency": "USD",
+    "description": "A bold asymmetric biker jacket in supple Italian nappa leather. Features an angled front zipper, quilted shoulder panels, and silver-tone hardware. The structured shoulders balance the cropped silhouette for a powerful, contemporary look.",
+    "shortDescription": "Italian nappa leather biker jacket with asymmetric zip and silver hardware.",
+    "images": [
+      {
+        "id": "img-005-1",
+        "url": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80",
+        "alt": "Leather Jacket - Front",
+        "width": 800,
+        "height": 1000
+      },
+      {
+        "id": "img-005-2",
+        "url": "https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?w=800&q=80",
+        "alt": "Leather Jacket - Detail",
+        "width": 800,
+        "height": 1000
+      }
+    ],
+    "colors": [
+      {
+        "name": "Noir",
+        "hex": "#0A0A0A",
+        "slug": "noir"
+      },
+      {
+        "name": "Cognac",
+        "hex": "#834A24",
+        "slug": "cognac"
+      }
+    ],
+    "sizes": [
+      {
+        "label": "XS",
+        "slug": "xs",
+        "available": false
+      },
+      {
+        "label": "S",
+        "slug": "s",
+        "available": true
+      },
+      {
+        "label": "M",
+        "slug": "m",
+        "available": true
+      },
+      {
+        "label": "L",
+        "slug": "l",
+        "available": true
+      }
+    ],
+    "stock": 12,
+    "rating": 4.8,
+    "reviewCount": 56,
+    "specifications": {
+      "Material": "100% Italian Nappa Leather",
+      "Lining": "100% Silk",
+      "Hardware": "Silver-tone brass",
+      "Care": "Professional leather cleaning only",
+      "Origin": "Made in Italy"
+    },
+    "features": [
+      "Asymmetric front zipper",
+      "Quilted shoulder panels",
+      "Silver-tone hardware",
+      "Interior zip pocket",
+      "Cropped fit"
+    ],
+    "tags": [
+      "leather",
+      "jacket",
+      "biker",
+      "premium",
+      "statement"
+    ],
+    "status": "new",
+    "createdAt": "2024-11-01T00:00:00Z",
+    "updatedAt": "2024-11-20T00:00:00Z"
+  },
+  {
+    "id": "prod-006",
+    "name": "Minimalist Leather Sneakers",
+    "slug": "minimalist-leather-sneakers",
+    "brand": "FORM",
+    "category": "Shoes",
+    "subcategory": "Sneakers",
+    "price": 345,
+    "currency": "USD",
+    "description": "Understated elegance in a contemporary sneaker. Crafted from smooth full-grain calfskin leather with a clean, unbranded silhouette. The cupsole construction and cushioned insole ensure all-day comfort without sacrificing refined aesthetics.",
+    "shortDescription": "Full-grain calfskin sneakers with cupsole construction and clean silhouette.",
+    "images": [
+      {
+        "id": "img-006-1",
+        "url": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&q=80",
+        "alt": "Leather Sneakers - Side",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "id": "img-006-2",
+        "url": "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=800&q=80",
+        "alt": "Leather Sneakers - Sole",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "slug": "white"
+      },
+      {
+        "name": "Black",
+        "hex": "#1A1A1A",
+        "slug": "black"
+      },
+      {
+        "name": "Tan",
+        "hex": "#C8A97E",
+        "slug": "tan"
+      }
+    ],
+    "sizes": [
+      {
+        "label": "38",
+        "slug": "38",
+        "available": true
+      },
+      {
+        "label": "39",
+        "slug": "39",
+        "available": true
+      },
+      {
+        "label": "40",
+        "slug": "40",
+        "available": true
+      },
+      {
+        "label": "41",
+        "slug": "41",
+        "available": true
+      },
+      {
+        "label": "42",
+        "slug": "42",
+        "available": true
+      },
+      {
+        "label": "43",
+        "slug": "43",
+        "available": true
+      },
+      {
+        "label": "44",
+        "slug": "44",
+        "available": false
+      },
+      {
+        "label": "45",
+        "slug": "45",
+        "available": true
+      }
+    ],
+    "stock": 38,
+    "rating": 4.7,
+    "reviewCount": 178,
+    "specifications": {
+      "Material": "Full-grain calfskin leather upper",
+      "Sole": "Vulcanized rubber cupsole",
+      "Insole": "Memory foam with leather cover",
+      "Care": "Wipe clean with damp cloth",
+      "Origin": "Made in Portugal"
+    },
+    "features": [
+      "Unbranded minimalist design",
+      "Memory foam insole",
+      "Vulcanized rubber sole",
+      "Soft leather lining",
+      "Padded ankle collar"
+    ],
+    "tags": [
+      "sneakers",
+      "leather",
+      "minimal",
+      "casual",
+      "premium"
+    ],
+    "status": "best-seller",
+    "createdAt": "2024-07-15T00:00:00Z",
+    "updatedAt": "2024-11-12T00:00:00Z"
+  },
+  {
+    "id": "prod-007",
+    "name": "Chelsea Boot in Suede",
+    "slug": "chelsea-boot-suede",
+    "brand": "AFRO & CO.",
+    "category": "Shoes",
+    "subcategory": "Boots",
+    "price": 485,
+    "originalPrice": 595,
+    "discount": 18,
+    "currency": "USD",
+    "description": "A refined Chelsea boot in premium Spanish suede with an elasticated gore panel and pull tab. The stacked leather heel and Goodyear-welted construction ensure longevity and resoling potential. A versatile piece that transitions effortlessly from formal to smart-casual.",
+    "shortDescription": "Spanish suede Chelsea boot with Goodyear-welted construction.",
+    "images": [
+      {
+        "id": "img-007-1",
+        "url": "https://images.unsplash.com/photo-1638247025967-b4e38f787b76?w=800&q=80",
+        "alt": "Chelsea Boot - Side",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "id": "img-007-2",
+        "url": "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=800&q=80",
+        "alt": "Chelsea Boot - Back",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Tobacco",
+        "hex": "#7B4F2E",
+        "slug": "tobacco"
+      },
+      {
+        "name": "Noir",
+        "hex": "#1A1A1A",
+        "slug": "noir"
+      },
+      {
+        "name": "Grey",
+        "hex": "#8A8A8A",
+        "slug": "grey"
+      }
+    ],
+    "sizes": [
+      {
+        "label": "38",
+        "slug": "38",
+        "available": true
+      },
+      {
+        "label": "39",
+        "slug": "39",
+        "available": true
+      },
+      {
+        "label": "40",
+        "slug": "40",
+        "available": true
+      },
+      {
+        "label": "41",
+        "slug": "41",
+        "available": true
+      },
+      {
+        "label": "42",
+        "slug": "42",
+        "available": true
+      },
+      {
+        "label": "43",
+        "slug": "43",
+        "available": false
+      },
+      {
+        "label": "44",
+        "slug": "44",
+        "available": true
+      }
+    ],
+    "stock": 22,
+    "rating": 4.9,
+    "reviewCount": 91,
+    "specifications": {
+      "Material": "Premium Spanish Suede",
+      "Sole": "Leather with rubber heel",
+      "Construction": "Goodyear-welted",
+      "Care": "Suede protector spray recommended",
+      "Origin": "Made in Spain"
+    },
+    "features": [
+      "Elasticated gore panel",
+      "Back pull tab",
+      "Leather lining",
+      "Stacked leather heel",
+      "Goodyear-welted for resoling"
+    ],
+    "tags": [
+      "boots",
+      "chelsea",
+      "suede",
+      "formal",
+      "sale"
+    ],
+    "status": "best-seller",
+    "createdAt": "2024-08-01T00:00:00Z",
+    "updatedAt": "2024-11-15T00:00:00Z"
+  },
+  {
+    "id": "prod-008",
+    "name": "Suede Loafers",
+    "slug": "suede-loafers",
+    "brand": "MAISON ÉLÉGANCE",
+    "category": "Shoes",
+    "subcategory": "Loafers",
+    "price": 395,
+    "currency": "USD",
+    "description": "A refined horsebit loafer in butter-soft Italian suede. The unlined construction creates a relaxed drape while the leather sole with rubber heel insert provides durability and grip. An effortless slip-on that embodies considered luxury.",
+    "shortDescription": "Italian suede horsebit loafer with unlined construction.",
+    "images": [
+      {
+        "id": "img-008-1",
+        "url": "https://images.unsplash.com/photo-1626379961798-54f819ee896a?w=800&q=80",
+        "alt": "Suede Loafers - Top",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "id": "img-008-2",
+        "url": "https://images.unsplash.com/photo-1582897085656-c636d006a246?w=800&q=80",
+        "alt": "Suede Loafers - Side",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Sand",
+        "hex": "#C8B49A",
+        "slug": "sand"
+      },
+      {
+        "name": "Navy",
+        "hex": "#1B2A4A",
+        "slug": "navy"
+      },
+      {
+        "name": "Bordeaux",
+        "hex": "#5C1A1A",
+        "slug": "bordeaux"
+      }
+    ],
+    "sizes": [
+      {
+        "label": "38",
+        "slug": "38",
+        "available": true
+      },
+      {
+        "label": "39",
+        "slug": "39",
+        "available": true
+      },
+      {
+        "label": "40",
+        "slug": "40",
+        "available": true
+      },
+      {
+        "label": "41",
+        "slug": "41",
+        "available": true
+      },
+      {
+        "label": "42",
+        "slug": "42",
+        "available": true
+      },
+      {
+        "label": "43",
+        "slug": "43",
+        "available": true
+      }
+    ],
+    "stock": 28,
+    "rating": 4.6,
+    "reviewCount": 64,
+    "specifications": {
+      "Material": "Italian suede upper, unlined",
+      "Sole": "Leather with rubber insert",
+      "Hardware": "Brass horsebit",
+      "Care": "Suede brush and protector",
+      "Origin": "Made in Italy"
+    },
+    "features": [
+      "Unlined for relaxed drape",
+      "Brass horsebit hardware",
+      "Leather sole with rubber insert",
+      "Blake stitched construction"
+    ],
+    "tags": [
+      "loafers",
+      "suede",
+      "italian",
+      "luxury",
+      "horsebit"
+    ],
+    "status": "new",
+    "createdAt": "2024-10-20T00:00:00Z",
+    "updatedAt": "2024-11-20T00:00:00Z"
+  },
+  {
+    "id": "prod-009",
+    "name": "Structured Leather Tote",
+    "slug": "structured-leather-tote",
+    "brand": "AFRO & CO.",
+    "category": "Bags & Accessories",
+    "subcategory": "Handbags",
+    "price": 595,
+    "originalPrice": 750,
+    "discount": 21,
+    "currency": "USD",
+    "description": "A commanding structured tote in smooth Italian leather with clean architectural lines. Features a suede-lined interior with zip pocket, magnetic closure, and detachable shoulder strap. The rigid base and reinforced sides maintain form even when carried daily.",
+    "shortDescription": "Italian leather tote with suede lining and architectural structure.",
+    "images": [
+      {
+        "id": "img-009-1",
+        "url": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=80",
+        "alt": "Leather Tote - Front",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "id": "img-009-2",
+        "url": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&q=80",
+        "alt": "Leather Tote - Interior",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "id": "img-009-3",
+        "url": "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=800&q=80",
+        "alt": "Leather Tote - Detail",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Cognac",
+        "hex": "#834A24",
+        "slug": "cognac"
+      },
+      {
+        "name": "Noir",
+        "hex": "#0A0A0A",
+        "slug": "noir"
+      },
+      {
+        "name": "Cream",
+        "hex": "#F0EBE1",
+        "slug": "cream"
+      }
+    ],
+    "stock": 15,
+    "rating": 4.8,
+    "reviewCount": 112,
+    "specifications": {
+      "Material": "Full-grain Italian leather",
+      "Lining": "Suede",
+      "Hardware": "Antiqued brass",
+      "Dimensions": "38cm × 30cm × 14cm",
+      "Origin": "Made in Italy"
+    },
+    "features": [
+      "Rigid structured body",
+      "Suede-lined interior with zip pocket",
+      "Magnetic snap closure",
+      "Detachable, adjustable shoulder strap",
+      "Metal feet on base"
+    ],
+    "tags": [
+      "tote",
+      "leather",
+      "work",
+      "premium",
+      "sale"
+    ],
+    "status": "best-seller",
+    "createdAt": "2024-07-20T00:00:00Z",
+    "updatedAt": "2024-11-10T00:00:00Z"
+  },
+  {
+    "id": "prod-010",
+    "name": "Compact Leather Wallet",
+    "slug": "compact-leather-wallet",
+    "brand": "ATELIER NOIR",
+    "category": "Bags & Accessories",
+    "subcategory": "Wallets",
+    "price": 185,
+    "currency": "USD",
+    "description": "A slim cardholder wallet in hand-burnished Italian leather. Features six card slots, a bill compartment, and a coin pocket with anti-snag zipper. The compact profile slips effortlessly into any pocket while maintaining surprising capacity.",
+    "shortDescription": "Hand-burnished Italian leather cardholder with six slots and coin pocket.",
+    "images": [
+      {
+        "id": "img-010-1",
+        "url": "https://images.unsplash.com/photo-1627123424574-724758594e93?w=800&q=80",
+        "alt": "Leather Wallet - Open",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "id": "img-010-2",
+        "url": "https://images.unsplash.com/photo-1606503478645-ce7b1a9b0da4?w=800&q=80",
+        "alt": "Leather Wallet - Closed",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Tan",
+        "hex": "#C8A97E",
+        "slug": "tan"
+      },
+      {
+        "name": "Noir",
+        "hex": "#0A0A0A",
+        "slug": "noir"
+      },
+      {
+        "name": "Burgundy",
+        "hex": "#722F37",
+        "slug": "burgundy"
+      }
+    ],
+    "stock": 50,
+    "rating": 4.7,
+    "reviewCount": 88,
+    "specifications": {
+      "Material": "Hand-burnished Italian calfskin",
+      "Slots": "6 card slots, 1 bill compartment, 1 zip coin pocket",
+      "Dimensions": "10.5cm × 9cm × 1.5cm",
+      "Care": "Condition with leather cream",
+      "Origin": "Made in Italy"
+    },
+    "features": [
+      "Hand-burnished edges",
+      "Anti-snag zipper coin pocket",
+      "Slim profile",
+      "Available in 3 colors"
+    ],
+    "tags": [
+      "wallet",
+      "leather",
+      "compact",
+      "gift",
+      "accessories"
+    ],
+    "status": "default",
+    "createdAt": "2024-06-01T00:00:00Z",
+    "updatedAt": "2024-10-15T00:00:00Z"
+  },
+  {
+    "id": "prod-011",
+    "name": "Reversible Belt in Calfskin",
+    "slug": "reversible-calfskin-belt",
+    "brand": "AFRO & CO.",
+    "category": "Bags & Accessories",
+    "subcategory": "Belts",
+    "price": 165,
+    "currency": "USD",
+    "description": "A dual-face reversible belt in smooth and grained calfskin. Simply flip to switch from polished noir to cognac. Features a slim 3cm width and brushed brass buckle for understated refinement.",
+    "shortDescription": "Reversible calfskin belt — noir one side, cognac the other.",
+    "images": [
+      {
+        "id": "img-011-1",
+        "url": "https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=800&q=80",
+        "alt": "Reversible Belt - Both Sides",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Noir / Cognac",
+        "hex": "#0A0A0A",
+        "slug": "noir-cognac"
+      }
+    ],
+    "sizes": [
+      {
+        "label": "75cm",
+        "slug": "75",
+        "available": true
+      },
+      {
+        "label": "80cm",
+        "slug": "80",
+        "available": true
+      },
+      {
+        "label": "85cm",
+        "slug": "85",
+        "available": true
+      },
+      {
+        "label": "90cm",
+        "slug": "90",
+        "available": true
+      },
+      {
+        "label": "95cm",
+        "slug": "95",
+        "available": true
+      },
+      {
+        "label": "100cm",
+        "slug": "100",
+        "available": false
+      }
+    ],
+    "stock": 34,
+    "rating": 4.5,
+    "reviewCount": 42,
+    "specifications": {
+      "Material": "Smooth and grained Italian calfskin",
+      "Width": "3cm",
+      "Buckle": "Brushed brass",
+      "Care": "Leather conditioner",
+      "Origin": "Made in France"
+    },
+    "features": [
+      "Reversible design",
+      "3cm width",
+      "Brushed brass buckle",
+      "5 size options"
+    ],
+    "tags": [
+      "belt",
+      "leather",
+      "reversible",
+      "accessories"
+    ],
+    "status": "default",
+    "createdAt": "2024-05-15T00:00:00Z",
+    "updatedAt": "2024-09-20T00:00:00Z"
+  },
+  {
+    "id": "prod-012",
+    "name": "Leather Crossbody Bag",
+    "slug": "leather-crossbody-bag",
+    "brand": "FORM",
+    "category": "Bags & Accessories",
+    "subcategory": "Handbags",
+    "price": 425,
+    "currency": "USD",
+    "description": "A contemporary crescent-shaped crossbody in pebbled Italian leather. Features an adjustable strap, magnetic flap closure, and card slots inside. The curved silhouette adds unexpected softness to the durable pebble texture.",
+    "shortDescription": "Pebbled Italian leather crossbody with adjustable strap and card slots.",
+    "images": [
+      {
+        "id": "img-012-1",
+        "url": "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=800&q=80",
+        "alt": "Crossbody Bag - Front",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "id": "img-012-2",
+        "url": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=80",
+        "alt": "Crossbody Bag - Strap",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#1A1A1A",
+        "slug": "black"
+      },
+      {
+        "name": "Camel",
+        "hex": "#C8A97E",
+        "slug": "camel"
+      },
+      {
+        "name": "Forest",
+        "hex": "#2D4A3E",
+        "slug": "forest"
+      }
+    ],
+    "stock": 20,
+    "rating": 4.8,
+    "reviewCount": 73,
+    "specifications": {
+      "Material": "Pebbled Italian leather",
+      "Strap": "Adjustable 90–140cm",
+      "Dimensions": "24cm × 18cm × 8cm",
+      "Origin": "Made in Italy"
+    },
+    "features": [
+      "Magnetic flap closure",
+      "Interior card slots",
+      "Adjustable strap",
+      "Pebble texture finish"
+    ],
+    "tags": [
+      "crossbody",
+      "leather",
+      "everyday",
+      "compact"
+    ],
+    "status": "new",
+    "createdAt": "2024-11-05T00:00:00Z",
+    "updatedAt": "2024-11-20T00:00:00Z"
+  },
+  {
+    "id": "prod-013",
+    "name": "Minimalist Steel Watch 38mm",
+    "slug": "minimalist-steel-watch-38mm",
+    "brand": "AFRO & CO.",
+    "category": "Watches & Jewelry",
+    "subcategory": "Watches",
+    "price": 395,
+    "originalPrice": 495,
+    "discount": 20,
+    "currency": "USD",
+    "description": "A refined timepiece with a 38mm stainless steel case and clean white lacquer dial. Features applied hour markers, slim leaf hands, and a mineral crystal. The three-link steel bracelet with butterfly clasp creates a seamless, comfortable fit.",
+    "shortDescription": "38mm stainless steel watch with white lacquer dial and applied hour markers.",
+    "images": [
+      {
+        "id": "img-013-1",
+        "url": "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=800&q=80",
+        "alt": "Steel Watch - Front",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "id": "img-013-2",
+        "url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
+        "alt": "Steel Watch - Detail",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Silver / White",
+        "hex": "#C0C0C0",
+        "slug": "silver-white"
+      },
+      {
+        "name": "Gold / Cream",
+        "hex": "#C8A97E",
+        "slug": "gold-cream"
+      },
+      {
+        "name": "Black / Black",
+        "hex": "#1A1A1A",
+        "slug": "black-black"
+      }
+    ],
+    "stock": 25,
+    "rating": 4.8,
+    "reviewCount": 145,
+    "specifications": {
+      "Case": "38mm Stainless Steel 316L",
+      "Dial": "White lacquer with applied markers",
+      "Movement": "Quartz (Ronda 705)",
+      "Crystal": "Mineral",
+      "WaterResistance": "50m / 5ATM",
+      "Bracelet": "Three-link stainless steel, butterfly clasp",
+      "Origin": "Designed in Switzerland"
+    },
+    "features": [
+      "Applied hour markers",
+      "Slim leaf hands",
+      "Date window at 3 o'clock",
+      "Butterfly clasp",
+      "50m water resistance"
+    ],
+    "tags": [
+      "watch",
+      "steel",
+      "minimal",
+      "sale",
+      "gift"
+    ],
+    "status": "best-seller",
+    "createdAt": "2024-06-10T00:00:00Z",
+    "updatedAt": "2024-11-15T00:00:00Z"
+  },
+  {
+    "id": "prod-014",
+    "name": "Sterling Silver Chain Necklace",
+    "slug": "sterling-silver-chain-necklace",
+    "brand": "ATELIER NOIR",
+    "category": "Watches & Jewelry",
+    "subcategory": "Necklaces",
+    "price": 145,
+    "currency": "USD",
+    "description": "A refined box chain necklace in 925 sterling silver with a high-polish finish. The 2mm width sits elegantly solo or layers beautifully with longer pieces. Secured with a lobster clasp and finished with a subtle AFRO & CO. maker's mark.",
+    "shortDescription": "925 sterling silver box chain necklace, 2mm width.",
+    "images": [
+      {
+        "id": "img-014-1",
+        "url": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80",
+        "alt": "Silver Chain - Flat",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Silver",
+        "hex": "#C0C0C0",
+        "slug": "silver"
+      }
+    ],
+    "sizes": [
+      {
+        "label": "40cm",
+        "slug": "40",
+        "available": true
+      },
+      {
+        "label": "45cm",
+        "slug": "45",
+        "available": true
+      },
+      {
+        "label": "50cm",
+        "slug": "50",
+        "available": true
+      },
+      {
+        "label": "60cm",
+        "slug": "60",
+        "available": true
+      }
+    ],
+    "stock": 60,
+    "rating": 4.6,
+    "reviewCount": 58,
+    "specifications": {
+      "Material": "925 Sterling Silver",
+      "Width": "2mm",
+      "Finish": "High-polish",
+      "Clasp": "Lobster",
+      "Care": "Polish with silver cloth",
+      "Origin": "Made in Italy"
+    },
+    "features": [
+      "925 Sterling Silver",
+      "High-polish finish",
+      "Lobster clasp",
+      "Maker's mark",
+      "4 length options"
+    ],
+    "tags": [
+      "jewelry",
+      "silver",
+      "necklace",
+      "chain",
+      "minimal"
+    ],
+    "status": "default",
+    "createdAt": "2024-05-01T00:00:00Z",
+    "updatedAt": "2024-10-01T00:00:00Z"
+  },
+  {
+    "id": "prod-015",
+    "name": "Gold Vermeil Stacking Ring Set",
+    "slug": "gold-vermeil-stacking-ring-set",
+    "brand": "MAISON ÉLÉGANCE",
+    "category": "Watches & Jewelry",
+    "subcategory": "Rings",
+    "price": 220,
+    "currency": "USD",
+    "description": "A curated set of three 18k gold vermeil stacking rings in polished, hammered, and twisted finishes. Each ring is crafted on a 925 sterling silver base with a thick 2.5-micron gold plating. The set creates instant elegance while each piece stands alone.",
+    "shortDescription": "Set of three 18k gold vermeil rings in polished, hammered, and twisted finishes.",
+    "images": [
+      {
+        "id": "img-015-1",
+        "url": "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80",
+        "alt": "Gold Ring Set - Top",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#C8A97E",
+        "slug": "gold"
+      }
+    ],
+    "sizes": [
+      {
+        "label": "US 5",
+        "slug": "5",
+        "available": true
+      },
+      {
+        "label": "US 6",
+        "slug": "6",
+        "available": true
+      },
+      {
+        "label": "US 7",
+        "slug": "7",
+        "available": true
+      },
+      {
+        "label": "US 8",
+        "slug": "8",
+        "available": true
+      }
+    ],
+    "stock": 40,
+    "rating": 4.7,
+    "reviewCount": 79,
+    "specifications": {
+      "Material": "18k Gold Vermeil on 925 Sterling Silver",
+      "Plating": "2.5 microns",
+      "Width": "2mm each",
+      "Set": "3 rings (polished, hammered, twisted)",
+      "Care": "Store in pouch, avoid chemicals",
+      "Origin": "Made in Italy"
+    },
+    "features": [
+      "18k Gold Vermeil",
+      "Three texture options",
+      "Sterling silver base",
+      "Gift-boxed set",
+      "4 sizes"
+    ],
+    "tags": [
+      "jewelry",
+      "gold",
+      "vermeil",
+      "rings",
+      "stacking",
+      "gift"
+    ],
+    "status": "new",
+    "createdAt": "2024-11-10T00:00:00Z",
+    "updatedAt": "2024-11-20T00:00:00Z"
+  },
+  {
+    "id": "prod-016",
+    "name": "Hand-Thrown Ceramic Vase",
+    "slug": "hand-thrown-ceramic-vase",
+    "brand": "FORM",
+    "category": "Home & Lifestyle",
+    "subcategory": "Decor",
+    "price": 185,
+    "currency": "USD",
+    "description": "A sculptural vase hand-thrown on a potter's wheel by artisan ceramicists in Portugal. Features an organic, slightly irregular silhouette with a reactive ash glaze that creates unique tonal variation in each piece. No two are identical.",
+    "shortDescription": "Hand-thrown ceramic vase with reactive ash glaze. Each piece unique.",
+    "images": [
+      {
+        "id": "img-016-1",
+        "url": "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=800&q=80",
+        "alt": "Ceramic Vase - Front",
+        "width": 800,
+        "height": 1000
+      },
+      {
+        "id": "img-016-2",
+        "url": "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80",
+        "alt": "Ceramic Vase - Detail",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Ash Grey",
+        "hex": "#9A9A8E",
+        "slug": "ash-grey"
+      },
+      {
+        "name": "Warm White",
+        "hex": "#F0EBE1",
+        "slug": "warm-white"
+      }
+    ],
+    "stock": 8,
+    "rating": 4.9,
+    "reviewCount": 34,
+    "specifications": {
+      "Material": "Stoneware ceramic",
+      "Glaze": "Reactive ash glaze",
+      "Height": "28cm",
+      "Diameter": "16cm",
+      "Care": "Wipe clean, not dishwasher safe",
+      "Origin": "Handmade in Portugal"
+    },
+    "features": [
+      "Hand-thrown by artisans",
+      "Reactive glaze — unique each piece",
+      "Watertight interior",
+      "Signed by maker"
+    ],
+    "tags": [
+      "decor",
+      "ceramic",
+      "vase",
+      "artisan",
+      "home"
+    ],
+    "status": "new",
+    "createdAt": "2024-11-01T00:00:00Z",
+    "updatedAt": "2024-11-20T00:00:00Z"
+  },
+  {
+    "id": "prod-017",
+    "name": "Linen Throw Blanket",
+    "slug": "linen-throw-blanket",
+    "brand": "AFRO & CO.",
+    "category": "Home & Lifestyle",
+    "subcategory": "Decor",
+    "price": 195,
+    "currency": "USD",
+    "description": "A generously sized throw blanket woven from stonewashed Belgian linen. The relaxed, slightly rumpled texture softens with every wash while the generous 150×200cm dimensions drape beautifully over a sofa or bed.",
+    "shortDescription": "Stonewashed Belgian linen throw, 150×200cm. Softens with every wash.",
+    "images": [
+      {
+        "id": "img-017-1",
+        "url": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80",
+        "alt": "Linen Throw - Draped",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Natural",
+        "hex": "#D4C5B0",
+        "slug": "natural"
+      },
+      {
+        "name": "Slate",
+        "hex": "#6B7280",
+        "slug": "slate"
+      },
+      {
+        "name": "Blush",
+        "hex": "#E8C4B8",
+        "slug": "blush"
+      },
+      {
+        "name": "Noir",
+        "hex": "#2A2A2A",
+        "slug": "noir"
+      }
+    ],
+    "stock": 30,
+    "rating": 4.8,
+    "reviewCount": 67,
+    "specifications": {
+      "Material": "100% Belgian linen",
+      "GSM": "190",
+      "Dimensions": "150cm × 200cm",
+      "Care": "Machine wash 40°, tumble dry low",
+      "Origin": "Woven in Belgium"
+    },
+    "features": [
+      "Stonewashed for softness",
+      "Fringe detail on short sides",
+      "Absorbent and quick-drying",
+      "Gets softer with each wash"
+    ],
+    "tags": [
+      "linen",
+      "blanket",
+      "home",
+      "textile",
+      "belgian"
+    ],
+    "status": "default",
+    "createdAt": "2024-04-01T00:00:00Z",
+    "updatedAt": "2024-09-01T00:00:00Z"
+  },
+  {
+    "id": "prod-018",
+    "name": "Minimalist Table Lamp",
+    "slug": "minimalist-table-lamp",
+    "brand": "FORM",
+    "category": "Home & Lifestyle",
+    "subcategory": "Lighting",
+    "price": 295,
+    "currency": "USD",
+    "description": "A refined table lamp with a hand-spun aluminum shade and solid walnut base. The adjustable shade directs light precisely where needed while the warm brass hardware adds a subtle metallic accent. Compatible with smart bulbs via E27 fitting.",
+    "shortDescription": "Hand-spun aluminum shade on solid walnut base with brass hardware.",
+    "images": [
+      {
+        "id": "img-018-1",
+        "url": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=800&q=80",
+        "alt": "Table Lamp - On",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Aluminum / Walnut",
+        "hex": "#C0C0C0",
+        "slug": "aluminum-walnut"
+      },
+      {
+        "name": "Black / Walnut",
+        "hex": "#1A1A1A",
+        "slug": "black-walnut"
+      }
+    ],
+    "stock": 14,
+    "rating": 4.7,
+    "reviewCount": 48,
+    "specifications": {
+      "Shade": "Hand-spun aluminum",
+      "Base": "Solid American walnut",
+      "Hardware": "Warm brass",
+      "Fitting": "E27 (E26 compatible)",
+      "Bulb": "Not included, max 60W",
+      "Dimensions": "Shade Ø28cm, H45cm",
+      "Origin": "Designed in Denmark, made in Portugal"
+    },
+    "features": [
+      "Adjustable shade angle",
+      "Solid walnut base",
+      "Warm brass hardware",
+      "E27 fitting — smart bulb compatible",
+      "Inline dimmer switch"
+    ],
+    "tags": [
+      "lighting",
+      "lamp",
+      "home",
+      "minimal",
+      "walnut"
+    ],
+    "status": "default",
+    "createdAt": "2024-05-20T00:00:00Z",
+    "updatedAt": "2024-10-10T00:00:00Z"
+  },
+  {
+    "id": "prod-019",
+    "name": "Nourishing Face Oil 30ml",
+    "slug": "nourishing-face-oil-30ml",
+    "brand": "BOTANICAL",
+    "category": "Beauty & Personal Care",
+    "subcategory": "Skincare",
+    "price": 85,
+    "currency": "USD",
+    "description": "A luxuriant facial oil blending eleven cold-pressed botanicals including rosehip, marula, and sea buckthorn. Absorbs rapidly without residue, delivering deep hydration and visible radiance. Suitable for all skin types, particularly beneficial for dry or maturing skin.",
+    "shortDescription": "Eleven-botanical face oil with rosehip, marula, and sea buckthorn.",
+    "images": [
+      {
+        "id": "img-019-1",
+        "url": "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=800&q=80",
+        "alt": "Face Oil - Bottle",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Amber",
+        "hex": "#C8A97E",
+        "slug": "amber"
+      }
+    ],
+    "stock": 45,
+    "rating": 4.8,
+    "reviewCount": 134,
+    "specifications": {
+      "Volume": "30ml",
+      "KeyIngredients": "Rosehip, Marula, Sea Buckthorn, Jojoba, Argan",
+      "SkinType": "All types, especially dry/mature",
+      "Texture": "Lightweight dry oil",
+      "Fragrance": "Unscented",
+      "Origin": "Formulated in France, bottled in UK"
+    },
+    "features": [
+      "11 cold-pressed botanicals",
+      "Fast-absorbing dry oil formula",
+      "Visible radiance boost",
+      "Vegan and cruelty-free",
+      "Glass bottle with dropper"
+    ],
+    "tags": [
+      "skincare",
+      "face-oil",
+      "botanical",
+      "luxury",
+      "anti-aging"
+    ],
+    "status": "best-seller",
+    "createdAt": "2024-07-01T00:00:00Z",
+    "updatedAt": "2024-11-15T00:00:00Z"
+  },
+  {
+    "id": "prod-020",
+    "name": "Signature Unisex Eau de Parfum 50ml",
+    "slug": "signature-unisex-eau-de-parfum",
+    "brand": "AFRO & CO.",
+    "category": "Beauty & Personal Care",
+    "subcategory": "Fragrance",
+    "price": 195,
+    "currency": "USD",
+    "description": "The AFRO & CO. signature scent — an intoxicating blend of black pepper, oud, and white musk. Designed as a modern chypre with surprising warmth from amber and sandalwood in the dry-down. Long-lasting sillage, appropriate for day and evening.",
+    "shortDescription": "AFRO & CO. signature scent: black pepper, oud, and white musk.",
+    "images": [
+      {
+        "id": "img-020-1",
+        "url": "https://images.unsplash.com/photo-1541643600914-78b084683702?w=800&q=80",
+        "alt": "Perfume Bottle",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Noir",
+        "hex": "#0A0A0A",
+        "slug": "noir"
+      }
+    ],
+    "stock": 32,
+    "rating": 4.9,
+    "reviewCount": 218,
+    "specifications": {
+      "Volume": "50ml",
+      "Concentration": "Eau de Parfum (15–20%)",
+      "TopNotes": "Black pepper, Bergamot, Cardamom",
+      "HeartNotes": "Oud, Iris, Violet leaf",
+      "BaseNotes": "White musk, Amber, Sandalwood",
+      "Longevity": "8–10 hours",
+      "Origin": "Created in Grasse, France"
+    },
+    "features": [
+      "Unisex fragrance",
+      "Complex chypre structure",
+      "8–10 hour longevity",
+      "Complimentary sample with every order",
+      "Refillable bottle"
+    ],
+    "tags": [
+      "fragrance",
+      "perfume",
+      "unisex",
+      "signature",
+      "luxury"
+    ],
+    "status": "best-seller",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-11-20T00:00:00Z"
+  },
+  {
+    "id": "prod-021",
+    "name": "Silk Sleep Mask",
+    "slug": "silk-sleep-mask",
+    "brand": "MAISON ÉLÉGANCE",
+    "category": "Beauty & Personal Care",
+    "subcategory": "Personal Care",
+    "price": 65,
+    "currency": "USD",
+    "description": "A generously cut sleep mask in 22-momme mulberry silk with a padded eye contour. The ultra-smooth silk reduces friction on delicate facial skin while the padded design creates complete darkness. Elasticated band with adjustor for a custom fit.",
+    "shortDescription": "22-momme mulberry silk sleep mask with padded eye contour.",
+    "images": [
+      {
+        "id": "img-021-1",
+        "url": "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80",
+        "alt": "Silk Sleep Mask - Flat",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#1A1A1A",
+        "slug": "black"
+      },
+      {
+        "name": "Blush",
+        "hex": "#E8C4B8",
+        "slug": "blush"
+      },
+      {
+        "name": "Ivory",
+        "hex": "#F7F5F0",
+        "slug": "ivory"
+      }
+    ],
+    "stock": 55,
+    "rating": 4.7,
+    "reviewCount": 89,
+    "specifications": {
+      "Material": "22-momme Mulberry silk",
+      "Padding": "Memory foam",
+      "Band": "Elasticated with adjustor",
+      "Care": "Hand wash cold",
+      "Origin": "Made in China (certified ethical factory)"
+    },
+    "features": [
+      "22-momme silk — highest grade",
+      "Padded eye contour for darkness",
+      "Adjustable elastic band",
+      "Reduces facial friction during sleep",
+      "Includes silk laundry bag"
+    ],
+    "tags": [
+      "silk",
+      "sleep",
+      "beauty",
+      "self-care",
+      "gift"
+    ],
+    "status": "default",
+    "createdAt": "2024-03-01T00:00:00Z",
+    "updatedAt": "2024-09-15T00:00:00Z"
+  },
+  {
+    "id": "prod-022",
+    "name": "Premium Wireless Over-Ear Headphones",
+    "slug": "premium-wireless-over-ear-headphones",
+    "brand": "FORM",
+    "category": "Electronics & Gadgets",
+    "subcategory": "Audio",
+    "price": 349,
+    "originalPrice": 449,
+    "discount": 22,
+    "currency": "USD",
+    "description": "Studio-grade wireless headphones with adaptive noise cancellation and 40-hour battery life. Features custom-tuned 40mm drivers, multipoint Bluetooth connection, and a premium anodized aluminum and leather construction. Perfect for the discerning listener.",
+    "shortDescription": "Adaptive ANC headphones with 40hr battery and custom-tuned 40mm drivers.",
+    "images": [
+      {
+        "id": "img-022-1",
+        "url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
+        "alt": "Headphones - Front",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "id": "img-022-2",
+        "url": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&q=80",
+        "alt": "Headphones - Detail",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Matte Black",
+        "hex": "#1A1A1A",
+        "slug": "matte-black"
+      },
+      {
+        "name": "Champagne Gold",
+        "hex": "#C8A97E",
+        "slug": "champagne-gold"
+      },
+      {
+        "name": "Slate Grey",
+        "hex": "#6B7280",
+        "slug": "slate-grey"
+      }
+    ],
+    "stock": 20,
+    "rating": 4.8,
+    "reviewCount": 167,
+    "specifications": {
+      "Drivers": "Custom-tuned 40mm dynamic",
+      "ANC": "Adaptive hybrid noise cancellation",
+      "Battery": "40 hours (ANC on), 60 hours (ANC off)",
+      "Connectivity": "Bluetooth 5.3, multipoint (2 devices)",
+      "Charging": "USB-C, 15-min quick charge = 3hr play",
+      "Weight": "265g",
+      "Origin": "Designed in Sweden"
+    },
+    "features": [
+      "Adaptive ANC with transparency mode",
+      "40hr battery life",
+      "Multipoint Bluetooth — 2 devices",
+      "Foldable with carrying case",
+      "USB-C fast charging"
+    ],
+    "tags": [
+      "headphones",
+      "wireless",
+      "audio",
+      "anc",
+      "premium",
+      "sale"
+    ],
+    "status": "trending",
+    "createdAt": "2024-09-15T00:00:00Z",
+    "updatedAt": "2024-11-20T00:00:00Z"
+  },
+  {
+    "id": "prod-023",
+    "name": "Leather Wireless Charging Pad",
+    "slug": "leather-wireless-charging-pad",
+    "brand": "AFRO & CO.",
+    "category": "Electronics & Gadgets",
+    "subcategory": "Accessories",
+    "price": 95,
+    "currency": "USD",
+    "description": "A wireless charging pad upholstered in vegetable-tanned Italian leather. Supports Qi fast charging up to 15W with a subtle LED indicator that pulses gently when charging. The weighted base prevents sliding on any surface.",
+    "shortDescription": "Vegetable-tanned leather Qi charging pad, 15W fast charge.",
+    "images": [
+      {
+        "id": "img-023-1",
+        "url": "https://images.unsplash.com/photo-1586816879360-004f5b0c51e5?w=800&q=80",
+        "alt": "Wireless Charger - Top",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Tan",
+        "hex": "#C8A97E",
+        "slug": "tan"
+      },
+      {
+        "name": "Noir",
+        "hex": "#0A0A0A",
+        "slug": "noir"
+      }
+    ],
+    "stock": 38,
+    "rating": 4.6,
+    "reviewCount": 52,
+    "specifications": {
+      "Standard": "Qi (WPC)",
+      "Power": "Up to 15W fast charge",
+      "Compatibility": "All Qi-enabled devices",
+      "Indicator": "LED pulse when charging",
+      "Cable": "1.5m braided USB-C included",
+      "Origin": "Made in Italy"
+    },
+    "features": [
+      "Vegetable-tanned Italian leather",
+      "15W Qi fast charge",
+      "Weighted anti-slip base",
+      "Gentle LED indicator",
+      "1.5m braided cable included"
+    ],
+    "tags": [
+      "charger",
+      "wireless",
+      "leather",
+      "qi",
+      "accessories"
+    ],
+    "status": "default",
+    "createdAt": "2024-06-15T00:00:00Z",
+    "updatedAt": "2024-10-20T00:00:00Z"
+  },
+  {
+    "id": "prod-024",
+    "name": "Smart Fitness Tracker Band",
+    "slug": "smart-fitness-tracker-band",
+    "brand": "FORM",
+    "category": "Electronics & Gadgets",
+    "subcategory": "Wearables",
+    "price": 149,
+    "originalPrice": 179,
+    "discount": 17,
+    "currency": "USD",
+    "description": "An ultra-slim fitness band with continuous heart rate, SpO2, sleep tracking, and 10-day battery. The minimalist monochrome display blends seamlessly into the sleek aluminum case. Water-resistant to 50m for swim tracking.",
+    "shortDescription": "Ultra-slim fitness tracker with 10-day battery and 50m water resistance.",
+    "images": [
+      {
+        "id": "img-024-1",
+        "url": "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=800&q=80",
+        "alt": "Fitness Tracker - Worn",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Graphite",
+        "hex": "#3D3D3D",
+        "slug": "graphite"
+      },
+      {
+        "name": "Silver",
+        "hex": "#C0C0C0",
+        "slug": "silver"
+      }
+    ],
+    "stock": 42,
+    "rating": 4.5,
+    "reviewCount": 98,
+    "specifications": {
+      "Display": "0.96\" AMOLED monochrome",
+      "Battery": "10 days typical use",
+      "WaterResistance": "5ATM / 50m",
+      "Sensors": "HR, SpO2, accelerometer, gyroscope",
+      "Connectivity": "Bluetooth 5.0",
+      "Compatibility": "iOS 12+, Android 7+",
+      "Origin": "Designed in Sweden"
+    },
+    "features": [
+      "Continuous heart rate & SpO2",
+      "Advanced sleep staging",
+      "50m water resistance",
+      "10-day battery",
+      "Ultra-slim 8mm profile"
+    ],
+    "tags": [
+      "wearable",
+      "fitness",
+      "tracker",
+      "health",
+      "sale"
+    ],
+    "status": "trending",
+    "createdAt": "2024-08-10T00:00:00Z",
+    "updatedAt": "2024-11-10T00:00:00Z"
+  },
+  {
+    "id": "prod-025",
+    "name": "Oversized Linen Shirt",
+    "slug": "oversized-linen-shirt",
+    "brand": "FORM",
+    "category": "Clothing",
+    "subcategory": "Tops & Shirts",
+    "price": 195,
+    "currency": "USD",
+    "description": "A relaxed oversized shirt in washed Belgian linen. Features a dropped shoulder, chest patch pocket, and mother-of-pearl buttons. The pre-washed fabric has a beautiful broken-in softness from the first wear.",
+    "shortDescription": "Washed Belgian linen overshirt with dropped shoulder and mother-of-pearl buttons.",
+    "images": [
+      {
+        "id": "img-025-1",
+        "url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=80",
+        "alt": "Linen Shirt - Front",
+        "width": 800,
+        "height": 1000
+      }
+    ],
+    "colors": [
+      {
+        "name": "Natural",
+        "hex": "#D4C5B0",
+        "slug": "natural"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "slug": "white"
+      },
+      {
+        "name": "Sage",
+        "hex": "#8A9A7E",
+        "slug": "sage"
+      }
+    ],
+    "sizes": [
+      {
+        "label": "XS",
+        "slug": "xs",
+        "available": true
+      },
+      {
+        "label": "S",
+        "slug": "s",
+        "available": true
+      },
+      {
+        "label": "M",
+        "slug": "m",
+        "available": true
+      },
+      {
+        "label": "L",
+        "slug": "l",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "slug": "xl",
+        "available": true
+      }
+    ],
+    "stock": 35,
+    "rating": 4.7,
+    "reviewCount": 61,
+    "specifications": {
+      "Material": "100% Belgian linen, pre-washed",
+      "Fit": "Oversized, dropped shoulder",
+      "Buttons": "Mother-of-pearl",
+      "Care": "Machine wash 40°, line dry",
+      "Origin": "Made in Portugal"
+    },
+    "features": [
+      "Pre-washed for softness",
+      "Dropped shoulder",
+      "Chest patch pocket",
+      "Mother-of-pearl buttons",
+      "Curved hem"
+    ],
+    "tags": [
+      "linen",
+      "shirt",
+      "oversized",
+      "summer",
+      "casual"
+    ],
+    "status": "new",
+    "createdAt": "2024-10-01T00:00:00Z",
+    "updatedAt": "2024-11-20T00:00:00Z"
+  },
+  {
+    "id": "prod-026",
+    "name": "Tailored Wool Blazer",
+    "slug": "tailored-wool-blazer",
+    "brand": "AFRO & CO.",
+    "category": "Clothing",
+    "subcategory": "Jackets & Coats",
+    "price": 545,
+    "originalPrice": 695,
+    "discount": 22,
+    "currency": "USD",
+    "description": "A single-breasted blazer in Super 120s Italian wool. Features a soft, unpadded shoulder that follows the natural line of the body, a two-button closure, and working sleeve buttons. The half-canvas construction ensures the jacket molds to your shape over time.",
+    "shortDescription": "Super 120s Italian wool blazer with soft unpadded shoulders and half-canvas construction.",
+    "images": [
+      {
+        "id": "img-026-1",
+        "url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
+        "alt": "Wool Blazer - Front",
+        "width": 800,
+        "height": 1000
+      }
+    ],
+    "colors": [
+      {
+        "name": "Navy",
+        "hex": "#1B2A4A",
+        "slug": "navy"
+      },
+      {
+        "name": "Charcoal",
+        "hex": "#3D3D3D",
+        "slug": "charcoal"
+      },
+      {
+        "name": "Camel",
+        "hex": "#C8A97E",
+        "slug": "camel"
+      }
+    ],
+    "sizes": [
+      {
+        "label": "36",
+        "slug": "36",
+        "available": true
+      },
+      {
+        "label": "38",
+        "slug": "38",
+        "available": true
+      },
+      {
+        "label": "40",
+        "slug": "40",
+        "available": true
+      },
+      {
+        "label": "42",
+        "slug": "42",
+        "available": true
+      },
+      {
+        "label": "44",
+        "slug": "44",
+        "available": false
+      }
+    ],
+    "stock": 16,
+    "rating": 4.9,
+    "reviewCount": 83,
+    "specifications": {
+      "Material": "Super 120s Italian Wool",
+      "Construction": "Half-canvas",
+      "Lining": "Bemberg cupro",
+      "Closure": "Two-button",
+      "Pockets": "Two flap, one chest",
+      "Care": "Dry clean only",
+      "Origin": "Made in Italy"
+    },
+    "features": [
+      "Super 120s wool",
+      "Half-canvas construction",
+      "Soft unpadded shoulder",
+      "Working sleeve buttons",
+      "Molds to your shape over time"
+    ],
+    "tags": [
+      "blazer",
+      "wool",
+      "tailored",
+      "formal",
+      "sale",
+      "premium"
+    ],
+    "status": "best-seller",
+    "createdAt": "2024-07-10T00:00:00Z",
+    "updatedAt": "2024-11-15T00:00:00Z"
+  },
+  {
+    "id": "prod-027",
+    "name": "Premium Canvas Weekender Bag",
+    "slug": "premium-canvas-weekender",
+    "brand": "FORM",
+    "category": "Bags & Accessories",
+    "subcategory": "Bags",
+    "price": 385,
+    "currency": "USD",
+    "description": "A substantial weekender bag in waxed cotton canvas with leather trim and solid brass hardware. Features a separate shoe compartment, internal organizational pocket, and removable shoulder strap. Built to age beautifully with use.",
+    "shortDescription": "Waxed cotton canvas weekender with leather trim and brass hardware.",
+    "images": [
+      {
+        "id": "img-027-1",
+        "url": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80",
+        "alt": "Canvas Weekender - Front",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Olive / Tan",
+        "hex": "#6B7A3E",
+        "slug": "olive-tan"
+      },
+      {
+        "name": "Navy / Tan",
+        "hex": "#1B2A4A",
+        "slug": "navy-tan"
+      }
+    ],
+    "stock": 18,
+    "rating": 4.8,
+    "reviewCount": 47,
+    "specifications": {
+      "Material": "Waxed cotton canvas + vegetable-tanned leather",
+      "Hardware": "Solid brass",
+      "Dimensions": "55cm × 30cm × 25cm",
+      "Compartments": "Main, shoe compartment, organizational pocket",
+      "Care": "Re-wax annually",
+      "Origin": "Made in UK"
+    },
+    "features": [
+      "Separate shoe compartment",
+      "Removable leather shoulder strap",
+      "Solid brass hardware",
+      "Waxed canvas — re-waxable",
+      "Ages beautifully with use"
+    ],
+    "tags": [
+      "bag",
+      "weekender",
+      "canvas",
+      "travel",
+      "leather"
+    ],
+    "status": "default",
+    "createdAt": "2024-05-10T00:00:00Z",
+    "updatedAt": "2024-10-05T00:00:00Z"
+  },
+  {
+    "id": "prod-028",
+    "name": "Silk Pocket Square Set",
+    "slug": "silk-pocket-square-set",
+    "brand": "MAISON ÉLÉGANCE",
+    "category": "Bags & Accessories",
+    "subcategory": "Accessories",
+    "price": 95,
+    "currency": "USD",
+    "description": "A curated set of four silk pocket squares in complementary tones, each hand-rolled to a fine edge. Crafted from 16-momme silk twill with a subtle sheen. Presented in a AFRO & CO. gift box.",
+    "shortDescription": "Set of 4 hand-rolled silk pocket squares in complementary tones.",
+    "images": [
+      {
+        "id": "img-028-1",
+        "url": "https://images.unsplash.com/photo-1598522325074-042db73aa4e6?w=800&q=80",
+        "alt": "Pocket Squares - Folded",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Noir Set",
+        "hex": "#0A0A0A",
+        "slug": "noir-set"
+      },
+      {
+        "name": "Earthy Set",
+        "hex": "#8A6A4A",
+        "slug": "earthy-set"
+      }
+    ],
+    "stock": 25,
+    "rating": 4.6,
+    "reviewCount": 31,
+    "specifications": {
+      "Material": "16-momme silk twill",
+      "Edge": "Hand-rolled",
+      "SetSize": "4 squares",
+      "Dimensions": "33cm × 33cm",
+      "Care": "Dry clean",
+      "Origin": "Made in Italy"
+    },
+    "features": [
+      "Hand-rolled edges",
+      "16-momme silk twill",
+      "4 complementary colors per set",
+      "Gift-boxed",
+      "Ships with styling guide"
+    ],
+    "tags": [
+      "pocket-square",
+      "silk",
+      "accessories",
+      "gift",
+      "formal"
+    ],
+    "status": "default",
+    "createdAt": "2024-04-15T00:00:00Z",
+    "updatedAt": "2024-09-30T00:00:00Z"
+  },
+  {
+    "id": "prod-029",
+    "name": "Cashmere Scarf",
+    "slug": "cashmere-scarf",
+    "brand": "AFRO & CO.",
+    "category": "Clothing",
+    "subcategory": "Accessories",
+    "price": 265,
+    "currency": "USD",
+    "description": "A generous scarf in Grade-A Mongolian cashmere, woven in Scotland. The 70×200cm dimensions allow for both classic drape and modern loop styling. Lightweight yet exceptionally warm, with a subtle fringe finish on the short ends.",
+    "shortDescription": "Grade-A Mongolian cashmere scarf, 70×200cm, woven in Scotland.",
+    "images": [
+      {
+        "id": "img-029-1",
+        "url": "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=800&q=80",
+        "alt": "Cashmere Scarf - Draped",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Camel",
+        "hex": "#C8A97E",
+        "slug": "camel"
+      },
+      {
+        "name": "Grey Melange",
+        "hex": "#8A8A8A",
+        "slug": "grey-melange"
+      },
+      {
+        "name": "Burgundy",
+        "hex": "#722F37",
+        "slug": "burgundy"
+      },
+      {
+        "name": "Navy",
+        "hex": "#1B2A4A",
+        "slug": "navy"
+      }
+    ],
+    "stock": 40,
+    "rating": 4.9,
+    "reviewCount": 102,
+    "specifications": {
+      "Material": "100% Grade-A Mongolian Cashmere",
+      "Dimensions": "70cm × 200cm",
+      "Weight": "200g",
+      "Finish": "Subtle fringe on short ends",
+      "Care": "Dry clean or hand wash cold",
+      "Origin": "Woven in Scotland"
+    },
+    "features": [
+      "Grade-A cashmere",
+      "Generous 70×200cm size",
+      "Lightweight yet very warm",
+      "Fringe finish",
+      "Woven in Scotland"
+    ],
+    "tags": [
+      "cashmere",
+      "scarf",
+      "winter",
+      "luxury",
+      "gift"
+    ],
+    "status": "trending",
+    "createdAt": "2024-10-10T00:00:00Z",
+    "updatedAt": "2024-11-20T00:00:00Z"
+  },
+  {
+    "id": "prod-030",
+    "name": "Minimalist Desk Clock",
+    "slug": "minimalist-desk-clock",
+    "brand": "FORM",
+    "category": "Home & Lifestyle",
+    "subcategory": "Decor",
+    "price": 145,
+    "currency": "USD",
+    "description": "A quiet statement piece — a silent desk clock in brushed stainless steel with a white lacquer face and clean arabic numerals. The solid aluminum base provides stability while the sweep-second hand moves in silence. No ticking, ever.",
+    "shortDescription": "Silent sweep-second desk clock in brushed steel with white lacquer face.",
+    "images": [
+      {
+        "id": "img-030-1",
+        "url": "https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=800&q=80",
+        "alt": "Desk Clock - Front",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Steel / White",
+        "hex": "#C0C0C0",
+        "slug": "steel-white"
+      },
+      {
+        "name": "Black / Black",
+        "hex": "#1A1A1A",
+        "slug": "black-black"
+      }
+    ],
+    "stock": 22,
+    "rating": 4.7,
+    "reviewCount": 39,
+    "specifications": {
+      "Material": "Brushed stainless steel case",
+      "Face": "White lacquer with black arabic numerals",
+      "Movement": "Silent quartz sweep-second",
+      "Dimensions": "Ø12cm, D4cm",
+      "Power": "1× AA battery (included)",
+      "Origin": "Designed in Denmark"
+    },
+    "features": [
+      "Silent sweep-second movement — no ticking",
+      "Solid aluminum base",
+      "Arabic numerals",
+      "AA battery included",
+      "Compact Ø12cm"
+    ],
+    "tags": [
+      "clock",
+      "desk",
+      "home",
+      "minimal",
+      "decor"
+    ],
+    "status": "new",
+    "createdAt": "2024-11-08T00:00:00Z",
+    "updatedAt": "2024-11-20T00:00:00Z"
+  },
+  {
+    "id": "prod-031",
+    "name": "Hydrating Serum Concentrate",
+    "slug": "hydrating-serum-concentrate",
+    "brand": "BOTANICAL",
+    "category": "Beauty & Personal Care",
+    "subcategory": "Skincare",
+    "price": 110,
+    "currency": "USD",
+    "description": "An intensive hydrating serum with 15% hyaluronic acid complex and niacinamide. The lightweight gel absorbs instantly, delivering multi-depth hydration while the niacinamide refines texture and minimizes pores. Suitable for morning and evening use.",
+    "shortDescription": "15% hyaluronic acid serum with niacinamide for deep hydration and texture refinement.",
+    "images": [
+      {
+        "id": "img-031-1",
+        "url": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80",
+        "alt": "Hydrating Serum - Bottle",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Clear",
+        "hex": "#F0F8FF",
+        "slug": "clear"
+      }
+    ],
+    "stock": 50,
+    "rating": 4.7,
+    "reviewCount": 96,
+    "specifications": {
+      "Volume": "30ml",
+      "KeyActives": "15% Hyaluronic Acid Complex, 5% Niacinamide",
+      "Texture": "Lightweight aqueous gel",
+      "SkinType": "All types",
+      "Fragrance": "Unscented",
+      "Origin": "Formulated in France"
+    },
+    "features": [
+      "15% HA complex — multiple molecular weights",
+      "5% Niacinamide for pore refinement",
+      "Lightweight gel texture",
+      "Fragrance-free and vegan",
+      "Airless pump for stability"
+    ],
+    "tags": [
+      "skincare",
+      "serum",
+      "hyaluronic",
+      "hydrating",
+      "niacinamide"
+    ],
+    "status": "default",
+    "createdAt": "2024-08-01T00:00:00Z",
+    "updatedAt": "2024-11-05T00:00:00Z"
+  },
+  {
+    "id": "prod-032",
+    "name": "Canvas Sneaker Cleaner Kit",
+    "slug": "canvas-sneaker-cleaner-kit",
+    "brand": "FORM",
+    "category": "Electronics & Gadgets",
+    "subcategory": "Accessories",
+    "price": 45,
+    "currency": "USD",
+    "description": "A complete sneaker care kit in a compact canvas and leather zipper case. Includes premium cleaning solution, two brushes (soft and stiff bristle), microfiber cloth, and all-weather protector spray. Everything needed to keep sneakers pristine.",
+    "shortDescription": "Complete sneaker care kit with cleaner, brushes, cloth, and protector spray.",
+    "images": [
+      {
+        "id": "img-032-1",
+        "url": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80",
+        "alt": "Sneaker Kit - Open",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#1A1A1A",
+        "slug": "black"
+      }
+    ],
+    "stock": 60,
+    "rating": 4.5,
+    "reviewCount": 44,
+    "specifications": {
+      "Case": "Waxed canvas with leather zipper",
+      "Includes": "100ml cleaner, soft brush, stiff brush, microfiber cloth, 100ml protector spray",
+      "Compatibility": "All sneaker materials including suede and mesh",
+      "Care": "Wipe case clean",
+      "Origin": "Assembled in Portugal"
+    },
+    "features": [
+      "Everything needed for sneaker care",
+      "Includes suede-safe protector",
+      "Premium canvas and leather case",
+      "Gift-ready packaging"
+    ],
+    "tags": [
+      "cleaning",
+      "sneakers",
+      "care",
+      "accessories",
+      "gift"
+    ],
+    "status": "default",
+    "createdAt": "2024-07-20T00:00:00Z",
+    "updatedAt": "2024-10-15T00:00:00Z"
+  }
+]

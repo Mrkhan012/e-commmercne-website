@@ -48,6 +48,9 @@ export interface CreateOrderInput {
   paymentMethod: Order['paymentMethod'];
   couponCode?: string;
   notes?: string;
+  isWholesale?: boolean;
+  poNumber?: string;
+  dealerId?: string;
 }
 
 export const orderService = {
@@ -74,12 +77,17 @@ export const orderService = {
       trackingNumber: generateTrackingNumber(),
       couponCode: input.couponCode,
       notes: input.notes,
+      isWholesale: input.isWholesale,
+      poNumber: input.poNumber,
+      dealerId: input.dealerId,
       timeline: [
         {
           status: 'pending',
           label: STATUS_LABELS.pending,
           timestamp: now,
-          description: 'We received your order.',
+          description: input.isWholesale
+            ? 'Commercial wholesale order placed under net terms.'
+            : 'We received your order.',
         },
       ],
       createdAt: now,

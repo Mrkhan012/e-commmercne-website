@@ -1,6 +1,15 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Address, Order, OrderStatus, OrderTimelineEvent, User, UserPreferences } from '@/types';
+import type {
+  Address,
+  DealerProfile,
+  Order,
+  OrderStatus,
+  OrderTimelineEvent,
+  User,
+  UserPreferences,
+  UserRole,
+} from '@/types';
 
 interface UserState {
   user: User | null;
@@ -10,10 +19,12 @@ interface UserState {
   isAuthModalOpen: boolean;
   authModalView: 'signin' | 'signup';
   // Actions
-  signIn: (email: string, firstName?: string, lastName?: string, role?: 'customer' | 'admin') => void;
+  signIn: (email: string, firstName?: string, lastName?: string, role?: UserRole) => void;
   signInAsAdmin: () => void;
-  setRole: (role: 'customer' | 'admin') => void;
+  signInAsDealer: () => void;
+  setRole: (role: UserRole) => void;
   toggleRole: () => void;
+  setDealerProfile: (profile: DealerProfile) => void;
   signUp: (data: { firstName: string; lastName: string; email: string }) => void;
   signOut: () => void;
   updateProfile: (data: Partial<Pick<User, 'firstName' | 'lastName' | 'email' | 'phone'>>) => void;
@@ -42,15 +53,44 @@ const defaultPreferences: UserPreferences = {
   notifications: true,
 };
 
+const demoDealerProfile: DealerProfile = {
+  id: 'dealer-001',
+  companyName: 'Apex Luxury Retailing Ltd.',
+  businessType: 'distributor',
+  taxId: 'US-EIN-948271034',
+  website: 'https://apexluxury.example.com',
+  contactPerson: 'Jonathan Vance',
+  phone: '+1 (212) 555-8921',
+  email: 'dealer@example.com',
+  address: '450 Lexington Avenue, Suite 2200',
+  city: 'New York',
+  state: 'NY',
+  country: 'United States',
+  tier: 'gold',
+  discountRate: 0.35, // 35% wholesale discount
+  creditLimit: 50000,
+  creditUsed: 14200,
+  paymentTerms: 'net30',
+  status: 'approved',
+  expectedMonthlyVolume: '$20,000 - $50,000',
+  minOrderQuantity: 10,
+  notes: 'Premium flagship dealer across Manhattan & Hamptons stores.',
+  appliedAt: '2025-08-14T10:00:00.000Z',
+  approvedAt: '2025-08-16T14:30:00.000Z',
+};
+
 // Build a demo account. NOTE: this is a front-end-only demo session, not real auth.
 const createDemoUser = (
   email: string,
   firstName = 'Demo',
   lastName = 'Customer',
-  role?: 'customer' | 'admin'
+  role?: UserRole
 ): User => {
-  const calculatedRole: 'customer' | 'admin' =
-    role ?? (email.toLowerCase().includes('admin') ? 'admin' : 'customer');
+  let calculatedRole: UserRole = role ?? 'customer';
+  if (!role) {
+    if (email.toLowerCase().includes('admin')) calculatedRole = 'admin';
+    else if (email.toLowerCase().includes('dealer')) calculatedRole = 'dealer';
+  }
 
   return {
     id: `user-${Date.now()}`,
@@ -58,6 +98,7 @@ const createDemoUser = (
     lastName,
     email,
     role: calculatedRole,
+    dealerProfile: calculatedRole === 'dealer' ? demoDealerProfile : undefined,
     createdAt: new Date().toISOString(),
     addresses: [],
     preferences: { ...defaultPreferences },
@@ -257,15 +298,58 @@ export const useUserStore = create<UserState>()(
         });
       },
 
+      signInAsDealer: () => {
+        const user = createDemoUser('dealer@apexluxury.com', 'Jonathan', 'Vance', 'dealer');
+        user.dealerProfile = demoDealerProfile;
+        set({
+          user: { ...user, addresses: demoAddresses },
+          isAuthenticated: true,
+          orders: demoOrders,
+          addresses: demoAddresses,
+        });
+      },
+
       setRole: (role) =>
-        set((state) => (state.user ? { user: { ...state.user, role } } : state)),
+        set((state) => {
+          if (!state.user) return state;
+          return {
+            user: {
+              ...state.user,
+              role,
+              dealerProfile: role === 'dealer' ? (state.user.dealerProfile || demoDealerProfile) : state.user.dealerProfile,
+            },
+          };
+        }),
 
       toggleRole: () =>
         set((state) => {
           if (!state.user) return state;
-          const nextRole = state.user.role === 'admin' ? 'customer' : 'admin';
-          return { user: { ...state.user, role: nextRole } };
+          // Cycle: customer -> dealer -> admin -> customer
+          let nextRole: UserRole = 'customer';
+          if (state.user.role === 'customer') nextRole = 'dealer';
+          else if (state.user.role === 'dealer') nextRole = 'admin';
+          else nextRole = 'customer';
+
+          return {
+            user: {
+              ...state.user,
+              role: nextRole,
+              dealerProfile: nextRole === 'dealer' ? (state.user.dealerProfile || demoDealerProfile) : state.user.dealerProfile,
+            },
+          };
         }),
+
+      setDealerProfile: (profile) =>
+        set((state) =>
+          state.user
+            ? {
+                user: {
+                  ...state.user,
+                  dealerProfile: profile,
+                },
+              }
+            : state
+        ),
 
       signUp: (data) => {
         const user = createDemoUser(data.email, data.firstName, data.lastName);

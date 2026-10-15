@@ -1,153 +1,152 @@
-# 🚀 GoDaddy Shared Hosting & Store Customization Guide
+# 🚀 GoDaddy Shared Hosting, B2B Dealer & Store Operations Guide
 **Website:** AFRO & CO. (`Afro.co`)  
-**Technology:** React 19 + TypeScript + Vite + Tailwind CSS
+**Technology:** React 19 + TypeScript + Vite + Tailwind CSS + GoDaddy Apache / PHP Backend
 
-This guide explains:
-1. **How to deploy your website to GoDaddy Shared Hosting (cPanel / Apache)**.
-2. **How to change site name, logos, favicon, and SEO meta tags**.
-3. **How to change store colors and typography**.
-4. **How the store owner / admin manages products, orders, categories, and currency without touching code**.
+This comprehensive guide details:
+1. **The Three End-User Systems:** Customer Storefront, Platform Admin Console, and B2B Dealer Portal.
+2. **Deploying to GoDaddy Shared Hosting (cPanel / Apache + PHP).**
+3. **Google Search Engine Optimization (SEO), XML Sitemap, & JSON-LD Structured Data.**
+4. **Pagination, Performance, & Security Architecture.**
+5. **How the Store Owner Manages Catalog, Dealers, Orders, & Currencies.**
 
 ---
 
-## Part 1: How to Deploy to GoDaddy Shared Hosting
+## 👥 Part 1: Three Tailored End-User Experiences
 
-### Step 1: Build the Production Bundle
-On your computer/terminal, open the project root and run:
+The platform provides dedicated, role-guarded experiences for three primary stakeholder groups:
+
+### 1. End Customer (Retail Experience)
+- **Storefront & Catalog**: Responsive luxury layout, faceted filtering by category, price, color, size, brand, and sorting.
+- **Pagination**: Fast, smooth client and server pagination (12 items per page) with URL state persistence.
+- **Product Experience**: Multi-angle image zoom galleries, colorway/sizing variant selectors, real-time inventory counts, customer reviews with verified badges, and related recommendations.
+- **Bag & Checkout**: Multi-step checkout supporting Credit Cards, Apple Pay, PayPal, and Cash on Delivery.
+- **Customer Account Portal (`/account`)**: Order history, live package tracking, saved shipping addresses, personal wishlist, and customer support tickets.
+
+### 2. Platform Admin Console (`/admin`)
+- Accessible via `/admin` (Protected by Admin Role Guard).
+- **Executive Analytics (`/admin/analytics`)**: Real-time revenue charts, order counts, customer acquisition, and conversion rates.
+- **Order Management (`/admin/orders`)**: Filter orders, update status (Pending &rarr; Processing &rarr; Shipped &rarr; Delivered), assign courier tracking codes, and issue refunds.
+- **Product Management (`/admin/products`)**: Add, edit, and delete products, adjust inventory levels, manage variant attributes, and configure pricing discounts.
+- **Category Management (`/admin/categories`)**: Create new collection taxonomies and manage subcategory hierarchies.
+- **Dealer & Wholesale Management (`/admin/dealers`)**:
+  - Review incoming B2B dealer and boutique applications.
+  - Approve or reject dealers.
+  - Assign Dealer Tiers (**Bronze 15%**, **Silver 25%**, **Gold 35%** wholesale margins).
+  - Allocate revolving commercial credit lines (e.g. $10,000 to $50,000) and set commercial payment terms (Prepaid, Net-30, Net-60).
+- **Coupons & Promotions (`/admin/coupons`)**: Create promo codes, flash sale banners, and free shipping thresholds.
+
+### 3. Dealer & Wholesaler Portal (`/dealer`)
+- Tailored for retail partners, boutiques, and corporate bulk buyers.
+- **Dealer Onboarding (`/dealer/register`)**: Public application form capturing Company Name, Tax ID / VAT / GSTIN, Business Type, and Expected Volume.
+- **Wholesale Dashboard (`/dealer`)**: At-a-glance status of active tier margin, revolving credit line usage, and pending shipments.
+- **Wholesale Catalog (`/dealer/catalog`)**:
+  - View Retail MSRP vs. Wholesale Partner Price (e.g. 35% discount).
+  - Minimum Order Quantities (MOQ).
+  - Quick batch quantity steppers (+5, +10, +25, +50) with instant batch add-to-cart.
+  - Full catalog pagination.
+- **Bulk Matrix Quick Order Form (`/dealer/quick-order`)**: High-speed tabular matrix for multi-line restock orders across sizes/colors with live subtotal calculations.
+- **Wholesale Orders & Invoices (`/dealer/orders`)**:
+  - View and track all wholesale shipments.
+  - Instant **"View & Print B2B Tax Invoice"** modal with Buyer/Seller Tax IDs, HSN codes, and bank wire remittance details.
+- **Request for Quote (RFQ) (`/dealer/rfq`)**: Volume negotiations for bulk manufacturing (>100 units) and custom private-label runs.
+
+---
+
+## 🚀 Part 2: How to Deploy to GoDaddy Shared Hosting
+
+GoDaddy shared hosting uses standard Apache + PHP + cPanel File Manager.
+
+### Step 1: Build the Production Frontend
+On your computer in the project root:
 ```bash
 npm run build
 ```
-This generates an optimized production folder named `dist/` containing:
-- `index.html`
-- `assets/` (bundled JS, CSS, and images)
-- `.htaccess` *(Crucial for GoDaddy Apache routing)*
-- `favicon.svg`
+This generates the optimized `dist/` directory containing:
+- `index.html` (with Google structured data and SEO meta tags)
+- `assets/` (compressed CSS, JS, and media)
+- `.htaccess` (pre-configured for Apache SPA routing & Gzip compression)
+- `sitemap.xml` (Google Search Engine XML Sitemap)
+- `robots.txt` (Search crawler directives)
 
----
+### Step 2: Upload Files to GoDaddy `public_html/`
+1. Log into your **GoDaddy Account** &rarr; **Web Hosting (cPanel)** &rarr; **File Manager**.
+2. In File Manager settings (top right), enable **"Show Hidden Files (dotfiles)"** so `.htaccess` is visible.
+3. Open `public_html/`.
+4. Upload all files from the `dist/` folder directly into `public_html/`:
+   - `index.html`
+   - `assets/`
+   - `.htaccess`
+   - `sitemap.xml`
+   - `robots.txt`
+   - `favicon.svg`
+5. Upload the `php/` directory directly into `public_html/php/`:
+   - `php/api/` (REST API engine)
+   - `php/data/` (JSON atomic datastore with pre-seeded products & dealers)
+   - `php/install.php` (Environment diagnostic checker)
+   - `php/database.sql` (Optional MySQL schema)
+6. Ensure the `php/data/` folder has write permissions (`chmod 755` or `chmod 775` via cPanel).
 
-### Step 2: Ensure `.htaccess` is Included (Prevents 404 on Refresh)
-In Single-Page Applications (SPA), without an `.htaccess` file, refreshing URLs like `/shop` or `/admin` will show a **"404 Not Found"** error on GoDaddy.
+### Step 3: Verify Deployment
+Visit:
+- Storefront: `https://yourdomain.com/`
+- Dealer Portal: `https://yourdomain.com/dealer`
+- Admin Console: `https://yourdomain.com/admin`
+- Host Diagnostics: `https://yourdomain.com/php/install.php`
+- API Health: `https://yourdomain.com/api/health`
 
-We have already configured `public/.htaccess`, which automatically builds into `dist/.htaccess`:
-```apache
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
-  RewriteRule ^ - [L]
-  RewriteRule ^ index.html [L]
-</IfModule>
+### Optional: Connect GoDaddy cPanel MySQL Database
+The backend works out-of-the-box with atomic JSON file storage. If you prefer MySQL:
+1. In GoDaddy cPanel, click **MySQL Databases** and create a new database & user.
+2. In **phpMyAdmin**, import `php/database.sql`.
+3. Open `php/api/config.php` and enter your DB credentials:
+```php
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'your_cpanel_dbname');
+define('DB_USER', 'your_cpanel_dbuser');
+define('DB_PASS', 'your_db_password');
 ```
 
 ---
 
-### Step 3: Upload to GoDaddy cPanel File Manager
+## 🔍 Part 3: Google Search Engine Optimization (SEO)
 
-1. Log in to your **GoDaddy Account** and open **My Products**.
-2. Click **Manage** next to **Web Hosting** (cPanel).
-3. In the cPanel Dashboard, click **File Manager**.
-4. **IMPORTANT: Enable Hidden Files**:
-   - In the top-right corner of File Manager, click **Settings**.
-   - Check the box **"Show Hidden Files (dotfiles)"** and click **Save**. (This ensures `.htaccess` is visible and uploaded).
-5. Open the `public_html` directory:
-   - If this is your **primary domain** (e.g., `afro.co`), upload directly to `public_html/`.
-   - If this is an **addon domain** or **subdomain**, open the specific folder created for it (e.g. `public_html/store/`).
-6. **Upload the contents of `dist/`**:
-   - Tip: Zip the contents inside `dist/` into a single file (e.g., `dist.zip`).
-   - Click **Upload** in GoDaddy File Manager and select `dist.zip`.
-   - Right-click `dist.zip` in File Manager and select **Extract**.
-   - Ensure `index.html`, `assets/`, and `.htaccess` are directly inside `public_html/` (not nested inside a subfolder named `dist/`).
-7. Visit your domain in your browser. Your store is live!
+To maximize Google search indexing and ranking:
 
----
+### 1. XML Sitemap (`https://yourdomain.com/sitemap.xml`)
+- Contains all key landing pages, category collections, and dealer registration.
+- **Submit to Google Search Console**:
+  1. Open [Google Search Console](https://search.google.com/search-console).
+  2. Select your property &rarr; Click **Sitemaps** in the left sidebar.
+  3. Enter `sitemap.xml` and click **Submit**.
 
-## Part 2: How to Change Site Name, Logo, & Favicon
+### 2. Search Engine Crawler Directives (`https://yourdomain.com/robots.txt`)
+- Allows Googlebot and Bingbot to index products, categories, and public pages.
+- Disallows private administrative (`/admin/`), customer account (`/account/`), and checkout pages.
 
-### 1. Browser Tab Title & SEO Descriptions
-File: [`index.html`](file:///Users/afro/noir-co/index.html)
-- Line 7: `<meta name="description" content="Your store description..." />`
-- Line 8: `<meta property="og:title" content="Your Site Name" />`
-- Line 11: `<title>AFRO & CO. | Afro.co</title>`
-
-### 2. Header Brand Name & Logo Text
-File: [`src/components/navigation/Header.tsx`](file:///Users/afro/noir-co/src/components/navigation/Header.tsx)
-- Search for `AFRO & CO.` to change the main brand text or replace it with an `<img>` tag:
-```tsx
-{/* Replace with image logo if desired: */}
-<img src="/logo.png" alt="Afro & Co." className="h-8 w-auto" />
-```
-
-### 3. Footer Brand Name & Social Links
-File: [`src/components/layout/Footer.tsx`](file:///Users/afro/noir-co/src/components/layout/Footer.tsx)
-- Update company bio, contact emails, phone numbers, and social links (Instagram, X, LinkedIn).
-
-### 4. Favicon (Browser Tab Icon)
-File: [`public/favicon.svg`](file:///Users/afro/noir-co/public/favicon.svg)
-- Replace `favicon.svg` with your custom SVG or add a standard `favicon.ico` / `favicon.png` in `public/` and update [`index.html`](file:///Users/afro/noir-co/index.html) line 5:
-```html
-<link rel="icon" type="image/png" href="/favicon.png" />
-```
+### 3. Schema.org JSON-LD Structured Data
+- **Organization & Store Schema**: Embedded in `index.html` providing brand credentials to Google Knowledge Graph.
+- **WebSite Sitelinks SearchBox Schema**: Enables Google to display a direct search bar for your store in Google SERPs.
+- **Product Schema with Live Offers**: Injected by `useSeo.ts` on product pages including name, price, currency, availability, and aggregate reviews.
 
 ---
 
-## Part 3: How to Change Colors & Fonts
+## ⚡ Part 4: Performance, Pagination, & Security
 
-### Changing Color Palette
-File: [`src/index.css`](file:///Users/afro/noir-co/src/index.css) (Lines 9–18)
-
-All store colors are centralized design tokens:
-```css
-@theme {
-  /* Brand Colors */
-  --color-noir-black: #0A0A0A;      /* Primary dark surfaces / header */
-  --color-noir-charcoal: #171717;   /* Secondary dark cards */
-  --color-noir-surface: #222222;    /* Dark card background */
-  --color-noir-ivory: #F7F5F0;      /* Light background */
-  --color-noir-white: #FFFFFF;      /* Clean white */
-  --color-noir-light-gray: #E8E6E1; /* Borders & lines */
-  --color-noir-muted: #888780;      /* Secondary text & labels */
-  --color-noir-gold: #C8A97E;       /* Accent color (buttons, highlights, sale badges) */
-}
-```
-*To customize:* Change `#C8A97E` to your preferred brand accent (e.g., emerald green `#10B981`, royal sapphire `#2563EB`, or copper `#B45309`).
-
-### Changing Typography / Fonts
-1. Choose fonts on [Google Fonts](https://fonts.google.com).
-2. Update the `<link>` in [`index.html`](file:///Users/afro/noir-co/index.html) (Line 15).
-3. Assign them in [`src/index.css`](file:///Users/afro/noir-co/src/index.css):
-```css
---font-heading: 'Manrope', sans-serif;
---font-editorial: 'Playfair Display', serif;
---font-body: 'Inter', sans-serif;
-```
+- **Vite Lazy-Loading**: Every major route (Shop, Product, Admin, Dealer) is code-split into lightweight chunks loaded on demand.
+- **Pagination**:
+  - Implemented on Customer Shop (`/shop`), Admin Products (`/admin/products`), Admin Orders (`/admin/orders`), Dealer Catalog (`/dealer/catalog`), and Dealer Orders (`/dealer/orders`).
+- **Security**:
+  - Role-based route guards prevent unauthorized access to Admin and Dealer portals.
+  - Apache `.htaccess` security headers enforce `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, and XSS filtering.
+  - Input sanitization on all PHP endpoints.
 
 ---
 
-## Part 4: No-Code Admin Dashboard Features
+## 💡 Part 5: One-Click Demo Role Switcher
 
-Your client or store admin can manage the following directly from the browser without editing code:
-
-| Feature | Admin Page URL | What the Admin Can Do |
-| :--- | :--- | :--- |
-| **Products & Inventory** | `/admin/products` | • Add new products with title, images, prices, SKU, tags<br>• Edit prices, stock counts, descriptions<br>• Delete discontinued products |
-| **Discounts & Sales** | `/admin/products` & `/admin/coupons` | • Click **"Sales & Offers"** to apply percentage discounts<br>• Set flash sales or bulk department markdowns<br>• Create promo coupon codes (e.g. `WELCOME15`, `LUXURY20`) |
-| **Store Categories** | `/admin/categories` | • Add new luxury departments (e.g. *Fragrance, Watches, Leather*)<br>• Custom slugs, cover photos, subcategories<br>• Toggle "Featured on Homepage" |
-| **Order Management** | `/admin/orders` | • Review incoming customer orders<br>• Update status: `Pending` ➔ `Processing/Packed` ➔ `Shipped` ➔ `Delivered`<br>• Customers see real-time updates on their tracking page |
-| **Multi-Currency** | Header / `/admin/settings` | • Switch live between **INR (₹)**, **AED (د.إ)**, **USD ($)**, **EUR (€)**, **GBP (£)**, etc.<br>• Prices across the store convert automatically |
-| **Customer Reviews** | `/admin/reviews` | • Moderate, approve, or hide customer testimonials |
-
----
-
-## Summary of Commands
-```bash
-# 1. Install dependencies (first time)
-npm install
-
-# 2. Run local development server with hot-reload
-npm run dev
-
-# 3. Build optimized website for GoDaddy upload
-npm run build
-```
-Upload the contents of **`dist/`** to GoDaddy's **`public_html/`**.
+For testing and demonstration, you can switch between all three roles instantly without logging out:
+1. Open the **User Profile Dropdown** in the top navigation header.
+2. Under **"Switch Role View"**, select:
+   - **Customer View** &rarr; Tests retail customer browsing, cart, and standard checkout.
+   - **Dealer (B2B) View** &rarr; Opens `/dealer` with 35% Gold Wholesale discount, bulk matrix order, and Net-30 PO checkout.
+   - **Platform Admin View** &rarr; Opens `/admin` with full order management, product catalog editing, and dealer approval controls.

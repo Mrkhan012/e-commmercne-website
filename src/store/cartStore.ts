@@ -21,7 +21,9 @@ export interface CartState extends Cart {
     product: Product,
     quantity?: number,
     selectedColor?: CartItem['selectedColor'],
-    selectedSize?: CartItem['selectedSize']
+    selectedSize?: CartItem['selectedSize'],
+    customPrice?: number,
+    isWholesale?: boolean
   ) => void;
   removeItem: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
@@ -75,17 +77,24 @@ export const useCartStore = create<CartState>()(
       freeShipping: false,
       isOpen: false,
 
-      addItem: (product, quantity = 1, selectedColor, selectedSize) =>
+      addItem: (product, quantity = 1, selectedColor, selectedSize, customPrice, isWholesale) =>
         set((state) => {
           const id = lineId(product.id, selectedColor?.slug, selectedSize?.slug);
           const existing = state.items.find((item) => item.id === id);
-          const maxQty = Math.max(product.stock, 1);
+          const maxQty = isWholesale ? Math.max(product.stock * 10, 500) : Math.max(product.stock, 1);
+          const unitPrice = customPrice !== undefined ? customPrice : product.price;
 
           let newItems: CartItem[];
           if (existing) {
             newItems = state.items.map((item) =>
               item.id === id
-                ? { ...item, quantity: Math.min(item.quantity + quantity, maxQty) }
+                ? {
+                    ...item,
+                    quantity: Math.min(item.quantity + quantity, maxQty),
+                    price: unitPrice,
+                    customPrice,
+                    isWholesale: isWholesale ?? item.isWholesale,
+                  }
                 : item
             );
           } else {
@@ -98,7 +107,9 @@ export const useCartStore = create<CartState>()(
                 quantity: Math.min(quantity, maxQty),
                 selectedColor,
                 selectedSize,
-                price: product.price,
+                price: unitPrice,
+                customPrice,
+                isWholesale,
               },
             ];
           }
