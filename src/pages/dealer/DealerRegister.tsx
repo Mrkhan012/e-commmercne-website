@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
-  Building2,
   CheckCircle2,
   Sparkles,
-  ArrowRight,
   ShieldCheck,
   Percent,
   Truck,
   CreditCard,
-  Layers,
   ArrowLeft,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';

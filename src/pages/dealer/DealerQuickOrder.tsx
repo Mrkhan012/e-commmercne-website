@@ -3,11 +3,6 @@ import {
   Plus,
   Trash2,
   ShoppingBag,
-  Layers,
-  Sparkles,
-  ArrowRight,
-  Calculator,
-  CheckCircle2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useProductStore } from '@/store/productStore';

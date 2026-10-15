@@ -1,17 +1,15 @@
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import {
   LayoutDashboard,
   Package,
   Layers,
   FileText,
-  CreditCard,
   Building2,
   Send,
   ArrowLeft,
   Lock,
   ShieldCheck,
   Percent,
-  CheckCircle2,
   Sparkles,
   ShoppingBag,
 } from 'lucide-react';
@@ -39,7 +37,6 @@ export default function DealerLayout() {
     description: 'Exclusive B2B wholesale ordering, tiered margins, bulk matrix purchasing, and invoicing for verified partners.',
   });
 
-  const location = useLocation();
   const { user, isAuthenticated, setRole, signInAsDealer } = useUserStore();
   const { dealers } = useDealerStore();
   const { currentCurrency } = useCurrencyStore();

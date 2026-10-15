@@ -2,16 +2,9 @@ import { useState, useMemo } from 'react';
 import {
   FileText,
   Printer,
-  Download,
   Search,
   ChevronLeft,
   ChevronRight,
-  Eye,
-  CheckCircle2,
-  Clock,
-  Truck,
-  Building,
-  Sparkles,
   X,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';

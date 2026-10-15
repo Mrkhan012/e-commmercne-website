@@ -1,17 +1,12 @@
 import { useState, useMemo } from 'react';
 import {
   Search,
-  Filter,
-  Package,
   ShoppingBag,
-  Check,
   ChevronLeft,
   ChevronRight,
   Sparkles,
-  Info,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
 import { useProductStore } from '@/store/productStore';
 import { useCategoryStore } from '@/store/categoryStore';
 import { useUserStore } from '@/store/userStore';

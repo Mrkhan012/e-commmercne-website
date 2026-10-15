@@ -2,13 +2,7 @@ import { useState } from 'react';
 import {
   Building2,
   FileCheck2,
-  CreditCard,
-  MapPin,
-  Mail,
-  Phone,
-  Globe,
   Save,
-  CheckCircle2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useUserStore } from '@/store/userStore';

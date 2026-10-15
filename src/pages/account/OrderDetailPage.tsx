@@ -33,6 +33,8 @@ const paymentLabels: Record<PaymentMethod, string> = {
   'apple-pay': 'Apple Pay',
   'google-pay': 'Google Pay',
   cod: 'Cash on delivery',
+  'purchase-order': 'Commercial Purchase Order (Net-30)',
+  wire: 'Direct Bank Wire Remittance',
 };
 
 const paymentDetails: Record<PaymentMethod, string> = {
@@ -41,6 +43,8 @@ const paymentDetails: Record<PaymentMethod, string> = {
   'apple-pay': 'Paid with Apple Pay',
   'google-pay': 'Paid with Google Pay',
   cod: 'Pay the courier on arrival',
+  'purchase-order': 'Billed to corporate dealer account with Net-30 remittance terms',
+  wire: 'Direct bank wire transfer to JPMorgan Chase atelier account',
 };
 
 const eyebrow =

@@ -1,13 +1,8 @@
 import { useState } from 'react';
 import {
   Send,
-  FileQuestion,
   Sparkles,
   CheckCircle2,
-  Clock,
-  DollarSign,
-  Package,
-  Building,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useProductStore } from '@/store/productStore';

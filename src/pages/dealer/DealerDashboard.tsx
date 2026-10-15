@@ -1,18 +1,10 @@
 import { Link } from 'react-router-dom';
 import {
-  TrendingUp,
   Package,
   Layers,
   CreditCard,
-  FileText,
-  Clock,
-  CheckCircle2,
-  AlertCircle,
   ArrowRight,
-  Sparkles,
-  ShoppingBag,
   Send,
-  Building,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useUserStore } from '@/store/userStore';

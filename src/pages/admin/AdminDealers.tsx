@@ -1,21 +1,14 @@
 import { useState, useMemo } from 'react';
 import {
-  Briefcase,
   Search,
-  Filter,
   CheckCircle2,
-  XCircle,
   Clock,
   Building2,
   CreditCard,
-  Percent,
   Plus,
   Edit2,
-  Eye,
-  FileText,
   ChevronLeft,
   ChevronRight,
-  ShieldCheck,
   X,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -32,7 +25,7 @@ export default function AdminDealers() {
     description: 'Review B2B dealer applications, configure wholesale discount tiers, credit lines, and corporate payment terms.',
   });
 
-  const { dealers, approveDealer, rejectDealer, updateDealer, applyForDealer } = useDealerStore();
+  const { dealers, approveDealer, rejectDealer, applyForDealer } = useDealerStore();
   const { currentCurrency } = useCurrencyStore();
   const toast = useToastStore();
 
