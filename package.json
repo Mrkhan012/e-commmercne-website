@@ -1,0 +1,39 @@
+{
+  "name": "afro-co",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AFRO & CO. (Afro.co) — a premium, editorial e-commerce experience.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
+    "@tanstack/react-query": "^5.104.2",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.4.0",
+    "lucide-react": "^1.57.0",
+    "motion": "^14.2.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-error-boundary": "^6.1.6",
+    "react-hook-form": "^7.90.0",
+    "react-router-dom": "^7.18.4",
+    "recharts": "^3.10.1",
+    "tailwind-merge": "^3.7.0",
+    "zod": "^4.6.7",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.4"
+  }
+}

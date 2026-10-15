@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": { "composite": false, "noEmit": true },
+  "include": [
+    "src/pages/informational/FaqPage.tsx",
+    "src/pages/informational/ContactPage.tsx",
+    "src/pages/informational/AboutPage.tsx",
+    "src/pages/informational/ShippingPolicyPage.tsx",
+    "src/pages/informational/ReturnsPolicyPage.tsx",
+    "src/pages/informational/PrivacyPolicyPage.tsx",
+    "src/pages/informational/TermsPage.tsx",
+    "src/pages/informational/NotFoundPage.tsx"
+  ]
+}
