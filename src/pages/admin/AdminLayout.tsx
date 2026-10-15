@@ -22,6 +22,7 @@ import {
 import { Button } from '@/components/ui/Button';
 import { useUserStore } from '@/store/userStore';
 import { useCurrencyStore, SUPPORTED_CURRENCIES } from '@/store/currencyStore';
+import { useBrandStore } from '@/store/brandStore';
 import { useToastStore } from '@/store/toastStore';
 import { cn } from '@/utils/cn';
 import { useSeo } from '@/hooks/useSeo';
@@ -44,9 +45,11 @@ const adminNav = [
 ];
 
 export default function AdminLayout() {
+  const siteName = useBrandStore((s) => s.siteName);
+
   useSeo({
-    title: 'Admin Console | AFRO & CO.',
-    description: 'Executive management portal for AFRO & CO. operations, inventory, and orders.',
+    title: `Admin Console | ${siteName}`,
+    description: `Executive management portal for ${siteName} operations, inventory, and orders.`,
   });
 
   const { user, isAuthenticated, setRole, signInAsAdmin } = useUserStore();
@@ -126,7 +129,7 @@ export default function AdminLayout() {
           </Link>
           <span className="text-[var(--border-color)]">|</span>
           <span className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-noir-gold)]">
-            AFRO &amp; CO. Atelier Operations
+            {siteName} Atelier Operations
           </span>
         </div>
 
@@ -198,7 +201,7 @@ export default function AdminLayout() {
                     cn(
                       'flex items-center gap-3 px-3.5 py-2.5 font-heading text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors',
                       isActive
-                        ? 'border-l-2 border-[var(--color-noir-gold)] bg-[var(--bg-secondary)] text-[var(--text-primary)]'
+                        ? 'border-l-2 border-[var(--color-noir-gold)] bg-[var(--color-noir-gold)]/10 text-[var(--color-noir-gold)] font-bold'
                         : 'border-l-2 border-transparent text-[var(--text-muted)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]'
                     )
                   }

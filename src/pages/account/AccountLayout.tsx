@@ -211,7 +211,7 @@ export default function AccountLayout() {
                               cn(
                                 sidebarLink,
                                 isActive
-                                  ? 'border-l-2 border-[var(--color-noir-gold)] bg-[var(--bg-secondary)] text-[var(--text-primary)]'
+                                  ? 'border-l-2 border-[var(--color-noir-gold)] bg-[var(--color-noir-gold)]/10 text-[var(--color-noir-gold)] font-bold'
                                   : 'border-transparent text-[var(--text-muted)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]'
                               )
                             }
@@ -251,7 +251,7 @@ export default function AccountLayout() {
                         cn(
                           mobileLink,
                           isActive
-                            ? 'border-[var(--color-noir-gold)] text-[var(--text-primary)]'
+                            ? 'border-[var(--color-noir-gold)] text-[var(--color-noir-gold)] font-bold'
                             : 'border-transparent text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                         )
                       }

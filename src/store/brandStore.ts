@@ -43,11 +43,27 @@ const DEFAULT_BRAND = {
   supportPhone: '+1 (800) 555-NOIR',
 };
 
+export function getContrastTextColor(hex: string): string {
+  const cleanHex = hex.replace('#', '');
+  const r = parseInt(cleanHex.substring(0, 2), 16) || 0;
+  const g = parseInt(cleanHex.substring(2, 4), 16) || 0;
+  const b = parseInt(cleanHex.substring(4, 6), 16) || 0;
+  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  return yiq >= 155 ? '#0A0A0A' : '#FFFFFF';
+}
+
 const applyColorToDOM = (hex: string) => {
   if (typeof document === 'undefined') return;
   const root = document.documentElement;
+  const contrastText = getContrastTextColor(hex);
+  
   root.style.setProperty('--color-noir-gold', hex);
-  root.style.setProperty('--shadow-gold', `0 0 20px ${hex}33`);
+  root.style.setProperty('--brand-primary', hex);
+  root.style.setProperty('--brand-contrast-text', contrastText);
+  root.style.setProperty('--shadow-gold', `0 0 25px ${hex}40`);
+  root.style.setProperty('--brand-primary-light', `${hex}1F`);
+  root.style.setProperty('--brand-primary-border', `${hex}4D`);
+  root.style.setProperty('--brand-primary-glow', `0 0 30px ${hex}55`);
 };
 
 export const useBrandStore = create<BrandState>()(

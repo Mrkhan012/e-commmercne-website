@@ -6,16 +6,17 @@ export type ButtonSize = 'sm' | 'md' | 'lg' | 'icon';
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-[var(--text-primary)] text-[var(--bg-primary)] border border-[var(--text-primary)] hover:bg-transparent hover:text-[var(--text-primary)]',
+    'bg-[var(--color-noir-gold)] text-[var(--brand-contrast-text,#0A0A0A)] border border-[var(--color-noir-gold)] hover:brightness-105 active:brightness-95 shadow-sm transition-all',
   secondary:
-    'bg-[var(--bg-secondary)] text-[var(--text-primary)] border border-[var(--border-color)] hover:border-[var(--text-primary)]',
+    'bg-[var(--bg-secondary)] text-[var(--text-primary)] border border-[var(--border-color)] hover:border-[var(--color-noir-gold)] hover:text-[var(--color-noir-gold)] transition-colors',
   outline:
-    'bg-transparent text-[var(--text-primary)] border border-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)]',
+    'bg-transparent text-[var(--text-primary)] border border-[var(--border-color)] hover:border-[var(--color-noir-gold)] hover:text-[var(--color-noir-gold)] transition-colors',
   ghost:
-    'bg-transparent text-[var(--text-primary)] border border-transparent hover:bg-[var(--bg-secondary)]',
+    'bg-transparent text-[var(--text-primary)] border border-transparent hover:bg-[var(--color-noir-gold)]/10 hover:text-[var(--color-noir-gold)] transition-colors',
   danger:
     'bg-red-600 text-white border border-red-600 hover:bg-red-700 hover:border-red-700',
-  gold: 'bg-[var(--color-noir-gold)] text-[var(--color-noir-black)] border border-[var(--color-noir-gold)] hover:brightness-110',
+  gold:
+    'bg-[var(--color-noir-gold)] text-[var(--brand-contrast-text,#0A0A0A)] border border-[var(--color-noir-gold)] hover:brightness-110 shadow-sm transition-all',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

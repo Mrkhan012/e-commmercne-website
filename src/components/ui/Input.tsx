@@ -30,7 +30,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <div
           className={cn(
             'relative flex items-center border bg-[var(--bg-primary)] transition-colors',
-            error ? 'border-red-500' : 'border-[var(--border-color)] focus-within:border-[var(--text-primary)]'
+            error ? 'border-red-500' : 'border-[var(--border-color)] focus-within:border-[var(--color-noir-gold)] focus-within:ring-1 focus-within:ring-[var(--color-noir-gold)]'
           )}
         >
           {leading && (

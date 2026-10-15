@@ -424,7 +424,7 @@ export function Header() {
             >
               <Heart className="h-[18px] w-[18px]" />
               {wishlistCount > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[var(--color-noir-gold)] px-1 text-[10px] font-bold text-[var(--color-noir-black)]">
+                <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[var(--color-noir-gold)] px-1 text-[10px] font-bold text-[var(--brand-contrast-text,#0A0A0A)] shadow-sm">
                   {wishlistCount}
                 </span>
               )}
@@ -439,7 +439,7 @@ export function Header() {
             >
               <ShoppingBag className="h-[18px] w-[18px]" />
               {itemCount > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[var(--color-noir-gold)] px-1 text-[10px] font-bold text-[var(--color-noir-black)]">
+                <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[var(--color-noir-gold)] px-1 text-[10px] font-bold text-[var(--brand-contrast-text,#0A0A0A)] shadow-sm">
                   {itemCount}
                 </span>
               )}

@@ -195,3 +195,16 @@ You can fully customize your website's **Store Name** and **Color Palette** in t
     }
     ```
 
+### Elements That Automatically Adapt Across Every Screen:
+- **Primary Buttons (`<Button>`)**: Add to Bag, Proceed to Checkout, Place Order, Subscribe, Sign In, Create Account, Save Settings, Add Batch.
+- **Button Borders & Hover States**: Outline and secondary buttons glow with the theme color on hover.
+- **Badges & Tags**: Product status pills ("New", "Signature Edition", "Best Seller").
+- **Pagination Numbers**: The active page indicator and hover borders across product catalogs and order lists.
+- **Form Inputs & Checkboxes**: Focus rings, glow outlines, and checked tick-marks.
+- **Header Badges**: Shopping cart item count pill and wishlist count pill with auto-calculated high-contrast text.
+- **Navigation Indicators**: Active menu underline animation and active tab highlights.
+- **Product Detail Controls**: Active size selector pill, selected color ring, and active specification tabs.
+- **Portal Sidebars**: Active navigation items in both the **Platform Admin Console** and the **Dealer Wholesale Portal**.
+- **Metallic Text Gradients**: Headings with `.text-gradient-gold` automatically re-gradient to match your color.
+
+

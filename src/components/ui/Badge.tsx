@@ -6,10 +6,10 @@ export type BadgeVariant = 'default' | 'sale' | 'new' | 'best' | 'trending' | 'g
 const variantStyles: Record<BadgeVariant, string> = {
   default: 'bg-[var(--text-primary)] text-[var(--bg-primary)]',
   sale: 'bg-red-600 text-white',
-  new: 'bg-[var(--color-noir-gold)] text-[var(--color-noir-black)]',
-  best: 'bg-[var(--color-noir-charcoal)] text-[var(--color-noir-ivory)]',
+  new: 'bg-[var(--color-noir-gold)] text-[var(--brand-contrast-text,#0A0A0A)] font-bold shadow-sm',
+  best: 'border border-[var(--color-noir-gold)]/50 bg-[var(--color-noir-gold)]/10 text-[var(--color-noir-gold)] font-bold',
   trending: 'bg-purple-600 text-white',
-  gold: 'border border-[var(--color-noir-gold)] text-[var(--color-noir-gold)]',
+  gold: 'border border-[var(--color-noir-gold)] bg-[var(--color-noir-gold)]/10 text-[var(--color-noir-gold)] font-bold',
   outline: 'border border-[var(--border-color)] text-[var(--text-secondary)]',
 };
 

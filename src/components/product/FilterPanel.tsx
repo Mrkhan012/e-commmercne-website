@@ -156,8 +156,8 @@ export function FilterPanel({
                   className={cn(
                     'border px-3 py-1.5 text-xs font-medium transition-colors',
                     active
-                      ? 'border-[var(--color-noir-gold)] bg-[var(--color-noir-gold)] text-[var(--color-noir-black)]'
-                      : 'border-[var(--border-color)] text-[var(--text-primary)] hover:border-[var(--text-primary)]'
+                      ? 'border-[var(--color-noir-gold)] bg-[var(--color-noir-gold)] text-[var(--brand-contrast-text,#0A0A0A)] font-bold shadow-sm'
+                      : 'border-[var(--border-color)] text-[var(--text-primary)] hover:border-[var(--color-noir-gold)] hover:text-[var(--color-noir-gold)]'
                   )}
                 >
                   {color.value}
@@ -188,8 +188,8 @@ export function FilterPanel({
                   className={cn(
                     'min-w-10 border px-3 py-1.5 text-xs font-medium transition-colors',
                     active
-                      ? 'border-[var(--color-noir-gold)] bg-[var(--color-noir-gold)] text-[var(--color-noir-black)]'
-                      : 'border-[var(--border-color)] text-[var(--text-primary)] hover:border-[var(--text-primary)]'
+                      ? 'border-[var(--color-noir-gold)] bg-[var(--color-noir-gold)] text-[var(--brand-contrast-text,#0A0A0A)] font-bold shadow-sm'
+                      : 'border-[var(--border-color)] text-[var(--text-primary)] hover:border-[var(--color-noir-gold)] hover:text-[var(--color-noir-gold)]'
                   )}
                 >
                   {size.value}

@@ -24,7 +24,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               'h-4 w-4 shrink-0 cursor-pointer appearance-none border border-[var(--border-color)] bg-[var(--bg-primary)]',
               'transition-colors checked:border-[var(--color-noir-gold)] checked:bg-[var(--color-noir-gold)]',
               'checked:after:block checked:after:h-full checked:after:w-full checked:after:text-center',
-              'checked:after:text-[10px] checked:after:font-bold checked:after:leading-[13px] checked:after:text-[var(--color-noir-black)]',
+              'checked:after:text-[10px] checked:after:font-bold checked:after:leading-[13px] checked:after:text-[var(--brand-contrast-text,#0A0A0A)]',
               'checked:after:content-["✓"]',
               'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-noir-gold)]',
               'disabled:cursor-not-allowed disabled:opacity-50',

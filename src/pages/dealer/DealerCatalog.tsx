@@ -256,7 +256,7 @@ export default function DealerCatalog() {
                         onClick={() => handleQuantityChange(product.id, preset)}
                         className={`rounded px-1.5 py-0.5 text-[10px] font-mono font-bold transition-colors ${
                           currentQty === preset
-                            ? 'bg-[var(--color-noir-gold)] text-black'
+                            ? 'bg-[var(--color-noir-gold)] text-[var(--brand-contrast-text,#0A0A0A)] shadow-sm'
                             : 'bg-[var(--bg-secondary)] text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                         }`}
                       >

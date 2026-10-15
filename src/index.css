@@ -91,7 +91,7 @@
   /* ─── Selection ─── */
   ::selection {
     background-color: var(--color-noir-gold);
-    color: var(--color-noir-black);
+    color: var(--brand-contrast-text, #0A0A0A);
   }
 
   /* ─── Focus ─── */
@@ -110,6 +110,12 @@
 
 /* ─── CSS Custom Properties for Light/Dark Theme ─── */
 :root {
+  --color-noir-gold: #C8A97E;
+  --brand-primary: var(--color-noir-gold);
+  --brand-contrast-text: #0A0A0A;
+  --brand-primary-light: rgba(200, 169, 126, 0.12);
+  --brand-primary-border: rgba(200, 169, 126, 0.3);
+  --brand-primary-glow: 0 0 25px rgba(200, 169, 126, 0.35);
   --bg-primary: #FFFFFF;
   --bg-secondary: #F7F5F0;
   --bg-surface: #F7F5F0;
@@ -165,7 +171,7 @@
 
 /* ─── Text Gradient ─── */
 .text-gradient-gold {
-  background: linear-gradient(135deg, #C8A97E 0%, #E8D5A8 50%, #C8A97E 100%);
+  background: linear-gradient(135deg, var(--color-noir-gold) 0%, color-mix(in srgb, var(--color-noir-gold) 65%, white) 50%, var(--color-noir-gold) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -179,7 +185,7 @@
 
 .dark .announcement-bar {
   background: var(--color-noir-gold);
-  color: var(--color-noir-black);
+  color: var(--brand-contrast-text, #0A0A0A);
 }
 
 /* ─── Header ─── */
@@ -227,13 +233,16 @@
   bottom: -2px;
   left: 0;
   width: 0;
-  height: 1px;
-  background: currentColor;
+  height: 2px;
+  background: var(--color-noir-gold);
   transition: width var(--transition-base);
 }
 .nav-link:hover::after,
 .nav-link.active::after {
   width: 100%;
+}
+.nav-link.active {
+  color: var(--color-noir-gold) !important;
 }
 
 /* ─── Category Card Hover ─── */

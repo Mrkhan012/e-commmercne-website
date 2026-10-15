@@ -30,7 +30,7 @@ export function Pagination({ page, totalPages, onChange, className }: Pagination
   }
 
   const navButton =
-    'flex h-10 w-10 items-center justify-center border border-[var(--border-color)] text-[var(--text-primary)] transition-colors hover:border-[var(--text-primary)] disabled:pointer-events-none disabled:opacity-40';
+    'flex h-10 w-10 items-center justify-center border border-[var(--border-color)] text-[var(--text-primary)] transition-colors hover:border-[var(--color-noir-gold)] hover:text-[var(--color-noir-gold)] disabled:pointer-events-none disabled:opacity-40';
 
   return (
     <nav aria-label="Pagination" className={cn('flex items-center justify-center gap-2', className)}>
@@ -59,8 +59,8 @@ export function Pagination({ page, totalPages, onChange, className }: Pagination
             className={cn(
               'flex h-10 min-w-10 items-center justify-center border px-3 font-heading text-xs font-semibold transition-colors',
               item === page
-                ? 'border-[var(--text-primary)] bg-[var(--text-primary)] text-[var(--bg-primary)]'
-                : 'border-[var(--border-color)] text-[var(--text-primary)] hover:border-[var(--text-primary)]'
+                ? 'border-[var(--color-noir-gold)] bg-[var(--color-noir-gold)] text-[var(--brand-contrast-text,#0A0A0A)] font-bold shadow-sm'
+                : 'border-[var(--border-color)] text-[var(--text-primary)] hover:border-[var(--color-noir-gold)] hover:text-[var(--color-noir-gold)]'
             )}
           >
             {item}

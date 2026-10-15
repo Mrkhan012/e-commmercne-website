@@ -212,7 +212,7 @@ export default function DealerLayout() {
                     cn(
                       'flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-medium transition-colors',
                       isActive
-                        ? 'bg-[var(--color-noir-gold)] text-black font-semibold'
+                        ? 'bg-[var(--color-noir-gold)] text-[var(--brand-contrast-text,#0A0A0A)] font-semibold shadow-sm'
                         : 'text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]'
                     )
                   }

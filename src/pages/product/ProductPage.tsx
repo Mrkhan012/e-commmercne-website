@@ -473,7 +473,7 @@ export default function ProductPage() {
                         className={cn(
                           'relative h-8 w-8 rounded-full border border-[var(--border-color)] transition-all',
                           selectedColor?.slug === c.slug
-                            ? 'ring-2 ring-[var(--text-primary)] ring-offset-2 ring-offset-[var(--bg-primary)] scale-110'
+                            ? 'ring-2 ring-[var(--color-noir-gold)] ring-offset-2 ring-offset-[var(--bg-primary)] scale-110 shadow-sm'
                             : 'hover:scale-105'
                         )}
                         style={{ backgroundColor: c.hex }}
@@ -521,9 +521,9 @@ export default function ProductPage() {
                         className={cn(
                           'flex h-10 min-w-12 items-center justify-center border px-3 text-xs font-semibold uppercase tracking-wider transition-all',
                           selectedSize?.slug === s.slug
-                            ? 'border-[var(--text-primary)] bg-[var(--text-primary)] text-[var(--bg-primary)]'
+                            ? 'border-[var(--color-noir-gold)] bg-[var(--color-noir-gold)] text-[var(--brand-contrast-text,#0A0A0A)] font-bold shadow-sm'
                             : s.available
-                            ? 'border-[var(--border-color)] bg-transparent text-[var(--text-primary)] hover:border-[var(--text-primary)]'
+                            ? 'border-[var(--border-color)] bg-transparent text-[var(--text-primary)] hover:border-[var(--color-noir-gold)] hover:text-[var(--color-noir-gold)]'
                             : 'border-[var(--border-color)] bg-[var(--bg-secondary)]/50 text-[var(--text-muted)]/40 line-through cursor-not-allowed'
                         )}
                       >
@@ -581,7 +581,7 @@ export default function ProductPage() {
                   className={cn(
                     'pb-3 text-xs font-bold uppercase tracking-wider transition-colors mr-6',
                     activeTab === 'details'
-                      ? 'border-b-2 border-[var(--text-primary)] text-[var(--text-primary)]'
+                      ? 'border-b-2 border-[var(--color-noir-gold)] text-[var(--color-noir-gold)]'
                       : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                   )}
                 >
@@ -593,7 +593,7 @@ export default function ProductPage() {
                   className={cn(
                     'pb-3 text-xs font-bold uppercase tracking-wider transition-colors mr-6',
                     activeTab === 'specs'
-                      ? 'border-b-2 border-[var(--text-primary)] text-[var(--text-primary)]'
+                      ? 'border-b-2 border-[var(--color-noir-gold)] text-[var(--color-noir-gold)]'
                       : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                   )}
                 >
@@ -605,7 +605,7 @@ export default function ProductPage() {
                   className={cn(
                     'pb-3 text-xs font-bold uppercase tracking-wider transition-colors',
                     activeTab === 'shipping'
-                      ? 'border-b-2 border-[var(--text-primary)] text-[var(--text-primary)]'
+                      ? 'border-b-2 border-[var(--color-noir-gold)] text-[var(--color-noir-gold)]'
                       : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                   )}
                 >

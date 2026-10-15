@@ -149,7 +149,7 @@ function ProductCardComponent({
               onClick={handleWishlist}
               aria-label={isInWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
               aria-pressed={isInWishlist}
-              className="flex h-9 w-9 items-center justify-center border border-[var(--border-color)] bg-[var(--bg-primary)]/90 text-[var(--text-primary)] backdrop-blur transition-colors hover:bg-[var(--color-noir-gold)] hover:text-[var(--color-noir-black)]"
+              className="flex h-9 w-9 items-center justify-center border border-[var(--border-color)] bg-[var(--bg-primary)]/90 text-[var(--text-primary)] backdrop-blur transition-colors hover:border-[var(--color-noir-gold)] hover:bg-[var(--color-noir-gold)] hover:text-[var(--brand-contrast-text,#0A0A0A)]"
             >
               <Heart className={cn('h-4 w-4', isInWishlist && 'fill-red-500 text-red-500')} />
             </button>
@@ -162,7 +162,7 @@ function ProductCardComponent({
                   onQuickView(product);
                 }}
                 aria-label={`Quick view ${product.name}`}
-                className="flex h-9 w-9 items-center justify-center border border-[var(--border-color)] bg-[var(--bg-primary)]/90 text-[var(--text-primary)] backdrop-blur transition-colors hover:bg-[var(--color-noir-gold)] hover:text-[var(--color-noir-black)]"
+                className="flex h-9 w-9 items-center justify-center border border-[var(--border-color)] bg-[var(--bg-primary)]/90 text-[var(--text-primary)] backdrop-blur transition-colors hover:border-[var(--color-noir-gold)] hover:bg-[var(--color-noir-gold)] hover:text-[var(--brand-contrast-text,#0A0A0A)]"
               >
                 <Eye className="h-4 w-4" />
               </button>
@@ -173,8 +173,8 @@ function ProductCardComponent({
               aria-label={isInCompare ? 'Remove from compare' : 'Add to compare'}
               aria-pressed={isInCompare}
               className={cn(
-                'flex h-9 w-9 items-center justify-center border border-[var(--border-color)] bg-[var(--bg-primary)]/90 backdrop-blur transition-colors hover:bg-[var(--color-noir-gold)] hover:text-[var(--color-noir-black)]',
-                isInCompare ? 'text-[var(--color-noir-gold)]' : 'text-[var(--text-primary)]'
+                'flex h-9 w-9 items-center justify-center border border-[var(--border-color)] bg-[var(--bg-primary)]/90 backdrop-blur transition-colors hover:border-[var(--color-noir-gold)] hover:bg-[var(--color-noir-gold)] hover:text-[var(--brand-contrast-text,#0A0A0A)]',
+                isInCompare ? 'text-[var(--color-noir-gold)] border-[var(--color-noir-gold)]' : 'text-[var(--text-primary)]'
               )}
             >
               <GitCompare className="h-4 w-4" />
@@ -187,7 +187,7 @@ function ProductCardComponent({
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="flex h-11 w-full items-center justify-center gap-2 bg-[var(--text-primary)] font-heading text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--bg-primary)] transition-colors hover:bg-[var(--color-noir-gold)] hover:text-[var(--color-noir-black)]"
+                className="flex h-11 w-full items-center justify-center gap-2 bg-[var(--text-primary)] font-heading text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--bg-primary)] transition-colors hover:bg-[var(--color-noir-gold)] hover:text-[var(--brand-contrast-text,#0A0A0A)]"
               >
                 {justAdded ? (
                   <>

@@ -50,7 +50,7 @@ export function PromoBanner() {
         aria-hidden="true"
         style={{
           backgroundImage:
-            'radial-gradient(circle at 20% 30%, #C8A97E 0%, transparent 45%), radial-gradient(circle at 80% 70%, #C8A97E 0%, transparent 45%)',
+            'radial-gradient(circle at 20% 30%, var(--color-noir-gold) 0%, transparent 45%), radial-gradient(circle at 80% 70%, var(--color-noir-gold) 0%, transparent 45%)',
         }}
       />
 
