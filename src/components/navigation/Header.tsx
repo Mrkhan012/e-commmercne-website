@@ -14,6 +14,8 @@ import {
   Sparkles,
   LogOut,
   LayoutDashboard,
+  Shield,
+  UserCheck,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { categories } from '@/data/categories';
@@ -33,7 +35,7 @@ export function Header() {
   const itemCount = useCartStore((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
   const openCart = useCartStore((state) => state.openCart);
   const wishlistCount = useWishlistStore((state) => state.items.length);
-  const { isAuthenticated, user, signOut } = useUserStore();
+  const { isAuthenticated, user, signOut, toggleRole, signInAsAdmin } = useUserStore();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
@@ -173,6 +175,17 @@ export function Header() {
               </AnimatePresence>
             </button>
 
+            {/* Admin Console Pill (Visible only when user role is admin) */}
+            {user?.role === 'admin' && (
+              <Link
+                to="/admin"
+                className="hidden items-center gap-1.5 border border-[var(--color-noir-gold)]/60 bg-[var(--color-noir-gold)]/10 px-2.5 py-1 font-heading text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--color-noir-gold)] transition-colors hover:bg-[var(--color-noir-gold)]/25 sm:inline-flex"
+              >
+                <Shield className="h-3 w-3" />
+                <span>Admin Console</span>
+              </Link>
+            )}
+
             {/* Account */}
             <Dropdown
               align="right"
@@ -191,11 +204,23 @@ export function Header() {
                 isAuthenticated && user ? (
                   <>
                     <div className="border-b border-[var(--border-color)] px-4 py-3">
-                      <p className="text-sm font-medium text-[var(--text-primary)]">
-                        {user.firstName} {user.lastName}
-                      </p>
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="truncate text-sm font-medium text-[var(--text-primary)]">
+                          {user.firstName} {user.lastName}
+                        </p>
+                        <span
+                          className={`px-1.5 py-0.5 font-mono text-[9px] font-bold uppercase ${
+                            user.role === 'admin'
+                              ? 'border border-[var(--color-noir-gold)]/40 bg-[var(--color-noir-gold)]/20 text-[var(--color-noir-gold)]'
+                              : 'bg-[var(--bg-secondary)] text-[var(--text-muted)]'
+                          }`}
+                        >
+                          {user.role}
+                        </span>
+                      </div>
                       <p className="truncate text-xs text-[var(--text-muted)]">{user.email}</p>
                     </div>
+
                     <DropdownItem
                       icon={<UserIcon className="h-4 w-4" />}
                       onClick={() => {
@@ -205,15 +230,33 @@ export function Header() {
                     >
                       My Account
                     </DropdownItem>
+
+                    {/* Admin Dashboard: shown only if user role is admin */}
+                    {user.role === 'admin' && (
+                      <DropdownItem
+                        icon={<LayoutDashboard className="h-4 w-4 text-[var(--color-noir-gold)]" />}
+                        onClick={() => {
+                          close();
+                          window.location.assign('/admin');
+                        }}
+                      >
+                        <span className="font-semibold text-[var(--color-noir-gold)]">
+                          Admin Dashboard
+                        </span>
+                      </DropdownItem>
+                    )}
+
+                    {/* Switch role toggle */}
                     <DropdownItem
-                      icon={<LayoutDashboard className="h-4 w-4" />}
+                      icon={<UserCheck className="h-4 w-4" />}
                       onClick={() => {
+                        toggleRole();
                         close();
-                        window.location.assign('/admin');
                       }}
                     >
-                      Admin Dashboard
+                      Switch to {user.role === 'admin' ? 'Customer' : 'Admin'} View
                     </DropdownItem>
+
                     <DropdownDivider />
                     <DropdownItem
                       destructive
@@ -246,12 +289,14 @@ export function Header() {
                     </DropdownItem>
                     <DropdownDivider />
                     <DropdownItem
+                      icon={<Shield className="h-4 w-4 text-[var(--color-noir-gold)]" />}
                       onClick={() => {
+                        signInAsAdmin();
                         close();
                         window.location.assign('/admin');
                       }}
                     >
-                      Admin (Demo)
+                      Sign in as Admin
                     </DropdownItem>
                   </>
                 )
@@ -491,6 +536,17 @@ export function Header() {
                           Track Order
                         </Link>
                       </li>
+                      {user?.role === 'admin' && (
+                        <li>
+                          <Link
+                            to="/admin"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block py-2.5 font-heading text-xs font-bold uppercase tracking-wider text-[var(--color-noir-gold)]"
+                          >
+                            Admin Dashboard &rarr;
+                          </Link>
+                        </li>
+                      )}
                     </ul>
                   </div>
                 </nav>

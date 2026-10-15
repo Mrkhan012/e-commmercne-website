@@ -223,11 +223,39 @@ export default function SignInPage() {
 
         <AuthDemoNote className="mt-8" />
 
-        <p className="mt-6 border-t border-[var(--border-color)] pt-6 text-xs text-[var(--text-muted)]">
-          Demo credentials:{' '}
-          <span className="text-[var(--text-secondary)]">{DEMO_EMAIL}</span> with any password of at
-          least 6 characters.
-        </p>
+        <div className="mt-6 border-t border-[var(--border-color)] pt-6 space-y-3">
+          <p className="text-xs text-[var(--text-muted)]">
+            Demo credentials:{' '}
+            <span className="text-[var(--text-secondary)]">{DEMO_EMAIL}</span> (Customer) or{' '}
+            <span className="text-[var(--color-noir-gold)]">admin@afro.co</span> (Administrator).
+          </p>
+          <div className="flex flex-col sm:flex-row gap-2 pt-1">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                signInToStore(DEMO_EMAIL, 'Demo', 'Customer', 'customer');
+                navigate('/account');
+              }}
+              className="text-[10px] uppercase tracking-wider flex-1"
+            >
+              Sign In as Customer
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                useUserStore.getState().signInAsAdmin();
+                navigate('/admin');
+              }}
+              className="text-[10px] uppercase tracking-wider border-[var(--color-noir-gold)]/60 text-[var(--color-noir-gold)] flex-1"
+            >
+              Sign In as Admin
+            </Button>
+          </div>
+        </div>
       </motion.div>
     </AuthLayout>
   );

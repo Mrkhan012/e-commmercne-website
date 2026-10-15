@@ -10,7 +10,10 @@ interface UserState {
   isAuthModalOpen: boolean;
   authModalView: 'signin' | 'signup';
   // Actions
-  signIn: (email: string, firstName?: string, lastName?: string) => void;
+  signIn: (email: string, firstName?: string, lastName?: string, role?: 'customer' | 'admin') => void;
+  signInAsAdmin: () => void;
+  setRole: (role: 'customer' | 'admin') => void;
+  toggleRole: () => void;
   signUp: (data: { firstName: string; lastName: string; email: string }) => void;
   signOut: () => void;
   updateProfile: (data: Partial<Pick<User, 'firstName' | 'lastName' | 'email' | 'phone'>>) => void;
@@ -34,16 +37,26 @@ const defaultPreferences: UserPreferences = {
 };
 
 // Build a demo account. NOTE: this is a front-end-only demo session, not real auth.
-const createDemoUser = (email: string, firstName = 'Demo', lastName = 'Customer'): User => ({
-  id: `user-${Date.now()}`,
-  firstName,
-  lastName,
-  email,
-  role: 'customer',
-  createdAt: new Date().toISOString(),
-  addresses: [],
-  preferences: { ...defaultPreferences },
-});
+const createDemoUser = (
+  email: string,
+  firstName = 'Demo',
+  lastName = 'Customer',
+  role?: 'customer' | 'admin'
+): User => {
+  const calculatedRole: 'customer' | 'admin' =
+    role ?? (email.toLowerCase().includes('admin') ? 'admin' : 'customer');
+
+  return {
+    id: `user-${Date.now()}`,
+    firstName,
+    lastName,
+    email,
+    role: calculatedRole,
+    createdAt: new Date().toISOString(),
+    addresses: [],
+    preferences: { ...defaultPreferences },
+  };
+};
 
 // Demo orders so the account dashboard and order tracking are never empty.
 const demoOrders: Order[] = [
@@ -218,8 +231,8 @@ export const useUserStore = create<UserState>()(
       isAuthModalOpen: false,
       authModalView: 'signin',
 
-      signIn: (email, firstName, lastName) => {
-        const user = createDemoUser(email, firstName, lastName);
+      signIn: (email, firstName, lastName, role) => {
+        const user = createDemoUser(email, firstName, lastName, role);
         set({
           user: { ...user, addresses: demoAddresses },
           isAuthenticated: true,
@@ -227,6 +240,26 @@ export const useUserStore = create<UserState>()(
           addresses: demoAddresses,
         });
       },
+
+      signInAsAdmin: () => {
+        const user = createDemoUser('director@afro.co', 'Atelier', 'Director', 'admin');
+        set({
+          user: { ...user, addresses: demoAddresses },
+          isAuthenticated: true,
+          orders: demoOrders,
+          addresses: demoAddresses,
+        });
+      },
+
+      setRole: (role) =>
+        set((state) => (state.user ? { user: { ...state.user, role } } : state)),
+
+      toggleRole: () =>
+        set((state) => {
+          if (!state.user) return state;
+          const nextRole = state.user.role === 'admin' ? 'customer' : 'admin';
+          return { user: { ...state.user, role: nextRole } };
+        }),
 
       signUp: (data) => {
         const user = createDemoUser(data.email, data.firstName, data.lastName);

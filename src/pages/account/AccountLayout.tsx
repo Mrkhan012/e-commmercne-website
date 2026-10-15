@@ -88,6 +88,19 @@ export default function AccountLayout() {
     navigate('/');
   };
 
+  const userNavItems: NavItem[] = [
+    ...navItems,
+    ...(user?.role === 'admin'
+      ? [
+          {
+            to: '/admin',
+            label: 'Admin Operations',
+            icon: <ShieldCheck className="h-4 w-4 text-[var(--color-noir-gold)]" />,
+          },
+        ]
+      : []),
+  ];
+
   return (
     <div className="py-10 lg:py-14">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
@@ -166,10 +179,19 @@ export default function AccountLayout() {
                       </span>
                     )}
                     <div className="min-w-0">
-                      <p className="truncate font-heading text-sm font-bold text-[var(--text-primary)]">
-                        {user.firstName} {user.lastName}
-                      </p>
-                      <p className="truncate text-xs text-[var(--text-muted)]">{user.email}</p>
+                      <div className="flex items-center gap-2">
+                        <p className="truncate font-heading text-sm font-bold text-[var(--text-primary)]">
+                          {user.firstName} {user.lastName}
+                        </p>
+                      </div>
+                      <span className={`inline-block font-mono text-[9px] uppercase font-bold px-1.5 py-0.2 mt-0.5 ${
+                        user.role === 'admin'
+                          ? 'bg-[var(--color-noir-gold)]/20 text-[var(--color-noir-gold)] border border-[var(--color-noir-gold)]/40'
+                          : 'bg-[var(--bg-secondary)] text-[var(--text-muted)]'
+                      }`}>
+                        {user.role}
+                      </span>
+                      <p className="truncate text-xs text-[var(--text-muted)] mt-1">{user.email}</p>
                     </div>
                   </div>
 
@@ -180,7 +202,7 @@ export default function AccountLayout() {
                   {/* Nav */}
                   <nav aria-label="Account navigation" className="mt-5 -mx-6">
                     <ul className="flex flex-col">
-                      {navItems.map((item) => (
+                      {userNavItems.map((item) => (
                         <li key={item.to}>
                           <NavLink
                             to={item.to}
@@ -220,7 +242,7 @@ export default function AccountLayout() {
               className="-mx-4 mb-2 overflow-x-auto border-b border-[var(--border-color)] px-4 lg:hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               <ul className="flex w-max items-center gap-1">
-                {navItems.map((item) => (
+                {userNavItems.map((item) => (
                   <li key={item.to}>
                     <NavLink
                       to={item.to}

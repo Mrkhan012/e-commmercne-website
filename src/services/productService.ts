@@ -1,5 +1,7 @@
 import type { Product, PaginatedResponse } from '@/types';
-import { products as allProducts } from '@/data/products';
+import { useProductStore } from '@/store/productStore';
+
+const getAllProducts = (): Product[] => useProductStore.getState().products;
 
 /**
  * Product catalog service.
@@ -139,7 +141,7 @@ export const productService = {
     const page = query.page ?? 1;
     const pageSize = query.pageSize ?? 12;
 
-    let result = applyFilters(allProducts, query);
+    let result = applyFilters(getAllProducts(), query);
     result = applySort(result, query.sort);
 
     const total = result.length;
@@ -151,18 +153,18 @@ export const productService = {
   },
 
   async getBySlug(slug: string): Promise<Product | null> {
-    const found = allProducts.find((p) => p.slug === slug);
+    const found = getAllProducts().find((p) => p.slug === slug);
     if (!found) return delay(null);
     return delay(found);
   },
 
   async getById(id: string): Promise<Product | null> {
-    const found = allProducts.find((p) => p.id === id);
+    const found = getAllProducts().find((p) => p.id === id);
     return delay(found ?? null);
   },
 
   async getRelated(productId: string, category: string, limit = 4): Promise<Product[]> {
-    const related = allProducts
+    const related = getAllProducts()
       .filter((p) => p.id !== productId && p.category === category)
       .slice(0, limit);
     return delay(related);
@@ -170,9 +172,9 @@ export const productService = {
 
   /** Products commonly bought with the given product (demo heuristic: same category). */
   async getFrequentlyBoughtTogether(productId: string, limit = 3): Promise<Product[]> {
-    const product = allProducts.find((p) => p.id === productId);
+    const product = getAllProducts().find((p) => p.id === productId);
     if (!product) return delay([]);
-    const others = allProducts
+    const others = getAllProducts()
       .filter((p) => p.id !== productId && p.category === product.category)
       .sort((a, b) => b.rating - a.rating)
       .slice(0, limit);
@@ -182,7 +184,7 @@ export const productService = {
   async getNewArrivals(limit = 8): Promise<Product[]> {
     return delay(
       applySort(
-        allProducts.filter((p) => p.status === 'new'),
+        getAllProducts().filter((p) => p.status === 'new'),
         'newest'
       ).slice(0, limit)
     );
@@ -191,7 +193,7 @@ export const productService = {
   async getBestSellers(limit = 8): Promise<Product[]> {
     return delay(
       applySort(
-        allProducts.filter((p) => p.status === 'best-seller'),
+        getAllProducts().filter((p) => p.status === 'best-seller'),
         'bestselling'
       ).slice(0, limit)
     );
@@ -200,7 +202,7 @@ export const productService = {
   async getTrending(limit = 8): Promise<Product[]> {
     return delay(
       applySort(
-        allProducts.filter((p) => p.status === 'trending'),
+        getAllProducts().filter((p) => p.status === 'trending'),
         'bestselling'
       ).slice(0, limit)
     );
@@ -209,7 +211,7 @@ export const productService = {
   async getOnSale(limit = 12): Promise<Product[]> {
     return delay(
       applySort(
-        allProducts.filter((p) => p.discount !== undefined && p.discount > 0),
+        getAllProducts().filter((p) => p.discount !== undefined && p.discount > 0),
         'price-desc'
       ).slice(0, limit)
     );
@@ -218,7 +220,7 @@ export const productService = {
   async getFeatured(limit = 6): Promise<Product[]> {
     return delay(
       applySort(
-        allProducts.filter((p) => p.status === 'best-seller' || p.status === 'new'),
+        getAllProducts().filter((p) => p.status === 'best-seller' || p.status === 'new'),
         'bestselling'
       ).slice(0, limit)
     );
@@ -228,14 +230,14 @@ export const productService = {
     // Demo: a deterministic "personalized" mix based on rating and recency.
     return delay(
       applySort(
-        [...allProducts].filter((p) => p.rating >= 4.6),
+        [...getAllProducts()].filter((p) => p.rating >= 4.6),
         'newest'
       ).slice(0, limit)
     );
   },
 
   async getAll(): Promise<Product[]> {
-    return delay(allProducts);
+    return delay(getAllProducts());
   },
 
   /** Facet counts for building filter UI. */
@@ -245,19 +247,19 @@ export const productService = {
     sizes: { value: string; count: number }[];
     priceRange: [number, number];
   }> {
-    const brands = [...new Set(allProducts.map((p) => p.brand))].map((b) => ({
+    const brands = [...new Set(getAllProducts().map((p) => p.brand))].map((b) => ({
       value: b,
-      count: allProducts.filter((p) => p.brand === b).length,
+      count: getAllProducts().filter((p) => p.brand === b).length,
     }));
     const colorMap = new Map<string, number>();
-    allProducts.forEach((p) =>
+    getAllProducts().forEach((p) =>
       p.colors?.forEach((c) => colorMap.set(c.name, (colorMap.get(c.name) ?? 0) + 1))
     );
     const sizeMap = new Map<string, number>();
-    allProducts.forEach((p) =>
+    getAllProducts().forEach((p) =>
       p.sizes?.forEach((s) => sizeMap.set(s.label, (sizeMap.get(s.label) ?? 0) + 1))
     );
-    const prices = allProducts.map((p) => p.price);
+    const prices = getAllProducts().map((p) => p.price);
     return delay({
       brands,
       colors: [...colorMap.entries()].map(([value, count]) => ({ value, count })),

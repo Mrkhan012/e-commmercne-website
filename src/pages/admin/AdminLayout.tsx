@@ -13,7 +13,13 @@ import {
   Mail,
   Settings,
   ArrowLeft,
+  Lock,
+  Shield,
+  UserCheck,
 } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
+import { useUserStore } from '@/store/userStore';
+import { useToastStore } from '@/store/toastStore';
 import { cn } from '@/utils/cn';
 import { useSeo } from '@/hooks/useSeo';
 
@@ -38,6 +44,68 @@ export default function AdminLayout() {
     description: 'Executive management portal for AFRO & CO. operations, inventory, and orders.',
   });
 
+  const { user, isAuthenticated, setRole, signInAsAdmin } = useUserStore();
+  const toast = useToastStore();
+
+  // Role Gate: Only users with 'admin' role can view the dashboard
+  if (!isAuthenticated || user?.role !== 'admin') {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[var(--bg-primary)] p-6">
+        <div className="w-full max-w-md border border-[var(--border-color)] bg-[var(--bg-card)] p-8 text-center sm:p-10">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--bg-secondary)] text-[var(--color-noir-gold)]">
+            <Lock className="h-6 w-6" />
+          </div>
+
+          <div className="mt-6 space-y-2">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--color-noir-gold)]">
+              Access Restricted &bull; {user ? `Role: ${user.role.toUpperCase()}` : 'ANONYMOUS'}
+            </span>
+            <h1 className="font-heading text-2xl font-bold text-[var(--text-primary)]">
+              Admin Privilege Required
+            </h1>
+            <p className="text-xs leading-relaxed text-[var(--text-secondary)]">
+              The AFRO &amp; CO. Atelier Operations Console is only accessible to users with the{' '}
+              <strong className="text-[var(--text-primary)]">Administrator</strong> role.
+            </p>
+          </div>
+
+          <div className="mt-8 flex flex-col gap-3">
+            {isAuthenticated ? (
+              <Button
+                onClick={() => {
+                  setRole('admin');
+                  toast.success('Privilege Granted', 'Switched to Atelier Administrator role.');
+                }}
+                className="w-full uppercase tracking-wider text-xs"
+              >
+                <Shield className="mr-2 h-4 w-4" />
+                Elevate to Admin Role (Demo)
+              </Button>
+            ) : (
+              <Button
+                onClick={() => {
+                  signInAsAdmin();
+                  toast.success('Welcome, Director', 'Logged in as Atelier Administrator.');
+                }}
+                className="w-full uppercase tracking-wider text-xs"
+              >
+                <Shield className="mr-2 h-4 w-4" />
+                Sign In as Admin (Director Demo)
+              </Button>
+            )}
+
+            <Button asChild variant="outline" className="w-full uppercase tracking-wider text-xs">
+              <Link to="/">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Return to Storefront
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)]">
       {/* Top Banner */}
@@ -57,12 +125,25 @@ export default function AdminLayout() {
         </div>
 
         <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => {
+              setRole('customer');
+              toast.info('Role switched', 'Viewing as Customer now.');
+            }}
+            title="Switch to customer mode to preview user experience"
+            className="hidden items-center gap-1.5 border border-[var(--border-color)] bg-[var(--bg-secondary)] px-2.5 py-1 font-heading text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-primary)] sm:flex"
+          >
+            <UserCheck className="h-3 w-3" />
+            <span>Test Customer View</span>
+          </button>
+
           <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 font-mono text-[10px] text-emerald-500">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            LIVE ATELIER
+            ADMIN ROLE
           </span>
           <span className="font-heading text-xs font-semibold text-[var(--text-primary)]">
-            Director Console
+            {user?.firstName} ({user?.role})
           </span>
         </div>
       </header>
