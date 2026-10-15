@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'motion/react';
-import { categories } from '@/data/categories';
+import { useCategoryStore } from '@/store/categoryStore';
 import { useReducedMotion } from '@/hooks/useUi';
 
 /**
@@ -10,6 +10,7 @@ import { useReducedMotion } from '@/hooks/useUi';
  */
 export function CategoryShowcase() {
   const reduceMotion = useReducedMotion();
+  const categories = useCategoryStore((s) => s.categories);
   const featured = categories.filter((c) => c.featured).slice(0, 5);
 
   const reveal = (delay: number) =>

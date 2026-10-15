@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { LayoutGrid, List, SlidersHorizontal, SearchX } from 'lucide-react';
 import type { Product, ProductFilters, SortOption } from '@/types';
-import { categories, getCategoryBySlug } from '@/data/categories';
+import { useCategoryStore } from '@/store/categoryStore';
 import { useProducts } from '@/hooks/useQueries';
 import { FilterPanel } from '@/components/product/FilterPanel';
 import { ProductCard } from '@/components/product/ProductCard';
@@ -36,11 +36,12 @@ const DEFAULT_FILTERS: ProductFilters = {
 const resolveCategory = (slug: string | undefined) => {
   if (!slug) return null;
 
-  const topLevel = getCategoryBySlug(slug);
+  const allCategories = useCategoryStore.getState().categories;
+  const topLevel = allCategories.find((c) => c.slug.toLowerCase() === slug.toLowerCase());
   if (topLevel) return { kind: 'category' as const, category: topLevel, subcategory: undefined };
 
-  for (const category of categories) {
-    const sub = category.subcategories?.find((s) => s.slug === slug);
+  for (const category of allCategories) {
+    const sub = category.subcategories?.find((s) => s.slug.toLowerCase() === slug.toLowerCase());
     if (sub) return { kind: 'subcategory' as const, category, subcategory: sub };
   }
 

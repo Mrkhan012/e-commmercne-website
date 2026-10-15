@@ -18,20 +18,11 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Dialog } from '@/components/ui/Dialog';
 import { useProductStore } from '@/store/productStore';
+import { useCategoryStore } from '@/store/categoryStore';
 import { useCurrencyStore } from '@/store/currencyStore';
 import { useToastStore } from '@/store/toastStore';
 import { formatPrice } from '@/utils/format';
 import type { Product, ProductStatus } from '@/types';
-
-const CATEGORIES = [
-  'Clothing',
-  'Shoes',
-  'Bags & Accessories',
-  'Watches & Jewelry',
-  'Home & Lifestyle',
-  'Beauty & Personal Care',
-  'Electronics & Gadgets',
-];
 
 const PRESET_IMAGES = [
   { label: 'Outerwear', url: 'https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=800&q=80' },
@@ -56,6 +47,8 @@ export default function AdminProducts() {
     restoreBulkPrices,
   } = useProductStore();
   const currentCurrency = useCurrencyStore((s) => s.currentCurrency);
+  const { categories: categoryList } = useCategoryStore();
+  const categoryNames = categoryList.map((c) => c.name);
   const toast = useToastStore();
 
   const [search, setSearch] = useState('');
@@ -481,7 +474,7 @@ export default function AdminProducts() {
             className="border border-[var(--border-color)] bg-[var(--bg-primary)] px-3 py-1.5 text-xs text-[var(--text-primary)] font-heading"
           >
             <option value="all">All Categories</option>
-            {CATEGORIES.map((c) => (
+            {categoryNames.map((c) => (
               <option key={c} value={c}>
                 {c}
               </option>
@@ -545,7 +538,7 @@ export default function AdminProducts() {
                   className="w-full border border-[var(--border-color)] bg-[var(--bg-primary)] px-3 py-2 text-xs text-[var(--text-primary)] font-heading"
                 >
                   <option value="all">Entire Store Catalog (Storewide)</option>
-                  {CATEGORIES.map((cat) => (
+                  {categoryNames.map((cat) => (
                     <option key={cat} value={cat}>
                       Only in: {cat}
                     </option>
@@ -771,7 +764,7 @@ export default function AdminProducts() {
                 onChange={(e) => setCategory(e.target.value)}
                 className="w-full border border-[var(--border-color)] bg-[var(--bg-primary)] px-3 py-2 text-xs text-[var(--text-primary)]"
               >
-                {CATEGORIES.map((c) => (
+                {categoryNames.map((c) => (
                   <option key={c} value={c}>
                     {c}
                   </option>

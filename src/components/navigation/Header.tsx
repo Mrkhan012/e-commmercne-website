@@ -19,7 +19,7 @@ import {
   Globe,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { categories } from '@/data/categories';
+import { useCategoryStore } from '@/store/categoryStore';
 import { useThemeStore } from '@/store/themeStore';
 import { useCartStore } from '@/store/cartStore';
 import { useWishlistStore } from '@/store/wishlistStore';
@@ -35,6 +35,7 @@ import type { Currency } from '@/types';
 
 export function Header() {
   const location = useLocation();
+  const categories = useCategoryStore((s) => s.categories);
   const { theme, toggleTheme } = useThemeStore();
   const itemCount = useCartStore((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
   const openCart = useCartStore((state) => state.openCart);

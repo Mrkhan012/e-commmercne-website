@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { InstagramIcon, TwitterIcon, FacebookIcon, YoutubeIcon } from '@/components/ui/SocialIcons';
-import { categories } from '@/data/categories';
+import { useCategoryStore } from '@/store/categoryStore';
 import { useState } from 'react';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
@@ -38,6 +38,7 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const categories = useCategoryStore((s) => s.categories);
   const [email, setEmail] = useState('');
   const toast = useToastStore((state) => state.success);
 
